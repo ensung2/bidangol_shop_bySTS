@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+/*----- 로그인페이지 틀 -----*/
+.loginPage {
+	width: 100%;
+	padding: 80px 0;
+}
+
+
+.loginPage>.wrap {
+	padding: 50px 80px;
+	width: 500px;
+	margin: 0 auto;
+	border: 1px solid #dddddd;
+	border-radius: 10px;
+}
+
+/* 로그인페이지 - 타이틀 */
+
+.lgTitle {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+.lgTitle h3 {
+	font-size: 25px;
+}
+
+/* 로그인페이지 - 로그인 폼 */
+.idPw {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.idPw input{
+	width: 350px;
+	font-size : 15px;
+	margin: 0 auto;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #777777;
+	padding:5px 5px;
+	margin-bottom: 10px;
+	
+}
+
+.idPw input::placeholder {
+	font-size:14px;
+	color: #cccccc
+}
+
+.idPw input:focus {
+	outline:none;
+}
+
+.login_btn {
+	text-align: center;
+}
+
+/* 로그인페이지 - 아이디 저장 */
+.idSave {
+	display: flex;
+	align-items: center;
+}
+
+.idSave input{
+	padding: 10px;
+}
+
+.idSave label {
+	font-family: "Gothic A1", sans-serif;
+	font-size: 13px;
+	padding-left: 5px;
+}
+
+/* 로그인페이지 - 버튼 */
+
+.login_btn input {
+	width: 350px;
+	margin-top: 7px;
+	padding: 10px 0;
+	color: #ffffff;
+	border: none;
+	font-size: 15px;
+}
+
+input[type=button]:hover {
+	cursor: pointer;
+}
+
+.sign_in_btn {
+	background-color:  #2A2A2A
+}
+
+.sign_up_btn {
+	background-color:  #777777
+}
+
+/*----- 회원가입페이지 틀 -----*/
+.signUp {
+	width: 100%;
+	padding: 80px 0;
+}
+
+
+.signUp>.wrap {
+	padding: 50px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border: 1px solid #dddddd;
+	border-radius: 10px;
+}
+
+/* 회원가입페이지 - 정보입력 */
+.suInfo {
+	width:800px;
+	margin: 0 auto;
+}
+
+.suInfo input {
+	border: 1px solid #cccccc;
+	margin: 5px 0;
+}
+
+.suInfo span {
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+.suInfo table {
+	margin:0 auto;
+	border-collapse: collapse;
+}
+.suInfo table input {
+	font-size: 14px;
+	padding: 3px;
+}
+
+.suInfo tr {
+	border-bottom: 2px solid #777777;
+	padding: 0 5px;
+}
+
+.suInfo th {
+	width: 120px;
+	font-size: 15px;
+	text-align: left;
+	padding: 15px 0;
+	
+}
+
+/* 회원가입페이지 - 버튼 */
+
+.signUp_btn {
+	background-color:  #2A2A2A
+}
+
+/*----- 회원가입완료페이지 -----*/
+
+.signSuccess {
+	width: 100%;
+	padding: 80px 0;
+}
+
+.signSuccess>.wrap {
+	padding: 50px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border: 1px solid #dddddd;
+	border-radius: 10px;
+}
+
+.ssTitle {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.ssTitle h3 {
+	font-size: 25px;
+}
+
+.ssTitle p {
+	font-size: 15px;
+	padding: 10px 0;
+}
+
+
+/* 회원가입완료페이지 - 아이디/이름 정보 */
+
+
+.ssInfo {
+	width: 250px;
+	margin: 0 auto;
+}
+
+.ssInfo th {
+	width:80px;
+	text-align: left;
+	font-size: 13px;
+}
+
+.ssInfo td {
+	font-size: 13px;
+}
+
+/* 회원가입완료페이지 - 버튼 */
+
+.ssBtn {
+	width: 350px;
+	text-align: center;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+.ssBtn input[type=button] {
+	width: 150px;
+	padding: 10px 0;
+	color: #ffffff;
+	border: none;
+	font-size: 15px;
+}
+
+#goMain {
+	background-color:  #777777
+}
+
+#goLogin {
+	background-color:  #2A2A2A
+}
+
+
+
+
+
+
+
+

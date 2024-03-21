@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+/* 카테고리 전체 */
+
+.category {
+	width: 100%;
+	padding-bottom: 30px;
+	
+}
+
+.category>.wrap {
+	padding: 0 100px;
+	width: 1400px;
+	margin: 0 auto;
+}
+
+/* 카테고리 - 타이틀 */
+.cgTitle {
+	width: 100%;
+	text-align: center;
+	padding: 40px 0;
+}
+
+.cgTitle h3 {
+	font-size: 25px;
+}
+.cgTitle p {
+	font-size: 15px;
+	padding: 10px 0;
+}
+
+/* 카테고리 - 아이템(정보+리스트) */
+.cgItem {
+	padding: 10px 0;
+}
+
+/* 카테고리 - 아이템정보 */
+.itemInfo {
+	width:100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+	font-size: 13px;
+	border-bottom: 1px solid #eeeeee;
+}
+
+.itemCount {
+	font-weight: 600;
+}
+
+.itemArray>ul {
+	display: flex;
+}
+
+.itemArray>ul li a:hover {
+	font-weight: 600;
+}
+
+/* 카테고리 - 아이템리스트 */
+
+.itemList>ul {
+	display: flex;
+	width:100%;
+	flex-wrap: wrap;
+}
+.itemList>ul>li {
+ 	width: 25%;
+ 	height: 380px;
+ 	padding: 20px 10px;
+ }
+
+.description {
+	padding: 10px 5px;
+}
+
+.name {
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+ 
+ 
+
+
