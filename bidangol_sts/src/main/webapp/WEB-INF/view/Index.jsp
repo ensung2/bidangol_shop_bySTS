@@ -21,7 +21,8 @@
 				<div class="indexNotice">
 					<div class="indexTitle">
 						<i class="fa-solid fa-volume-high"></i> <span>공지사항</span> <input
-							type="button" value="전체보기">
+							type="button" value="전체보기"
+							onClick="location.href='/bidangol/notice'">
 					</div>
 					<ul>
 						<li><a href="#"> <span>6</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>

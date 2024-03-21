@@ -22,6 +22,9 @@ ul, li {
 	width: 100%;
 	text-align: center;
 	padding: 30px 0 30px 0;
+	background: url("/bidangol/img/bg_cloud.png"),url("/bidangol/img/bg_cloud.png");
+	background-position: top -30px left -50px, right -50px top 30px;
+	background-repeat: no-repeat;
 }
 
 .mainLogo h1 a{
@@ -164,6 +167,14 @@ footer {
 .indexTitle>span {
 	margin-left: 2px;
 	margin-right: 200px;
+}
+
+.indexTitle input {
+	border: none;
+	font-size: 13px;
+	padding: 3px 6px;
+	cursor: pointer;
+	background-color: #ffffff
 }
 
 

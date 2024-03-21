@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/*----- 공지사항 틀 -----*/
+.noticePage {
+	width: 100%;
+}
+
+.noticePage>.wrap {
+	padding: 40px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+.noticePage input[type=button] {
+	cursor: pointer
+}
+
+/* 공지사항 - 타이틀 */
+
+.noticeTitle {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+.noticeTitle h3 {
+	font-size: 25px;
+}
+
+/* 공지사항 - section */
+.noticeInfo, .noticeItem, .notice_btn, .noticePaging {
+	width:900px;
+	margin: 0 auto;
+}
+
+/* 공지사항 - noticeInfo */
+.noticeInfo {
+	border-top: 2px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	background-color: #FCFBFB;
+	padding: 10px 0;	
+}
+
+.noticeInfo td {
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center
+}
+
+.noticePage td:nth-child(1) {
+	width: 100px;
+}
+.noticePage td:nth-child(2) {
+	width: 150px;
+}
+.noticePage td:nth-child(3) {
+	width: 500px;
+}
+.noticePage td:nth-child(4) {
+	width: 100px;
+}
+.noticePage td:nth-child(5) {
+	width: 200px;
+}
+
+/* 공지사항 - noticeItem */
+.noticeItem tr {
+	width: 100%;
+	border-bottom: 1px solid #dddddd;
+}
+
+.noticeItem td {
+	font-size: 14px;
+	text-align: center;
+	padding: 10px 0;
+}
+
+.noticeName {
+	font-weight: 600
+}
+
+/* 공지사항 - notice_btn(관리자 전용) */
+.notice_btn {
+	padding: 10px 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.notice_btn input {
+	padding: 4px 10px;
+	font-size: 13px;
+	border: none;
+}
+
+/* 공지사항 - noticePaging */
+.noticePaging {
+	text-align: center;
+	padding:10px 0;
+}
+
+
+
+

@@ -10,5 +10,10 @@ public class HomeController {
 	public String homePage() {
 		return "Index";
 	}
+	
+	@GetMapping("/notice")
+	public String noticePage() {
+		return "notice";
+	}
 
 }
