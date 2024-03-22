@@ -111,6 +111,10 @@
 	border-top: 2px solid #CCCCCC;	
 }
 
+.writeInfo tr {
+	border-bottom: 1px solid #eee
+}
+
 .writeInfo th {
 	background-color: #FCFBFB;
 	text-align: left;

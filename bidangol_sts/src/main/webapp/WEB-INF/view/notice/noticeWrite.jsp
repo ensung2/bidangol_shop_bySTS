@@ -34,7 +34,7 @@
 							</tr>
 							<tr>
 								<th>카테고리</th>
-								<td><select id="noticeOption" name="noticeOption[]">
+								<td><select id="noticeOption" name="noticeOption">
 										<option value="01">공지사항</option>
 										<option value="02">배송안내</option>
 										<option value="03">기획전</option>
