@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 /*----- 공지사항 틀 -----*/
-.noticePage {
+.noticePage, .noticeWrite {
 	width: 100%;
 }
 
-.noticePage>.wrap {
+.noticePage, .noticeWrite>.wrap {
 	padding: 40px 0;
 	width: 1200px;
 	margin: 0 auto;
@@ -16,20 +16,21 @@
 	cursor: pointer
 }
 
+
 /* 공지사항 - 타이틀 */
 
-.noticeTitle {
+.noticeTitle, .writeTitle {
 	width: 100%;
 	text-align: center;
 	padding-bottom: 50px;
 }
 
-.noticeTitle h3 {
+.noticeTitle, .writeTitle h3 {
 	font-size: 25px;
 }
 
 /* 공지사항 - section */
-.noticeInfo, .noticeItem, .notice_btn, .noticePaging {
+.noticeInfo, .noticeItem, .notice_btn, .noticePaging, .writeInfo {
 	width:900px;
 	margin: 0 auto;
 }
@@ -91,6 +92,7 @@
 	padding: 4px 10px;
 	font-size: 13px;
 	border: none;
+	cursor: pointer
 }
 
 /* 공지사항 - noticePaging */
@@ -99,6 +101,64 @@
 	padding:10px 0;
 }
 
+/*----- 공지사항 글쓰기 - writeInfo -----*/
 
+.noticeWrite input[type=button] {
+	cursor: pointer
+}
+
+.writeInfo {
+	border-top: 2px solid #CCCCCC;	
+}
+
+.writeInfo th {
+	background-color: #FCFBFB;
+	text-align: left;
+	padding:10px 20px;
+	text-align:center;
+	width: 180px;}
+	
+.writeInfo td {
+	padding:15px 10px}
+
+.writeInfo table {
+	padding:10px 0;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+/* 공지사항 글쓰기 - 버튼 */
+.write_btn {
+	padding: 15px 0;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.write_btn input {
+	width: 100px;
+	padding:10px 5px;
+	border: none;
+	color: #ffffff;
+	margin-right: 10px
+}
+
+#noticeCancle {
+	background-color: #777777
+}
+
+#noticeWrite {
+	background-color: #2a2a2a
+}
+
+/* 공지사항 글쓰기 - input 요소 설정*/
+#noticeOption, #noticeName{
+	padding: 5px;
+	border: 1px solid #cccccc;
+	font-size: 15px
+}
+
+#noticeName {
+	width: 700px;
+	
+}
 
 
