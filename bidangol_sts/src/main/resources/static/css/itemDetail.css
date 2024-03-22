@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* 상세페이지 전체 */
+
+.detailPage {
+	width: 100%;
+	padding: 50px 0;
+}
+
+.detailPage>.wrap {
+	padding: 0 100px;
+	width: 1400px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.detailPage input[type=button] {
+	cursor: pointer
+}
+
+/* 상세페이지 - 이미지 */
+
+.detailImg{
+	width: 400px;
+	height: 400px;
+	border: 2px solid #eeeeee;
+}
+
+.imgWrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.imgWrap>img {
+	max-width: 100%;
+	object-fit: cover;
+
+}
+
+/* 상세페이지 - 상세정보 */
+.detailInfo {
+	width: 750px;
+}
+
+
+/* 상세페이지 - 상세정보(타이틀) */
+.detailTitle {
+	width: 100%;
+	height: 140px;
+	padding-bottom: 40px;
+}
+
+.detailTitle h3 {
+	font-size: 25px;
+	padding-bottom: 10px;
+}
+.detailTitle p {
+	font-size: 15px;
+	padding: 10px 0;
+}
+
+.detailTitle ul li {
+	font-size: 13px;
+	list-style: disc;
+	padding-bottom: 5px;
+	font-weight: 600
+}
+
+/* 상세페이지 - 상세정보(정보) */
+
+.detailOrder {
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.detailOrder th {
+	padding: 15px;
+	font-size: 14px;
+}
+.detailOrder td {
+	padding-left:50px;
+	font-size: 14px;
+}
+
+#itemSize {
+	padding: 5px
+}
+
+/* 상세페이지 - 상세정보(선택금액) */
+.detailList {
+	border-top: 1px solid #dddddd;
+	padding: 15px 20px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 13px;
+}
+
+#detailPrice {
+	font-weight: 600;
+	font-size: 15px;
+}
+
+/* 상세페이지 - 상세정보 (총결제금액) */
+.detailTotal {
+	padding: 15px 20px;
+	text-align: right;
+	font-size: 18px;
+	font-weight: 600;
+	border-bottom: 2px solid #777777;
+	border-top: 2px solid #777777
+}
+
+/* 상세페이지 - 상세정보(버튼) */
+.detail_btn {
+	padding: 10px 0;
+	text-align: right
+}
+
+.detail_btn input {
+	border: none;
+	padding: 10px 20px;
+	color: #ffffff;
+	font-size: 15px
+	
+}
+
+#inCart {
+	background-color: #777777
+}
+
+#goOrder {
+	background-color: #2a2a2a
+}
+
+
+
+
+
+
+
+
+
