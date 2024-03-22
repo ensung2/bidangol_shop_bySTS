@@ -1,9 +1,13 @@
 /* 전체설정 */
+
+/* 새로고침 시 화면 흔들거림 방지 */
+body {
+	overflow-y:scroll;
+}
 * {
 	margin: 0;
 	padding : 0;
 	box-sizing : border-box;
-	color: #000000;
 	font-family: "Gothic A1", sans-serif;
 }
 
