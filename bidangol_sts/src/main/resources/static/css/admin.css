@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+input[type=button] {
+	cursor: pointer
+}
+
+/*----- 관리자페이지 상단메뉴 -----*/
+.admin {
+	width: 100%;
+	padding-top: 50px;
+}
+
+.admin>.wrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/* 관리자페이지 - 타이틀 */
+.adminTitle {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+.adminTitle h3 {
+	font-size: 25px;
+}
+
+/* 관리자페이지 - adminInfo */
+.adminInfo {
+	width:900px;
+	margin: 0 auto;
+	border-top: 2px solid #FF984F;
+	border-bottom: 1px solid #FF984F;
+	background-color: rgba(255,152,75,0.1);
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.adminInfo ul {
+	display: flex;
+}
+
+/*----- 관리자페이지 - 유저정보 -----*/
+.adminUser, .adminOrder, .adminItem {
+	width: 100%;
+	padding-bottom: 80px;
+}
+
+.adminUser, .adminOrder, .adminItem>.wrap {
+	width:900px;
+	margin: 0 auto;
+}
+
+/* 관리자페이지 - 유저정보(thead) */
+.auTitle, .aoTitle {
+	width: 100%;
+	text-align: center;
+	padding: 25px;
+}
+
+.auTitle h3 {
+	font-size: 20px;
+}
+.aoTitle h3 {
+	font-size: 20px;
+}
+.adminItem h3 {
+	font-size: 20px;
+}
+
+
+/* 관리자페이지 - 유저정보(리스트) */
+.auInfo {
+	padding: 10px 0;
+	border-top: 2px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	background-color: #FCFBFB;
+}
+
+.auInfo td {
+	font-weight: 600;
+	font-size: 15px;
+	text-align: center;
+}
+
+.adminUser td:nth-child(1) {
+	width: 150px;
+}
+.adminUser td:nth-child(2) {
+	width: 350px;
+}
+.adminUser td:nth-child(3) {
+	width: 200px;
+}
+.adminUser td:nth-child(4) {
+	width: 200px;
+}
+
+.auList {
+	padding-bottom: 30px;
+}
+
+.auList td{
+	text-align:center;
+	font-size: 15px;
+	padding: 10px 0;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.auList tr:hover {
+	cursor: pointer;
+	background-color: #fafafa;
+}
+
+/*----- 관리자페이지 - 유저정보 -----*/
+.adminUser .userInfo {
+	border: 1px solid #cccccc;
+	border-radius: 10px;
+	padding: 30px 180px
+}
+
+.adminUser .userInfo th {
+	padding: 5px 20px 5px 0;
+	text-align: left;
+}
+
+.adminUser .userInfo tr {
+	border: 1px solid #eeeeee
+}
+
+/*----- 관리자페이지 - 주문관리 -----*/
+.adminOrder td:nth-child(1) {
+	width: 150px;
+}
+.adminOrder td:nth-child(2) {
+	width: 150px;
+}
+.adminOrder td:nth-child(3) {
+	width: 250px;
+}
+.adminOrder td:nth-child(4) {
+	width: 150px;
+}
+.adminOrder td:nth-child(5) {
+	width: 100px;
+}
+.adminOrder td:nth-child(6) {
+	width: 100px;
+}
+
+/*----- 관리자페이지 - 상품관리 -----*/
+
+.adminItem td:nth-child(1) {
+	width: 200px;
+}
+.adminItem td:nth-child(2) {
+	width: 200px;
+}
+.adminItem td:nth-child(3) {
+	width: 300px;
+}
+.adminItem td:nth-child(4) {
+	width: 200px;
+}
+
+.CheckSearch {
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.CheckSelect select, .searchItem input {
+	padding: 8px 10px;
+	border: 1px solid #cccccc;
+	font-size: 14px;
+}
+
+
+
+/* 관리자페이지 - adminPaging */
+.adminPaging {
+	text-align: center;
+	padding:10px 0;
+}
+
