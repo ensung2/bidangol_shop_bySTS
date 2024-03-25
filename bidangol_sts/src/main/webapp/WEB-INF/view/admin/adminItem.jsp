@@ -29,8 +29,8 @@
 					</select>
 				</div>
 				<div class="searchItem">
-					<input type="text" id="itemSearch" name="itemSearch">
-					<input type="button" id="search" name="search" value="조회">
+					<input type="text" id="itemSearch" name="itemSearch"> <input
+						type="button" id="search" name="search" value="조회">
 				</div>
 			</section>
 			<section class="auInfo">
@@ -68,10 +68,14 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="itemInfo_btn">
+					<input type="button" id="noticeUpload" name="noticeUpload"
+						value="상품추가" onClick="location.href='/bidangol/admin/adminItem/itemAdd'">
+				</div>
 			</section>
 			<section class="adminPaging">
-					<div>-- 1 2 3 4 5 6 --</div>
-				</section>
+				<div>-- 1 2 3 4 5 6 --</div>
+			</section>
 		</div>
 	</div>
 

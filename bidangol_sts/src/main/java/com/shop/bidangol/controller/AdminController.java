@@ -33,4 +33,15 @@ public class AdminController {
 	public String adminOrderNum() {
 		return "admin/orderInfo";
 	}
+
+	// 관리자페이지 - 상품(itemNum)확인 (/bidangol/admin/adminItem?id=itemNum)
+	@GetMapping("/admin/itemInfo")
+	public String adminItemNum() {
+		return "admin/itemInfo";
+	}
+
+	@GetMapping("/admin/adminItem/itemAdd")
+	public String adminItemAdd() {
+		return "admin/itemAdd";
+	}
 }
