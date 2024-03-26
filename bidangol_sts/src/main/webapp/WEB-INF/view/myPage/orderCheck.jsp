@@ -48,23 +48,9 @@
 			<section class="CheckList">
 				<table style="border-collapse: collapse;">
 					<tbody>
-						<tr>
+						<tr onclick="location.href='/bidangol/myPage/orderId'">
 							<td class="orderNum">20240323-001</td>
-							<td class="orderInfo"><a href="#">콩고물 인절미 외 5건</a></td>
-							<td class="orderTotal">55,500원</td>
-							<td class="deliveryStatus">결제완료</td>
-							<td class="orderStatus">-</td>
-						</tr>
-						<tr>
-							<td class="orderNum">20240323-001</td>
-							<td class="orderInfo"><a href="#">콩고물 인절미 외 5건</a></td>
-							<td class="orderTotal">55,500원</td>
-							<td class="deliveryStatus">결제완료</td>
-							<td class="orderStatus">-</td>
-						</tr>
-						<tr>
-							<td class="orderNum">20240323-001</td>
-							<td class="orderInfo"><a href="#">콩고물 인절미 외 5건</a></td>
+							<td class="orderInfo">콩고물 인절미 외 5건</td>
 							<td class="orderTotal">55,500원</td>
 							<td class="deliveryStatus">결제완료</td>
 							<td class="orderStatus">-</td>

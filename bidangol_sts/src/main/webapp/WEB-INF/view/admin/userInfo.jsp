@@ -25,6 +25,10 @@
 								<th>아이디</th>
 								<td>{user.userid}</td>
 							</tr>
+							<tr style="color:#FF984F; font-weight:600">
+								<th>등급</th>
+								<td>{user.role}</td>
+							</tr>
 							<tr>
 								<th>이메일</th>
 								<td>{user.userEmil}</td>

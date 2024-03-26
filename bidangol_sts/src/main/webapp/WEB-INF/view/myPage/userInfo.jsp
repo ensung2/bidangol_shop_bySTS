@@ -30,12 +30,12 @@
 								<td><input type="text" name="id" id="userId" min="3"
 									maxlength="15"
 									style="width: 150px; border: none; outline: none"
-									readonly="readonly"></td>
+									readonly="readonly" value="{userId}"></td>
 							</tr>
 							<tr>
 								<th>이메일</th>
 								<td><input type="email" name="email" id="userEmail"
-									style="width: 150px"></td>
+									style="width: 150px" value="{userEmail}"></td>
 							</tr>
 							<tr>
 								<th>비밀번호</th>
@@ -51,17 +51,20 @@
 							<tr>
 								<th>이름</th>
 								<td><input type="text" name="userName" id="userName"
-									style="width: 100px"></td>
+									style="width: 100px" value="{userName}"></td>
 							</tr>
 							<tr class="address">
 								<th>주소</th>
-								<td style="padding: 5px 0"><input type="text"
-									name="postCode" id="postCode" style="width: 60px"> <input
+								<td style="padding: 5px 0">
+								<input type="text"
+									name="postCode" id="postCode" style="width: 60px" value="{postCode}"> <input
 									type="button" value="우편번호검색" onclick="checkPost()"
-									style="font-size: 13px"><br> <input type="text"
-									name="address1" id="address1" style="width: 300px"><span>기본주소</span><br>
+									style="font-size: 13px" ><br>
+									
+									<input type="text"
+									name="address1" id="address1" style="width: 300px" value="{address1}"><span>기본주소</span><br>
 									<input type="text" name="address2" id="address2"
-									style="width: 300px"><span>나머지주소(선택)</span><br></td>
+									style="width: 300px" value="{address2}"><span>나머지주소(선택)</span><br></td>
 							</tr>
 							<tr class="phone">
 								<th>휴대전화</th>
@@ -74,10 +77,10 @@
 										<option value="018">018</option>
 										<option value="019">019</option>
 								</select> - <input type="text" name="phone2" id="phone2" maxlength="4"
-									style="width: 50px"
+									style="width: 50px" value="{phone2}"
 									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 									- <input type="text" name="phone3" id="phone3" maxlength="4"
-									style="width: 50px"
+									style="width: 50px" value="{phone2}"
 									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></td>
 							</tr>
 						</tbody>
@@ -90,7 +93,8 @@
 								onClick="location.href='/bidangol/myPage/order'">
 						</div>
 						<div>
-							<input type="button" class="deleteUser" value="회원탈퇴" onclick="openPopup()">
+							<input type="button" class="deleteUser" value="회원탈퇴" onclick="openPopup()"
+							style="border: 1px solid #cccccc;">
 						</div>
 					</div>
 

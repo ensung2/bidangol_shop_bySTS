@@ -46,13 +46,17 @@ body {position: relative;}
 	display: flex;
 }
 
+.myInfo ul li:hover a{
+	font-weight: 600
+}
+
 /*----- 마이페이지 - 주문/조회 -----*/
-.CheckPage {
+.CheckPage, .CheckPage_num {
 	width: 100%;
 	padding-bottom: 80px;
 }
 
-.CheckPage>.wrap {
+.CheckPage>.wrap, .CheckPage_num>.wrap {
 	width:900px;
 	margin: 0 auto;
 }
@@ -90,7 +94,6 @@ body {position: relative;}
 }
 .CheckPage td:nth-child(2) {
 	width: 400px;
-	font-weight: 600
 }
 .CheckPage td:nth-child(3) {
 	width: 150px;
@@ -107,6 +110,11 @@ body {position: relative;}
 	font-size: 14px;
 	padding: 10px 0;
 	border-bottom: 1px solid #CCCCCC;
+}
+
+.CheckList tr:hover {
+	background-color: #fafafa;
+	cursor: pointer;	
 }
 
 /* 마이페이지 - 주문/조회(페이징) */
@@ -132,14 +140,16 @@ body {position: relative;}
 
 /* 마이페이지 - 회원정보수정(타이틀) */
 
-.userTitle {
+.userTitle, .CheckTitle {
 	width: 100%;
 	text-align: center;
 	padding-bottom: 30px;
 }
 
+
+
 .userTitle h3 {
-	font-size: 25px;
+	font-size: 20px;
 }
 	
 
@@ -192,25 +202,155 @@ body {position: relative;}
 .user_btn input {
 	font-size: 15px;
 	padding: 10px;
+	border: none;
 	
 }
 .updateUser {
+	
 	background-color: #2a2a2a;
 	color: #ffffff;
-	border: none;
+	
 }
 .cancleUser {
 	background-color: #777777;
 	color: #ffffff;
-	border: none;
 }
 .deleteUser {
-	border: 1px solid #cccccc;
 	background-color: #ffffff;
 	color: #2a2a2a
 }
 
-/* 회원탈퇴 - 탈퇴 비밀번호 체크 */
+/*------------마이페이지 주문/배송(주문상품정보) CheckPage_num ------------  */
+
+.CheckTitle {
+	padding-top: 30px;
+}
+
+.CheckInfo_, .CheckList_ {
+	width:900px;
+	margin: 0 auto;
+}
+
+
+.CheckPage_num td:nth-child(1) {
+	width: 400px;
+}
+.CheckPage_num td:nth-child(2) {
+	width: 150px;
+}
+.CheckPage_num td:nth-child(3) {
+	width: 350px;
+}
+
+.CheckList_ tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+.CheckList_ td {
+	padding: 20px;
+}
+
+.CheckList_ td:nth-child(2) {
+	text-align: center;
+	font-size: 14px;
+}
+.CheckList_ td:nth-child(3) {
+	text-align: right;
+	font-size: 14px
+}
+
+
+.CheckList_ span {
+	font-size: 13px;
+	padding: 5px 10px 5px 0;
+}
+
+/* 마이페이지 주문/배송(주문상품정보-버튼) */
+.checkOrder_btn {
+	width:900px;
+	margin: 0 auto;
+	padding: 15px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.checkOrder_btn input{
+	width: 150px;
+	text-align: center;
+	padding: 10px;
+	font-size: 15px;
+	border: none;
+}
+
+.checkOrder_btn>#goMain {
+	border: 1px solid #eeeeee;
+	background-color: #ffffff
+}
+
+.checkOrder_btn #orderDelete {
+	margin-left: 5px;
+	background-color: #2A2A2A;
+	color: #ffffff
+}
+
+
+/* 마이페이지 - 주문/배송(총주문금액) - CheckTotal */
+.CheckTotal {
+	width:100%;
+	border-top: 2px solid #777777;
+	border-bottom: 2px solid #777777;
+	padding: 15px 20px;
+	display: flex;
+	justify-content:flex-end;
+	margin-top: 30px;
+	
+}
+
+/* 마이페이지 - 주문/배송(배송상태 유의사항) - deliveryProcess */
+.deliveryProcess {
+	margin-top:20px;
+	border: 2px dashed #eeeeee;
+	padding: 20px;
+}
+
+h4 {
+	text-align: center;
+padding-bottom: 20px;
+font-size: 18px;}
+
+.process {
+	width:500px;
+	margin: 0 auto;
+	text-align: center;
+	border: 1px solid #ddd;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-size: 14px;
+}
+
+.process span {
+	color: #FF984F;
+	padding: 0 5px
+	
+}
+
+.headsUp {
+	width: 470px;
+	margin: 0 auto;
+	padding: 10px 0;
+	font-size: 14px;
+}
+.headsUp ul li {
+	list-style-type: disc;
+}
+
+.headsUp ul li::marker {
+	color: #FF984F;
+	font-size: 20px;
+}
+
+
+/*--------------- 회원탈퇴 - 탈퇴 비밀번호 체크 ---------------*/
 
 #userDelete {
 	display:none;
