@@ -1,0 +1,256 @@
+@charset "UTF-8";
+
+/*--------------- 주문페이지 틀 ---------------*/
+.orderPage {
+	width: 100%;
+	padding: 80px 0;
+}
+
+.orderPage>.wrap {
+	padding: 50px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border: 1px solid #dddddd;
+	border-radius: 10px;
+}
+
+.orderPage section, h5 {
+	width:900px;
+	margin: 0 auto;
+}
+
+input[type=button] {
+	cursor: pointer
+}
+
+/*--------------- 주문페이지 - 타이틀(order_Title) ---------------*/
+
+.order_Title, .delivery_Title {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+.order_Title h3 {
+	font-size: 25px;
+}
+
+/*--------------- 주문페이지 - 주문내용(order_Info) ---------------*/
+.order_Info {
+	border-top: 2px solid #FF984F;
+	border-bottom: 1px solid #FF984F;
+	background-color: rgba(255,152,75,0.1);
+	padding: 10px 0;
+	
+}
+
+.order_Info td {
+	text-align: center;
+	width: 900px;
+	font-weight: 600
+}
+
+/*--------------- 주문페이지 - 주문내용(order_Item) ---------------*/
+.order_Item tr {
+	width: 100%;
+	border-bottom: 1px solid #dddddd;
+}
+
+.order_Item td {
+	padding: 20px;
+}
+
+.order_Item td:nth-child(1) {
+	width: 600px;
+}
+
+.order_Item td:nth-child(2) {
+	width: 300px;
+	text-align: right;
+	font-size: 14px;
+}
+
+.itemCount, .itemOption {
+	font-size: 13px;
+	padding: 5px 10px 5px 0;
+}
+
+.itemPrice {
+	font-size: 13px;
+	padding: 5px 10px;
+}
+
+
+/*--------------- 주문페이지 - 주문내용(order_Total) ---------------*/
+.order_Total {
+	width:100%;
+	border-top: 2px solid #777777;
+	border-bottom: 2px solid #777777;
+	padding: 15px 20px;
+	display: flex;
+	justify-content:flex-end;
+	margin-top: 30px;
+	
+}
+
+/*--------------- 주문페이지 - 배송정보(delivery_Info) ---------------*/
+.deliveryPage, .payBy {
+	padding-top: 20px;
+}
+
+.resultPage {
+ padding-bottom: 50px;	
+}
+
+.delivery_Title, .payBy_Title, .result_Title {
+	padding: 5px 10px;
+	text-align: left;
+	font-size: 14px;
+}
+
+.delivery_Info, .payBy_Info, .result_Info {
+	border-top: 2px solid #CCCCCC;	
+}
+
+.delivery_Info tr, .result_Info tr{
+	border-bottom: 1px solid #eee;
+}
+
+.delivery_Info th, .result_Info th {
+	background-color: #FCFBFB;
+	text-align: left;
+	padding:10px 20px;
+	text-align:center;
+	width: 150px;
+	font-size: 14px;}
+	
+.delivery_Info td {
+	padding:10px 20px;
+	width: 750px;
+	font-size: 14px
+	
+}
+
+.result_Info td {
+	font-size: 14px;
+	padding:10px 20px;
+	width: 750px
+}
+
+.delivery_Info input{
+	padding: 5px;
+	border: 1px solid #cccccc;
+	font-size: 14px;
+}
+
+.delivery_Info span {
+	font-size: 13px;
+	padding-left: 10px
+}
+
+#address input{
+	margin: 2px 0;
+}
+
+/*--------------- 주문페이지 - 결제수단(payBy) ---------------*/
+
+.payBy_Info>.wrap {
+	display: flex;
+	padding: 15px;
+	border-bottom: 2px solid #CCCCCC;	
+}
+
+.payBy_Info>.wrap label, .passbookInfo label{
+	padding-left: 5px;
+	font-size: 14px;
+}
+
+.payBy01{
+	padding-right: 50px;
+}
+
+
+
+.passbookInfo tr{
+	border-bottom: 1px solid #eee;
+}
+
+.passbookInfo th {
+	background-color: #FCFBFB;
+	text-align: left;
+	padding:10px 20px;
+	text-align:center;
+	width: 150px;
+	font-size: 14px;}
+	
+.passbookInfo td {
+	padding:10px 20px;
+	width: 750px;
+	
+}
+
+.passbookInfo input{
+	padding: 5px;
+	border: 1px solid #cccccc;
+	font-size: 14px;
+}
+
+
+/*--------------- 주문페이지 - 버튼(order_Btn) ---------------*/
+.order_Btn {
+	padding: 15px 0;
+	text-align: right
+}
+
+.order_Btn input{
+	width: 150px;
+	text-align: center;
+	padding: 10px;
+	font-size: 15px;
+	border: none;
+}
+
+.order_Btn>#orderBuy {
+	background-color: #2A2A2A;
+	color: #ffffff
+}
+
+/*--------------- 주문완료페이지  ---------------*/
+/* 카테고리 - 타이틀 */
+
+.order_Title p {
+	font-size: 15px;
+	padding: 10px 0;
+}
+
+.order_Title a {
+	color: #FF984F;
+	font-weight: 600;
+	border-bottom: 1px solid #FF984F}
+	
+
+.result_btn {
+	width:900px;
+	margin: 0 auto;
+	padding: 15px 0;
+	text-align: right;
+}
+
+.result_btn input{
+	width: 150px;
+	text-align: center;
+	padding: 10px;
+	font-size: 15px;
+	border: none;
+}
+
+.result_btn>#goMain {
+	border: 1px solid #eeeeee;
+	background-color: #ffffff
+}
+
+.result_btn #orderCheck {
+	margin-left: 5px;
+	background-color: #2A2A2A;
+	color: #ffffff
+}
