@@ -51,7 +51,7 @@
 						<input type="button" id="noticeCancle" name="noticeCancle" value="리스트로"
 						onClick="location.href='/bidangol/notice'">
 						<input type="button" id="noticeWrite" name="noticeWrite" value="공지수정"
-						onClick="location.href='/bidangol/noticeUpdate'">
+						onClick="location.href='/bidangol/notice/noticeUpdate'">
 					</div>
 					<!-- 고객 로그인시-->
 <!-- 					<div class="write_btn">
