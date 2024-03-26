@@ -30,6 +30,15 @@ $(document).ready(function(){
 			alert("상품이 삭제되었습니다.");
 		}return false;
 	});
+	
+	$('#selectOrder').click(function(){
+		var cnt = $('input[name=selectCheck]:checked').length;
+		
+		if(cnt==0){
+	 		 alert("주문할 상품을 선택해 주세요.");
+	 		 return;
+	 	}
+	});
 
 	
 /*	$("#selectDelete").click(function(){

@@ -23,6 +23,7 @@
 						<tr>
 							<td><input type="checkbox" id="allCheck" name="allCheck"></td>
 							<td>상품정보</td>
+							<td style="width: 50px"></td>
 						</tr>
 					</thead>
 				</table>
@@ -42,7 +43,7 @@
 						<tr>
 							<td><input type="checkbox" id="selectCheck" name="selectCheck"></td>
 							<td><b class="itemName">콩고물인절미({item.name})</b><br>
-								<span class="itemCount">수량:({item.count})개</span> <span class=""itemPrice"">판매가:({item.price})원</span><br>
+								<span class="itemCount">수량:({item.count})개</span> <span class="itemPrice">판매가:({item.price})원</span><br>
 								<span class="itemOption">옵션:({item.option) }</span>
 								<input type="button" id="optionChange" name="optionChange" value="옵션변경">
 							</td>
@@ -60,8 +61,10 @@
 			<section class="orderBtn">
 				<input type="button" id="goMain" name="goMain" onClick="location.href='/bidangol/home'" value="쇼핑계속하기">
 				<div>
-					<input type="button" id="selectOrder" name="selectOrder" value="선택상품주문">
-					<input type="button" id="allOrder" name="allOrder" value="전체상품주문">
+					<input type="button" id="selectOrder" name="selectOrder" value="선택상품주문"
+					onclick="location.href='/bidangol/order/orderNum'">
+					<input type="button" id="allOrder" name="allOrder" value="전체상품주문"
+					onclick="location.href='/bidangol/order/orderNum'">
 				</div>
 				
 			</section>
