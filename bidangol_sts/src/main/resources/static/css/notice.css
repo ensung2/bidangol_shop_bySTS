@@ -1,11 +1,17 @@
 @charset "UTF-8";
 
 /*----- 공지사항 틀 -----*/
-.noticePage, .noticeWrite {
+.noticePage, .noticeWrite, .noticeUpdate {
 	width: 100%;
 }
 
-.noticePage, .noticeWrite>.wrap {
+.noticePage>.wrap, .noticeWrap {
+	padding: 40px 0;
+	width: 1200px;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+.noticeWrite>.wrap {
 	padding: 40px 0;
 	width: 1200px;
 	margin: 0 auto;
@@ -19,18 +25,19 @@
 
 /* 공지사항 - 타이틀 */
 
-.noticeTitle, .writeTitle {
+.noticeTitle, .writeTitle, .nuTitle {
 	width: 100%;
 	text-align: center;
 	padding-bottom: 50px;
 }
 
-.noticeTitle, .writeTitle h3 {
+.noticeTitle h3, .writeTitle h3, .nuTitle h3 {
 	font-size: 25px;
 }
 
 /* 공지사항 - section */
-.noticeInfo, .noticeItem, .notice_btn, .noticePaging, .writeInfo {
+.noticeInfo, .noticeItem, .notice_btn, .noticePaging, .writeInfo, .nuInfo
+{
 	width:900px;
 	margin: 0 auto;
 }
@@ -77,9 +84,11 @@
 	padding: 10px 0;
 }
 
-.noticeName {
-	font-weight: 600
+.noticeItem tr:hover {
+	cursor: pointer;
+	background-color: #fafafa;
 }
+
 
 /* 공지사항 - notice_btn(관리자 전용) */
 .notice_btn {
@@ -92,7 +101,8 @@
 	padding: 4px 10px;
 	font-size: 13px;
 	border: none;
-	cursor: pointer
+	color: #ffffff;
+	background-color: #2a2a2a
 }
 
 /* 공지사항 - noticePaging */
@@ -103,29 +113,32 @@
 
 /*----- 공지사항 글쓰기 - writeInfo -----*/
 
-.noticeWrite input[type=button] {
+input[type=button] {
 	cursor: pointer
 }
 
-.writeInfo {
+.writeInfo, .nuInfo {
 	border-top: 2px solid #CCCCCC;	
 }
 
-.writeInfo tr {
-	border-bottom: 1px solid #eee
+.writeInfo tr, .nuInfo tr {
+	border-bottom: 1px solid #eee;
+
 }
 
-.writeInfo th {
+.writeInfo th, .nuInfo th {
 	background-color: #FCFBFB;
 	text-align: left;
 	padding:10px 20px;
 	text-align:center;
 	width: 180px;}
 	
-.writeInfo td {
-	padding:15px 10px}
+.writeInfo td, .nuInfo td {
+	padding:15px 10px;
+	width: 720px
+}
 
-.writeInfo table {
+.writeInfo table, .nuInfo table {
 	padding:10px 0;
 	border-bottom: 1px solid #CCCCCC;
 }
@@ -145,11 +158,11 @@
 	margin-right: 10px
 }
 
-#noticeCancle {
+#noticeCancle, #noticeDelete {
 	background-color: #777777
 }
 
-#noticeWrite {
+#noticeWrite, #noticeUpdate {
 	background-color: #2a2a2a
 }
 

@@ -33,17 +33,17 @@
 			<section class="noticeItem">
 				<table style="border-collapse: collapse;">
 					<tbody>
-						<tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
 							<td class="noticeNum">1</td>
 							<td class="noticeOption">기획전</td>
-							<td class="noticeName"><a href="#">03.17~03.20 돌아온 찹쌀떡 특별전</a></td>
+							<td class="noticeName">03.17~03.20 돌아온 찹쌀떡 특별전</td>
 							<td class="noticeCount">10</td>
 							<td class="noticeDate">2024-03-22</td>
 						</tr>
-						<tr>
-							<td class="noticeNum">2</td>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
 							<td class="noticeOption">기획전</td>
-							<td class="noticeName"><a href="#">03.17~03.20 돌아온 찹쌀떡 특별전</a></td>
+							<td class="noticeName">03.17~03.20 돌아온 찹쌀떡 특별전</td>
 							<td class="noticeCount">10</td>
 							<td class="noticeDate">2024-03-22</td>
 						</tr>

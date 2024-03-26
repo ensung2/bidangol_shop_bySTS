@@ -15,5 +15,17 @@ public class NoticeController {
 	public String noticeWrite() {
 		return "notice/noticeWrite";
 	}
+	
+	// 공지사항 - 글번호(noticeNum) (/bidangol/admin/notice?id=noticeNum)
+	@GetMapping("/notice/noticeId")
+	public String noticeIdPage() {
+		return "notice/noticeId";
+	}
+	
+	// 공지사항 - 글번호(noticeNum) 내용수정 (/bidangol/admin/notice?id=noticeNum)
+	@GetMapping("/notice/noticeUpdate")
+	public String noticeUpdatePage() {
+		return "notice/noticeUpdate";
+	}
 
 }

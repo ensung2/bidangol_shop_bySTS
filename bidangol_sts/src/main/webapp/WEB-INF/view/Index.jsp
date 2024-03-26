@@ -24,22 +24,52 @@
 							type="button" value="전체보기"
 							onClick="location.href='/bidangol/notice'">
 					</div>
-					<ul>
-						<li><a href="#"> <span>6</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-						<li><a href="#"> <span>5</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-						<li><a href="#"> <span>4</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-						<li><a href="#"> <span>3</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-						<li><a href="#"> <span>2</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-						<li><a href="#"> <span>1</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-						<li><a href="#"> <span>0</span> <span>공지사항 공지사항</span> <span>2024-03-17</span>
-						</a></li>
-					</ul>
+					<table style="border-collapse: collapse;">
+					<tbody>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+						<tr onclick="location.href='/bidangol/notice/noticeId'">
+							<td class="noticeNum">1</td>
+							<td class="noticeOption">기획전</td>
+							<td class="noticeName">03.17~03.20...</td>
+							<td class="noticeDate">2024-03-22</td>
+						</tr>
+					</tbody>
+				</table>
 				</div>
 				<div class="indexMap">
 					<div class="indexTitle">
