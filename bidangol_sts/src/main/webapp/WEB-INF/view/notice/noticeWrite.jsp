@@ -12,6 +12,7 @@
 <script src="/bidango/js/summernote/lang/summernote-ko-KR.js"></script>
 
 <link rel="stylesheet" href="/bidangol/css/notice.css">
+<script src="/bidangol/js/notice.js"></script>
 
 </head>
 <body>
@@ -25,13 +26,13 @@
 				<h3>[관리자] 공지사항 작성</h3>
 			</section>
 			<section class="writeInfo">
-				<form name="notice_form" action="#" method="post">
+				<form name="notice_form">
 					<table style="border-collapse: collapse">
 						<tbody>
-							<tr>
+<!-- 							<tr>
 								<th>글번호</th>
-								<td><span>1</span><input type="hidden" name="noticeNum" id="noticeNum" value="{notice.num}" readonly="readonly"></td>
-							</tr>
+								<td><input type="hidden" name="noticeNum" id="noticeNum" value="{notice.noticeNum}" readonly="readonly"></td>
+							</tr> -->
 							<tr>
 								<th>카테고리</th>
 								<td><select id="noticeOption" name="noticeOption">
@@ -42,11 +43,11 @@
 							</tr>
 							<tr>
 								<th>글제목</th>
-								<td><input type="text" name="noticeName" id="noticeName"></td>
+								<td><input type="text" name="noticeName" id="noticeName" maxlength="30"></td>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea id="noticeContent"></textarea></td>
+								<td><textarea name="noticeContent" id="noticeContent" maxlength="200"></textarea></td>
 							</tr>
 						</tbody>
 					</table>

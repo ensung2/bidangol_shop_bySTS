@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.bidangol.mapper.NoticeMapper">
+
+	<resultMap type="com.shop.bidangol.vo.NoticeVO" id="notice">
+		<result property="noticeNum" column="notice_num"/>
+		<result property="noticeName" column="notice_name"/>
+		<result property="noticeOption" column="notice_option"/>
+		<result property="noticeContent" column="notice_content"/>
+		<result property="noticeDate" column="notice_date"/>
+	</resultMap>
+
+	<!-- 공지사항 상세 조회 -->
+	<select id="getUserOne" resultType="com.shop.bidangol.vo.NoticeVO" resultMap="notice">
+		SELECT
+			notice_num,
+			notice_name,
+			notice_option,
+			notice_content,
+			notice_date,
+		FROM NOTICE
+		WHERE
+			notice_num = #{noticeNum}
+	</select>
+
+	<!-- 공지사항 등록 -->
+	<insert id="addNotice" parameterType="com.shop.bidangol.vo.NoticeVO">
+		INSERT INTO NOTICE (
+		notice_num,
+		notice_name,
+		notice_option,
+		notice_content,
+		notice_date
+		)
+		VALUES (
+		noticenum_seq.NEXTVAL,
+		#{noticeName},
+		#{noticeOption},
+		#{noticeContent},
+		sysdate
+		)
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="modifyNotice" parameterType="com.shop.bidangol.vo.NoticeVO">
+		UPDATE NOTICE 
+		SET 
+			notice_name = #{noticeName}, 
+			notice_option = #{noticeOption},
+			notice_content = #{noticeContent} 
+		WHERE 
+			notice_num = #{noticeNum}
+	</update>
+	
+	<!-- 문의 삭제 -->
+	<delete id="deleteNotice" >
+		DELETE FROM NOTICE WHERE notice_num = #{noticeNum}
+	</delete>
+
+
+</mapper>
