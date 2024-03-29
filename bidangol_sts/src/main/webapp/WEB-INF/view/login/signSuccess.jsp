@@ -26,19 +26,22 @@
 				<table>
 					<tbody>
 						<tr>
+							<td><input type="hidden" id="num" name="num" value="${userVO.num}"></td>
+						<tr>
+						<tr>
 							<th>▶ 아이디</th>
-							<td>asd147852</td>
+							<td id="id" name="id">${userVO.id}</td>
 						</tr>
 						<tr>
 							<th>▶ 이름</th>
-							<td>이은성</td>
+							<td id="name" name="name">${userVO.name}</td>
 						</tr>
 					</tbody>
 				</table>
 			</section>
 			<section class="ssBtn">
-				<input type="button" id="goMain" name="goMain" onClick="location.href='/bidangol/Index.jsp'" value="메인으로 이동">
-				<input type="button" id="goLogin" name="goLogin" onClick="location.href='loginPage.jsp'" value="로그인하기">
+				<input type="button" id="goMain" name="goMain" onClick="location.href='/bidangol/home'" value="메인으로 이동">
+				<input type="button" id="goLogin" name="goLogin" onClick="location.href='/bidangol/login'" value="로그인하기">
 			</section>
 		</div>
 	</div>
