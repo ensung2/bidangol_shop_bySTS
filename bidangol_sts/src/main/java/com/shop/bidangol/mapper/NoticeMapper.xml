@@ -7,11 +7,23 @@
 		<result property="noticeName" column="notice_name"/>
 		<result property="noticeOption" column="notice_option"/>
 		<result property="noticeContent" column="notice_content"/>
-		<result property="noticeDate" column="notice_date"/>
+		<result property="noticeDate" column="notice_date" />
+		<result property="noticeCount" column="notice_count"/>
 	</resultMap>
+	
+	<!-- 공지사항 리스트 불러오기 -->
+	<select id="getNoticeList" resultType="com.shop.bidangol.vo.NoticeVO" resultMap="notice">
+		SELECT 
+			notice_num,
+			notice_name,
+			notice_option,
+			notice_count,
+			notice_date
+		FROM NOTICE
+	</select>
 
 	<!-- 공지사항 상세 조회 -->
-	<select id="getUserOne" resultType="com.shop.bidangol.vo.NoticeVO" resultMap="notice">
+	<select id="getNoticeOne" resultType="com.shop.bidangol.vo.NoticeVO" resultMap="notice">
 		SELECT
 			notice_num,
 			notice_name,
@@ -22,6 +34,13 @@
 		WHERE
 			notice_num = #{noticeNum}
 	</select>
+	
+	<!-- 공지사항 조회수 증가 -->
+	<update id="viewCount">
+		UPDATE NOTICE
+		SET notice_count = notice_count + 1
+		WHERE notice_num = #{noticeNum}
+	</update>
 
 	<!-- 공지사항 등록 -->
 	<insert id="addNotice" parameterType="com.shop.bidangol.vo.NoticeVO">

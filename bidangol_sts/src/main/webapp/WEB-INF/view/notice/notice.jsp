@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,20 +35,15 @@
 			<section class="noticeItem">
 				<table style="border-collapse: collapse;">
 					<tbody>
+					<c:forEach items="${list}" var="list">
 						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20 돌아온 찹쌀떡 특별전</td>
-							<td class="noticeCount">10</td>
-							<td class="noticeDate">2024-03-22</td>
+							<td class="noticeNum"><c:out value="${list.noticeNum}"></c:out></td>
+							<td class="noticeOption"><c:out value="${list.noticeOption}"></c:out></td>
+							<td class="noticeName"><c:out value="${list.noticeName}"></c:out></td>
+							<td class="noticeCount"><c:out value="${list.noticeCount}"></c:out></td>
+							<td class="noticeDate"><fmt:formatDate pattern = "yyyy-MM-dd" value="${list.noticeDate}"/></td>
 						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20 돌아온 찹쌀떡 특별전</td>
-							<td class="noticeCount">10</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			<div class="notice_btn">

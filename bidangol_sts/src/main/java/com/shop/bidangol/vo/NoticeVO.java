@@ -1,5 +1,7 @@
 package com.shop.bidangol.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -9,6 +11,7 @@ public class NoticeVO {
 	private String noticeName;
 	private String noticeOption;
 	private String noticeContent;
-	private int noticeDate;
+	private int noticeCount;
+	private Date noticeDate;
 
 }

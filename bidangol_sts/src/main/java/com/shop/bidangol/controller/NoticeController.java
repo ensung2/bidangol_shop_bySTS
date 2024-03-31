@@ -21,7 +21,8 @@ public class NoticeController {
 
 	// 공지사항 리스트
 	@GetMapping("/notice")
-	public String noticePage() {
+	public String noticePage(Model model) {
+		model.addAttribute("list", noticeService.getNoticeList());
 		return "notice/notice";
 	}
 
@@ -38,14 +39,29 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
-	// 공지사항 - 글번호(noticeNum) (/bidangol/admin/notice?id=noticeNum)
-	@GetMapping("/notice/noticeId")
+	// 공지사항 - 상세 조회 (/bidangol/admin/notice?id=noticeNum)
+	@GetMapping("/notice/{noticeNum}")
 	public String noticeIdPage(Model model, @RequestParam int noticeNum) {
-
-		Map<String, Object> notice = noticeService.noticeOne(noticeNum);
-		model.addAttribute("noticeNum", noticeNum);
+		/*
+		 * Map<String, Object> notice = noticeService.noticeOne(noticeNum);
+		 * model.addAttribute("noticeNum", noticeNum);
+		 */
+		noticeService.viewCount(noticeNum);
+		noticeService.getNoticeOne(noticeNum);
 		return "notice/noticeId";
 	}
+
+	/*
+	 * // 공지사항 - 글번호(noticeNum) (/bidangol/admin/notice?id=noticeNum)
+	 * 
+	 * @GetMapping("/notice/noticeId") public String noticeIdPage(Model
+	 * model @RequestParam int noticeNum) {
+	 * 
+	 * Map<String, Object> notice = noticeService.noticeOne(noticeNum);
+	 * model.addAttribute("noticeNum", noticeNum);
+	 * 
+	 * return "notice/noticeId"; }
+	 */
 
 	// 공지사항 - 글번호(noticeNum) 내용수정 (/bidangol/admin/notice?id=noticeNum)
 	@GetMapping("/notice/noticeUpdate")

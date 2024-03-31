@@ -3,9 +3,9 @@ $(document).ready(function() {
 		var formData = $("form").serialize();
 		
 		// 옵션값은 텍스트로 보내주기
-		var formData = {
+/*		var formData = {
 			
-		}
+		}*/
 		$.ajax({
 			type: "POST",
 			url: "/bidangol/notice/write/new",

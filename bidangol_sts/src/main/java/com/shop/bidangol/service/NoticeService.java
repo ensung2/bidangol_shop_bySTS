@@ -1,5 +1,6 @@
 package com.shop.bidangol.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.shop.bidangol.mapper.NoticeMapper;
 import com.shop.bidangol.vo.NoticeVO;
+import com.shop.bidangol.vo.UserVO;
 
 
 @Service
@@ -19,11 +21,21 @@ public class NoticeService implements NoticeServiceImpl {
 	public void addNotice(NoticeVO noticeVO) {
 		mapper.addNotice(noticeVO);
 	}
+	
+	// 공지사항 리스트
+	public List<UserVO> getNoticeList() {
+		return mapper.getNoticeList();
+	}
 
 	// 공지사항 상세조회
-	public Map<String, Object> noticeOne(int noticeNum) {
-		Map<String, Object> notice = mapper.noticeOne(noticeNum);
+	public Map<String, Object> getNoticeOne(int noticeNum) {
+		Map<String, Object> notice = mapper.getNoticeOne(noticeNum);
 		return notice;
+	}
+	
+	// 공지사항 조회수
+	public void viewCount(int noticeNum) {
+		mapper.viewCount(noticeNum);
 	}
 
 	// 공지사항 수정
