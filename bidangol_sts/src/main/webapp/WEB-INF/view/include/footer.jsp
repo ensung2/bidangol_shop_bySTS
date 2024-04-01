@@ -15,14 +15,14 @@
 			<span>계좌번호 : 농협 123-45-678910 (예금주 : 박숙)</span>
 			<br>
 			<span>주소 : 58255 전라남도 나주시 성북동 141, 비단골떡방앗간 │ </span>
-			<span>Email : bidangol@email.com</span>
+			<span>Email : iieunsung@email.com</span>
 			<br>
 			<br>
 			<span>ⓒ 2024 비단골떡방앗간 │ ensung. All rights reserved</span>
 		</div>
 		<div class="line"></div>
 		<div class="instagram">
-			<a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+			<a href="https://www.instagram.com/bidangol_shop/" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
 		</div>
 	</div>
 </footer>
