@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.shop.bidangol.vo.NoticeVO;
-import com.shop.bidangol.vo.UserVO;
 
 @Mapper
 public interface NoticeMapper {
@@ -14,7 +13,7 @@ public interface NoticeMapper {
 	public void addNotice(NoticeVO noticeVO);
 	
 	// 공지사항 리스트
-	public List<UserVO> getNoticeList();
+	public List<NoticeVO> getNoticeList();
 
 	// 공지사항 상세 조회
 	public NoticeVO getNoticeOne(Integer noticeNum);

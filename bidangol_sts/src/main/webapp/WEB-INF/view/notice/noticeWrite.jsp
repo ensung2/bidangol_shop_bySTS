@@ -29,10 +29,6 @@
 				<form name="notice_form">
 					<table style="border-collapse: collapse">
 						<tbody>
-<!-- 							<tr>
-								<th>글번호</th>
-								<td><input type="hidden" name="noticeNum" id="noticeNum" value="{notice.noticeNum}" readonly="readonly"></td>
-							</tr> -->
 							<tr>
 								<th>카테고리</th>
 								<td><select id="noticeOption" name="noticeOption">

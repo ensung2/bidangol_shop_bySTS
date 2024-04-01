@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,7 +13,7 @@
 <script src="/bidango/js/summernote/lang/summernote-ko-KR.js"></script>
 
 <link rel="stylesheet" href="/bidangol/css/notice.css">
-
+<script src="/bidangol/js/notice.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -25,12 +26,12 @@
 				<h3>[관리자] 공지사항 수정</h3>
 			</section>
 			<section class="nuInfo">
-				<form name="notice_form" action="#" method="post">
+				<form name="modify_form" id="modify_form" method="post">
 					<table style="border-collapse: collapse">
 						<tbody>
 							<tr>
 								<th>글번호</th>
-								<td><span>1</span><input type="hidden" name="noticeNum" id="noticeNum" value="{notice.num}" readonly="readonly"></td>
+								<td><input type="text" name="noticeNum" id="noticeNum" value="<c:out value="${noticeInfo.noticeNum}"/>" readonly="readonly"></td>
 							</tr>
 							<tr>
 								<th>카테고리</th>
@@ -42,17 +43,19 @@
 							</tr>
 							<tr>
 								<th>글제목</th>
-								<td><input type="text" name="noticeName" id="noticeName" value="{noticeName}"></td>
+								<td><input type="text" name="noticeName" id="noticeName" value="<c:out value="${noticeInfo.noticeName}"/>"></td>
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><textarea id="noticeContent">{noticeContent}</textarea></td>
+								<td><textarea name="noticeContent" id="noticeContent"><c:out value="${noticeInfo.noticeContent}"/></textarea></td>
 							</tr>
 						</tbody>
 					</table>
 					<div class="write_btn">
-						<input type="button" id="noticeDelete" name="noticeCancle" value="삭제">
-						<input type="button" id="noticeUpdate" name="noticeWrite" value="수정">
+						<input type="button" id="noticeDelete" name="noticeDelete" value="삭제">
+						<input type="button" id="noticeUpdate" name="noticeUpdate" value="수정">
+						<input type="button" id="cancle" name="cancle" value="취소"
+						onClick="location.href='/bidangol/notice'">
 					</div>
 				</form>
 			</section>
@@ -91,8 +94,6 @@
 	                ['view', ['codeview', 'help']],
 	            ],
 		 });
-		 
-		 
 	});
 	 
 </script>

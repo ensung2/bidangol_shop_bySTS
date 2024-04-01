@@ -1,7 +1,5 @@
 package com.shop.bidangol.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,26 +41,27 @@ public class NoticeController {
 	@GetMapping("/notice/noticeId")
 	public void noticeIdPage(Model model, @RequestParam Integer noticeNum) {
 		noticeService.viewCount(noticeNum);
-		model.addAttribute("noticeInfo",noticeService.getNoticeOne(noticeNum));
-		
+		model.addAttribute("noticeInfo", noticeService.getNoticeOne(noticeNum));
 	}
 
-	/*
-	 * // 공지사항 - 글번호(noticeNum) (/bidangol/admin/notice?id=noticeNum)
-	 * 
-	 * @GetMapping("/notice/noticeId") public String noticeIdPage(Model
-	 * model @RequestParam int noticeNum) {
-	 * 
-	 * Map<String, Object> notice = noticeService.noticeOne(noticeNum);
-	 * model.addAttribute("noticeNum", noticeNum);
-	 * 
-	 * return "notice/noticeId"; }
-	 */
-
-	// 공지사항 - 글번호(noticeNum) 내용수정 (/bidangol/admin/notice?id=noticeNum)
+	// 공지사항 - 글 수정(페이지 이동)
 	@GetMapping("/notice/noticeUpdate")
-	public String noticeUpdatePage() {
-		return "notice/noticeUpdate";
+	public void noticeUpdatePage(Model model, @RequestParam Integer noticeNum) {
+		model.addAttribute("noticeInfo", noticeService.getNoticeOne(noticeNum));
+	}
+
+	// 공지사항 - 글 수정(수정 메소드)
+	@PostMapping("/notice/noticeUpdate")
+	public String noticeUpdate(NoticeVO noticeVO) {
+		noticeService.modifyNotice(noticeVO);
+		return "redirect:/notice";
+	}
+
+	// 공지사항 - 글 삭제
+	@PostMapping("/notice/noticeDelete")
+	public String noticeDelete(@RequestParam Integer noticeNum) {
+		noticeService.deleteNotice(noticeNum);
+		return "redirect:/notice";
 	}
 
 }

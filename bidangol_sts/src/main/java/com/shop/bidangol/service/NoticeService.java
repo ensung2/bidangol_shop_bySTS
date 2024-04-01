@@ -1,14 +1,12 @@
 package com.shop.bidangol.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.bidangol.mapper.NoticeMapper;
 import com.shop.bidangol.vo.NoticeVO;
-import com.shop.bidangol.vo.UserVO;
 
 
 @Service
@@ -23,7 +21,7 @@ public class NoticeService implements NoticeServiceImpl {
 	}
 	
 	// 공지사항 리스트
-	public List<UserVO> getNoticeList() {
+	public List<NoticeVO> getNoticeList() {
 		return mapper.getNoticeList();
 	}
 
