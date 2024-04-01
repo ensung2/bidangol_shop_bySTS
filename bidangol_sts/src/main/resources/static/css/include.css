@@ -188,9 +188,33 @@ footer {
 	border-bottom: 2px solid #FF984F;
 }
 
-.indexNotice ul li {
-	padding:  5px 10px;
-	border-bottom: 1px solid #DDDDDD;
+.indexNotice tr {
+	width: 100%;
+	border-bottom: 1px solid #dddddd;
+}
+
+.indexNotice td {
+	font-size: 14px;
+	text-align: center;
+	padding: 4.8px 0;
+}
+
+.indexNotice td:nth-child(1) {
+	width: 50px;
+}
+.indexNotice td:nth-child(2) {
+	width: 50px;
+}
+.indexNotice td:nth-child(3) {
+	width: 170px;
+}
+.indexNotice td:nth-child(4) {
+	width: 130px;
+}
+
+.indexNotice tr:hover {
+	cursor: pointer;
+	background-color: #fafafa;
 }
 
 .indexNotice ul li:last-child {

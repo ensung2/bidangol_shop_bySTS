@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,52 +26,24 @@
 							type="button" value="전체보기"
 							onClick="location.href='/bidangol/notice'">
 					</div>
+
 					<table style="border-collapse: collapse;">
-					<tbody>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum">1</td>
-							<td class="noticeOption">기획전</td>
-							<td class="noticeName">03.17~03.20...</td>
-							<td class="noticeDate">2024-03-22</td>
-						</tr>
-					</tbody>
-				</table>
+						<tbody>
+							<c:forEach items="${list}" var="notice" varStatus="loop">
+								<c:if test="${loop.index < 7}">
+									<tr onclick="location.href='/bidangol/notice/noticeId?noticeNum=<c:out value='${notice.noticeNum}'/>'">
+										<td class="noticeNum"><c:out value="${notice.noticeNum}"></c:out></td>
+										<td class="noticeOption"><c:out
+												value="${notice.noticeOption}"></c:out></td>
+										<td class="noticeName"><c:out
+												value="${notice.noticeName}"></c:out></td>
+										<td class="noticeDate"><fmt:formatDate
+												pattern="yyyy-MM-dd" value="${notice.noticeDate}" /></td>
+									</tr>
+								</c:if>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 				<div class="indexMap">
 					<div class="indexTitle">
@@ -85,17 +59,24 @@
 
 						var map = new naver.maps.Map('map', mapOptions);
 						var marker = new naver.maps.Marker({
-						    position: new naver.maps.LatLng(35.035205,
+							position : new naver.maps.LatLng(35.035205,
 									126.720453),
-						    map: map
-						  });
-						naver.maps.Event.addListener(marker, 'click', function(e) {
-							   var overlay = e.overlay, // marker
-							        position = overlay.getPosition(),
-							        url = 'http://map.naver.com/index.nhn?enc=utf8&level=2&lng='+ position.lng() +'&lat='+ position.lat() +'&pinTitle=비단골떡방앗간&pinType=SITE';
+							map : map
+						});
+						naver.maps.Event
+								.addListener(
+										marker,
+										'click',
+										function(e) {
+											var overlay = e.overlay, // marker
+											position = overlay.getPosition(), url = 'http://map.naver.com/index.nhn?enc=utf8&level=2&lng='
+													+ position.lng()
+													+ '&lat='
+													+ position.lat()
+													+ '&pinTitle=비단골떡방앗간&pinType=SITE';
 
-							    window.open(url);
-							});
+											window.open(url);
+										});
 					</script>
 				</div>
 				<div class="indexInsta">
@@ -103,22 +84,22 @@
 						<span>@bidangol_shop</span>
 					</div>
 					<ul>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
-						<li><a href="#"><img
-								src="/bidangol/img/instagram/123.jpg" alt="insta"/></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
+						<li><a href="https://www.instagram.com/bidangol_shop/" target="_blank"><img
+								src="/bidangol/img/instagram/123.jpg" alt="insta" /></a></li>
 					</ul>
 				</div>
 			</section>
