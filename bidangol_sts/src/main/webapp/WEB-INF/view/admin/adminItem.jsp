@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,31 +47,23 @@
 				</table>
 			</section>
 			<section class="auList">
+			<input type="hidden" name="itemNum" id="itenNum" value="<c:out value="${items.itemNum}"/>">
 				<table style="border-collapse: collapse;">
 					<tbody>
-						<tr onclick="location.href='/bidangol/admin/itemInfo'">
-							<td class="itemNum">01-001</td>
-							<td class="itemCategory">베스트상품</td>
-							<td class="itemName">콩고물 인절미</td>
-							<td class="itemPrice">15,000원</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/itemInfo'">
-							<td class="itemNum">02-001</td>
-							<td class="itemCategory">찹쌀떡</td>
-							<td class="itemName">호박 카스테라 인절미</td>
-							<td class="itemPrice">15,000원</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/itemInfo'">
-							<td class="itemNum">03-001</td>
-							<td class="itemCategory">멥쌀떡</td>
-							<td class="itemName">하트백설기</td>
-							<td class="itemPrice">15,000원</td>
-						</tr>
+						<c:forEach items="${list}" var="items">
+							<tr onclick="location.href='/bidangol/admin/itemInfo?itemNum=<c:out value="${items.itemNum}"/>'">
+								<td class="itemNo"><c:out value="${items.itemNo}"></c:out></td>
+								<td class="itemCategory"><c:out value="${items.itemCategory}"></c:out></td>
+								<td class="itemName"><c:out value="${items.itemName}"></c:out></td>
+								<td class="itemPrice"><c:out value="${items.itemPrice}"></c:out></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<div class="itemInfo_btn">
 					<input type="button" id="noticeUpload" name="noticeUpload"
-						value="상품추가" onClick="location.href='/bidangol/admin/adminItem/itemAdd'">
+						value="상품추가"
+						onClick="location.href='/bidangol/admin/adminItem/itemAdd'">
 				</div>
 			</section>
 			<section class="adminPaging">

@@ -21,27 +21,31 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	// 관리자 페이지 기본 - 유저관리 (리스트)
+	// 관리자 페이지(default) - 유저관리 (리스트)
 	@GetMapping({ "/admin", "/admin/adminUser" })
 	public String adminPage(Model model) {
 		model.addAttribute("list", userService.getUserList());
 		return "admin/adminUser";
 	}
-
+	
+	// 관리자 페이지 - 주문관리 (리스트)
 	@GetMapping("/admin/adminOrder")
 	public String adminOrder() {
 		return "admin/adminOrder";
 	}
-
+	
+	// 관리자 페이지 - 상품관리 (리스트)
 	@GetMapping("/admin/adminItem")
-	public String adminItem() {
+	public String adminItem(Model model) {
+		model.addAttribute("list", itemService.getItemList());
 		return "admin/adminItem";
 	}
 	
+	/*------------------------------------------------------------------------------*/
 	
 	// 관리자페이지 - 유저(userNum)정보 (/bidangol/admin/userInfo?id=id)
 	@GetMapping("/admin/userInfo")
-	public void adminuserInfo(Model model, @RequestParam String id) {
+	public void adminUserInfo(Model model, @RequestParam String id) {
 		model.addAttribute("userInfo", userService.getUserOne(id));
 	}
 
@@ -51,10 +55,10 @@ public class AdminController {
 		return "admin/orderInfo";
 	}
 
-	// 관리자페이지 - 상품(itemNum)확인 (/bidangol/admin/adminItem?id=itemNum)
+	// 관리자페이지 - 상품(itemNum)확인 (/bidangol/admin/itemInfo?itemNum=itemNum)
 	@GetMapping("/admin/itemInfo")
-	public String adminItemNum() {
-		return "admin/itemInfo";
+	public void adminItemInfo(Model model, @RequestParam Integer itemNum) {
+		model.addAttribute("itemInfo", itemService.getItemOne(itemNum));
 	}
 
 	@GetMapping("/admin/adminItem/itemAdd")

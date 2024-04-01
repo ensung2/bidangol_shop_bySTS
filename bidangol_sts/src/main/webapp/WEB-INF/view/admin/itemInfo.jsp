@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,54 +12,52 @@
 <body>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/view/include/header.jsp" />
+	
+	<!-- admin menu -->
+	<jsp:include page="/WEB-INF/view/include/admin.jsp" />
 
 	<!-- content -->
 	<div class="itemAdd">
 		<div class="wrap">
 			<section class="addTitle">
-				<h3>[관리자] 상품수정</h3>
+				<h3>상품상세정보</h3>
 			</section>
 			<section class="addInfo">
-				<form name="itemAdd_form" action="#" method="post">
-					<table style="border-collapse: collapse">
+				<form name="itemAdd_form" method="post">
+				<input type="hidden" name="itemNum" id="itemNum" value="<c:out value="${itemInfo.itemNum}"/>">
+					<table style="border-collapse: collapse;">
 						<tbody>
 							<tr>
 								<th>상품번호</th>
-								<td><span>1</span><input type="hidden" name="noticeNum" id="noticeNum" value="{notice.num}" readonly="readonly"></td>
+								<td><c:out value="${itemInfo.itemNo}"/></td>
 							</tr>
 							<tr>
 								<th>카테고리</th>
-								<td><select id="itemOption" name="itemOption">
-										<option value="none" hidden>카테고리</option>
-										<option value="01">베스트상품</option>
-										<option value="02">찹쌀떡</option>
-										<option value="03">멥쌀떡</option>
-										<option value="04">떡케이크</option>
-								</select></td>
+								<td><c:out value="${itemInfo.itemCategory}"/></td>
 							</tr>
 							<tr>
 								<th>상품명</th>
-								<td><input type="text" name="itemName" id="itemName" maxlength="20" value="{itemName}"></td>
+								<td><c:out value="${itemInfo.itemName}"/></td>
 							</tr>
 							<tr>
 								<th>상품이미지</th>
-								<td><input type="file" name="itemImg" id="itemImg" style="border:none" value="{itemName}"></td>
+								<td>{userInfo.itemImg}</td>
 							</tr>
 							<tr>
 								<th>상품정보</th>
-								<td><input type="text" name="itemInfo" id="itemInfo" maxlength="30" value="{itemInfo}"></td>
+								<td><c:out value="${itemInfo.itemInfo}"/></td>
 							</tr>
 							<tr>
 								<th>상품재료</th>
-								<td><input type="text" name="itemMerarial" id="itemMerarial" maxlength="30" value="{itemMerarial}"></td>
+								<td><c:out value="${itemInfo.itemMeterial}"/></td>
 							</tr>
 							<tr>
 								<th>소비기간</th>
-								<td><input type="text" name="itemUseDate" id="itemUseDate" maxlength="30" value="{itemUseDate}"></td>
+								<td><c:out value="${itemInfo.itemUsedate}"/></td>
 							</tr>
 							<tr>
 								<th>판매가</th>
-								<td><input type="text" name="itemPrice" id="itemPrice" style="width:200px" maxlength="10" value="{itemPrice}"> <b> 원</b></td>
+								<td><c:out value="${itemInfo.itemPrice}"/> <b> 원</b></td>
 							</tr>
 						</tbody>
 					</table>

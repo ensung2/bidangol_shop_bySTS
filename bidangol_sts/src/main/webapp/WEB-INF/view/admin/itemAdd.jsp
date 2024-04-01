@@ -61,16 +61,6 @@
 								<th>판매가</th>
 								<td><input type="text" name="itemPrice" id="itemPrice" style="width:200px" maxlength="10"> <b> 원</b></td>
 							</tr>
-							<tr>
-								<th>사이즈(용량)</th>
-								<td>
-									<select id="itemSize" name="itemSize" onchange="handleOnChange(this)">
-										<option value="0">소 (기본, 1kg)</option>
-										<option value="10000">중 (+ 10,000원, 2kg)</option>
-										<option value="20000">대 (+ 20,000원, 3kg)</option>
-									</select>
-								</td>
-							</tr>
 						</tbody>
 					</table>
 					<div class="add_btn">
