@@ -14,7 +14,7 @@
 				<h3>관리자 페이지</h3>
 			</section>
 			<section class="adminInfo">
-				<div>안녕하세요 <b>{admin.name}님</b></div>
+				<div>안녕하세요 <b>관리자님</b></div>
 				<div>
 					<ul>
 						<li><a href="/bidangol/admin/adminUser">회원관리</a></li>

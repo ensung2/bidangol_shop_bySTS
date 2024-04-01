@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,34 +21,38 @@
 				<h3>회원관리</h3>
 			</section>
 			<section class="userInfo">
-					<table>
+					<table style="border-collapse: collapse; margin: 0 auto; width: 500px">
 						<tbody>
 							<tr>
 								<th>아이디</th>
-								<td>{user.userid}</td>
+								<td><c:out value="${userInfo.id}"/></td>
 							</tr>
 							<tr style="color:#FF984F; font-weight:600">
 								<th>등급</th>
-								<td>{user.role}</td>
+								<td>회원</td>
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<td>{user.userEmil}</td>
+								<td><c:out value="${userInfo.email}"/></td>
 							</tr>
 							<tr>
 								<th>이름</th>
-								<td>{user.userName}</td>
+								<td><c:out value="${userInfo.name}"/></td>
 							</tr>
 							<tr>
 								<th>주소</th>
 								<td style="padding: 5px 0">
-									<span>{user.postCode}</span><br>
-									<span>{user.address1}</span><br>
-									<span>{user.address2}</span></td>
+									<span><c:out value="${userInfo.postcode}"/></span>
+									<span><c:out value="${userInfo.address1}"/></span><br>
+									<span><c:out value="${userInfo.address2}"/></span></td>
 							</tr>
 							<tr>
 								<th>휴대전화</th>
-								<td>{user.phone}</td>
+								<td><c:out value="${userInfo.phone}"/>-<c:out value="${userInfo.phone2}"/>-<c:out value="${userInfo.phone3}"/></td>
+							</tr>
+							<tr>
+								<th>가입일</th>
+								<td><fmt:formatDate pattern = "yyyy-MM-dd" value="${userInfo.signdate}"/></td>
 							</tr>
 						</tbody>
 					</table>

@@ -1,14 +1,30 @@
 package com.shop.bidangol.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.shop.bidangol.service.ItemService;
+import com.shop.bidangol.service.UserService;
+import com.shop.bidangol.vo.ItemVO;
 
 @Controller
 public class AdminController {
 
-	// 관리자 페이지 기본 - 유저관리
+	@Autowired
+	private ItemService itemService;
+
+	@Autowired
+	private UserService userService;
+
+	// 관리자 페이지 기본 - 유저관리 (리스트)
 	@GetMapping({ "/admin", "/admin/adminUser" })
-	public String adminPage() {
+	public String adminPage(Model model) {
+		model.addAttribute("list", userService.getUserList());
 		return "admin/adminUser";
 	}
 
@@ -21,11 +37,12 @@ public class AdminController {
 	public String adminItem() {
 		return "admin/adminItem";
 	}
-
-	// 관리자페이지 - 유저(userNum)정보 (/bidangol/admin/adminUser?id=userNum)
+	
+	
+	// 관리자페이지 - 유저(userNum)정보 (/bidangol/admin/userInfo?id=id)
 	@GetMapping("/admin/userInfo")
-	public String adminUserNum() {
-		return "admin/userInfo";
+	public void adminuserInfo(Model model, @RequestParam String id) {
+		model.addAttribute("userInfo", userService.getUserOne(id));
 	}
 
 	// 관리자페이지 - 주문(orderNum)확인 (/bidangol/admin/adminOrder?id=orderNum)
@@ -43,5 +60,11 @@ public class AdminController {
 	@GetMapping("/admin/adminItem/itemAdd")
 	public String adminItemAdd() {
 		return "admin/itemAdd";
+	}
+
+	@PostMapping("/admin/adminItem/new")
+	public String adminItemNew(@ModelAttribute ItemVO itemVO) {
+		itemService.addItem(itemVO);
+		return "admin/adminItem";
 	}
 }

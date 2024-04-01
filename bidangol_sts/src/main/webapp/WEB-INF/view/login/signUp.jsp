@@ -57,7 +57,7 @@
 							<tr class="phone">
 								<th>휴대전화</th>
 								<td>
-									<select id="phone" name="phone[]" style="padding:5px">
+									<select id="phone" name="phone" style="padding:5px">
 										<option value="010">010</option>
 										<option value="011">011</option>
 										<option value="016">016</option>

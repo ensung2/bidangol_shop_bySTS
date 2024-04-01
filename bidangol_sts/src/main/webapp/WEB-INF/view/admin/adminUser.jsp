@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,37 +35,14 @@
 			<section class="auList">
 				<table style="border-collapse: collapse;">
 					<tbody>
-						<tr onclick="location.href='/bidangol/admin/userInfo'">
-							<td class="userNum">1</td>
-							<td class="userId">ensung</td>
-							<td class="userName">이은성</td>
-							<td class="signUpDate">2024-03-25</td>
+					<c:forEach items="${list}" var="user">
+						<tr onclick="location.href='/bidangol/admin/userInfo?id=<c:out value="${user.id}"/>'">
+							<td class="num"><c:out value="${user.num}"></c:out></td>
+							<td class="id"><c:out value="${user.id}"></c:out></td>
+							<td class="name"><c:out value="${user.name}"></c:out></td>
+							<td class="signdate"><fmt:formatDate pattern = "yyyy-MM-dd" value="${user.signdate}"/></td>
 						</tr>
-						<tr onclick="location.href='/bidangol/admin/userInfo'">
-							<td class="userNum">2</td>
-							<td class="userId">ensung</td>
-							<td class="userName">이은성</td>
-							<td class="signUpDate">2024-03-25</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/userInfo'">
-							<td class="userNum">3</td>
-							<td class="userId">ensung</td>
-							<td class="userName">이은성</td>
-							<td class="signUpDate">2024-03-25</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/userInfo'">
-							<td class="userNum">4</td>
-							<td class="userId">ensung</td>
-							<td class="userName">이은성</td>
-							<td class="signUpDate">2024-03-25</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/userInfo'">
-							<td class="userNum">5</td>
-							<td class="userId">ensung</td>
-							<td class="userName">이은성</td>
-							<td class="signUpDate">2024-03-25</td>
-						</tr>
-						
+					</c:forEach>
 					</tbody>
 				</table>
 			</section>

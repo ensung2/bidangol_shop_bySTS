@@ -2,38 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.bidangol.mapper.UserMapper">
 
-<!-- 	<resultMap type="com.shop.bidangol.vo.UserVO" id="userSelectRM">
-		<result property="userNum" column="user_num"/>
-		<result property="userId" column="user_id"/>
+ 	<resultMap type="com.shop.bidangol.vo.UserVO" id="userSelectRM">
+		<result property="num" column="num"/>
+		<result property="id" column="id"/>
 		<result property="password" column="password"/>
-		<result property="userName" column="user_name"/>
-		<result property="postCode" column="post_code"/>
+		<result property="name" column="name"/>
+		<result property="postcode" column="postcode"/>
 		<result property="address1" column="address1"/>
 		<result property="address2" column="address2"/>
-		<result property="signUpDate" column="sign_up_date"/>
-	</resultMap> resultMap="userSelectRM"-->
+		<result property="phone" column="phone"/>
+		<result property="phone2" column="phone2"/>
+		<result property="phone3" column="phone3"/>
+		<result property="signdate" column="signdate"/>
+	</resultMap>
+	
+	<!-- (관리자페이지)회원 리스트 불러오기 -->
+	<select id="getUserList" resultType="com.shop.bidangol.vo.UserVO" resultMap="userSelectRM">
+		SELECT *
+		FROM USERS
+		ORDER BY num desc
+	</select>
 
 	<!-- 회원 상세정보 조회 -->
-	<select id="getUserOne" resultType="com.shop.bidangol.vo.UserVO" >
-		SELECT
-			num,
-			id,
-			email,
-			password,
-			name,
-			postcode,
-			address1,
-			address2,
-			phone,
-			signdate
-		FROM users
+	<select id="getUserOne" resultType="com.shop.bidangol.vo.UserVO" resultMap="userSelectRM">
+		SELECT *
+		FROM USERS
 		WHERE
 			id = #{id}
 	</select>
 
 	<!-- 회원가입 -->
 	<insert id="joinUser" parameterType="com.shop.bidangol.vo.UserVO">
-		INSERT INTO USERS (num,
+		INSERT INTO USERS (
+		num,
 		id,
 		email,
 		password,
@@ -41,21 +42,31 @@
 		postcode,
 		address1,
 		address2,
+		signdate,
 		phone,
-		signdate
+		phone2,
+		phone3
 		)
 		VALUES (USERBOARDNUM_SEQ.NEXTVAL,
-		#{id, jdbcType=VARCHAR},
-		#{email, jdbcType=VARCHAR},
-		#{password, jdbcType=VARCHAR},
-		#{name, jdbcType=VARCHAR},
-		#{postcode, jdbcType=VARCHAR},
-		#{address1, jdbcType=VARCHAR},
-		#{address2, jdbcType=VARCHAR},
-		#{phone, jdbcType=VARCHAR},
-		sysdate
+		#{id},
+		#{email},
+		#{password},
+		#{name},
+		#{postcode},
+		#{address1},
+		#{address2},
+		sysdate,
+		#{phone},
+		#{phone2},
+		#{phone3}
 		)
 	</insert>
+	
+	<!-- 로그인(아이디,패스워드) 체크 -->
+	<select id="loginCheck" resultType="com.shop.bidangol.vo.UserVO" parameterType="map">
+			SELECT count(*) FROM USERS
+			WHERE id = #{id} AND password = #{password}
+	</select>
 
 
 </mapper>

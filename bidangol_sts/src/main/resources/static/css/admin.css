@@ -42,6 +42,10 @@ input[type=button] {
 	display: flex;
 }
 
+.adminInfo li a:hover {
+	font-weight: 600;
+}
+
 /*----- 관리자페이지 - 유저정보 -----*/
 .adminUser, .adminOrder, .adminItem {
 	width: 100%;
@@ -118,19 +122,21 @@ input[type=button] {
 .adminUser .userInfo, .orderInfo_ {
 	border: 1px solid #cccccc;
 	border-radius: 10px;
-	padding: 30px 180px
+	padding: 30px 0;
+	width: 900px;
 }
 
-.adminUser .userInfo th {
-	padding: 5px 20px 5px 0;
+.userInfo th, .orderInfo_ th {
+	padding: 10px 20px;
 	text-align: left;
 }
 
-.adminUser .userInfo tr {
-	border: 1px solid #eeeeee
+.userInfo tr, .orderInfo_ tr  {
+	border-bottom: 1px solid #eeeeee;
 }
 
 /*----- 관리자페이지 - 주문관리 -----*/
+
 .adminOrder td:nth-child(1) {
 	width: 150px;
 }
@@ -148,15 +154,6 @@ input[type=button] {
 }
 .adminOrder td:nth-child(6) {
 	width: 100px;
-}
-
-.orderInfo_ th {
-	padding: 1px 25px 10px 0;
-	text-align: left;
-}
-
-.orderInfo_ tr {
-	border: 1px solid #eeeeee
 }
 
 .ao_btn {
@@ -301,7 +298,7 @@ input[type=button] {
 	background-color: #2a2a2a
 }
 
-#itemOption, .addInfo input[type=text]{
+SELECT, .addInfo input[type=text]{
 	padding: 5px;
 	border: 1px solid #cccccc;
 	font-size: 15px
