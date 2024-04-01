@@ -11,56 +11,83 @@
 		<result property="itemMeterial" column="item_meterial"/>
 		<result property="itemUsedate" column="item_usedate"/>
 		<result property="itemPrice" column="item_price"/>
-		<result property="itemSize" column="item_size"/>
+		<result property="itemNo" column="item_no"/>
 	</resultMap>
-
-	<!-- 상품(아이템) 상세 조회 -->
-	<select id="getItemOne" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+	
+	<!-- 상품 리스트 불러오기 -->
+	<select id="getItemList" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
 		SELECT
 			item_num,
-			DECODE(item_category, 01, '베스트상품', 02, '찹쌀떡', 03, '멥쌀떡', 04, '떡케이크'),
+			item_no,
+			CASE
+            	WHEN item_category = '01' THEN '베스트상품'
+            	WHEN item_category = '02' THEN '찹쌀떡'
+            	WHEN item_category = '03' THEN '멥쌀떡'
+            	WHEN item_category = '04' THEN '떡케이크'
+        	END AS item_category,
 			<!-- item_img, -->
 			item_name,
 			item_info,
 			item_meterial,
 			item_usedate,
-			item_price,
-			item_size
+			item_price
+		FROM ITEMS
+		ORDER BY item_no desc
+	</select>
+
+	<!-- 상품(아이템) 상세 조회 -->
+	<select id="getItemOne" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+		SELECT
+			item_num,
+			item_no,
+			CASE
+            	WHEN item_category = '01' THEN '베스트상품'
+            	WHEN item_category = '02' THEN '찹쌀떡'
+            	WHEN item_category = '03' THEN '멥쌀떡'
+            	WHEN item_category = '04' THEN '떡케이크'
+        	END AS item_category,
+			<!-- item_img, -->
+			item_name,
+			item_info,
+			item_meterial,
+			item_usedate,
+			item_price
 		FROM ITEMS
 		WHERE
 			item_num = #{itemNum}
 	</select>
 
-	<!-- 공지사항 등록 -->
+	<!-- (관리자페이지) 상품 등록 -->
 	<insert id="addItem" parameterType="com.shop.bidangol.vo.ItemVO">
 		INSERT INTO ITEMS (
 		item_num,
+		item_no,
 		item_category,
 		<!-- item_img, -->
 		item_name,
 		item_info,
 		item_meterial,
 		item_usedate,
-		item_price,
-		item_size
+		item_price
 		)
 		VALUES (
 		itemnum_seq.NEXTVAL,
+		#{itemNo}
 		#{itemCategory},
 		<!-- #{itemImg}, -->
 		#{itemName},
 		#{itemInfo},
 		#{itemMeterial},
 		#{itemUsedate},
-		#{itemPrice},
-		#{itemSize}
+		#{itemPrice}s
 		)
 	</insert>
 	
-	<!-- 상품(아이템) 수정 -->
+	<!-- (관리자페이지) 상품 수정 -->
 	<update id="modifyItem" parameterType="com.shop.bidangol.vo.ItemVO">
 		UPDATE ITEMS 
 		SET 
+			item_no = #{itemNo},
 			item_name = #{itemName},
 			item_category = #{itemCategory},
 			<!-- item_img = #{itemImg}, -->
@@ -68,13 +95,12 @@
 			item_info = #{itemInfo},
 			item_meterial = #{itemMeterial},
 			item_usedate = #{itemUsedate},
-			item_price = #{itemPrice},
-			item_size = #{itemSize}
+			item_price = #{itemPrice}
 		WHERE 
 			item_num = #{itemNum}
 	</update>
 	
-	<!-- 상품(아이템) 삭제 -->
+	<!-- (관리자페이지) 상품 삭제 -->
 	<delete id="deleteItem" >
 		DELETE FROM ITEMS WHERE item_num = #{itemNum}
 	</delete>
