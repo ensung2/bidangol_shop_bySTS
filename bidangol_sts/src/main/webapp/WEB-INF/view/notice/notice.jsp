@@ -35,13 +35,13 @@
 			<section class="noticeItem">
 				<table style="border-collapse: collapse;">
 					<tbody>
-					<c:forEach items="${list}" var="list">
-						<tr onclick="location.href='/bidangol/notice/noticeId'">
-							<td class="noticeNum"><c:out value="${list.noticeNum}"></c:out></td>
-							<td class="noticeOption"><c:out value="${list.noticeOption}"></c:out></td>
-							<td class="noticeName"><c:out value="${list.noticeName}"></c:out></td>
-							<td class="noticeCount"><c:out value="${list.noticeCount}"></c:out></td>
-							<td class="noticeDate"><fmt:formatDate pattern = "yyyy-MM-dd" value="${list.noticeDate}"/></td>
+					<c:forEach items="${list}" var="notice">
+						<tr onclick="location.href='/bidangol/notice/noticeId?noticeNum=<c:out value="${notice.noticeNum}"/>'">
+							<td class="noticeNum"><c:out value="${notice.noticeNum}"></c:out></td>
+							<td class="noticeOption"><c:out value="${notice.noticeOption}"></c:out></td>
+							<td class="noticeName"><c:out value="${notice.noticeName}"></c:out></td>
+							<td class="noticeCount"><c:out value="${notice.noticeCount}"></c:out></td>
+							<td class="noticeDate"><fmt:formatDate pattern = "yyyy-MM-dd" value="${notice.noticeDate}"/></td>
 						</tr>
 					</c:forEach>
 					</tbody>

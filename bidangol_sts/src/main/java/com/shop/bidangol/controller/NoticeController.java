@@ -39,16 +39,12 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
-	// 공지사항 - 상세 조회 (/bidangol/admin/notice?id=noticeNum)
-	@GetMapping("/notice/{noticeNum}")
-	public String noticeIdPage(Model model, @RequestParam int noticeNum) {
-		/*
-		 * Map<String, Object> notice = noticeService.noticeOne(noticeNum);
-		 * model.addAttribute("noticeNum", noticeNum);
-		 */
+	// 공지사항 - 상세 조회
+	@GetMapping("/notice/noticeId")
+	public void noticeIdPage(Model model, @RequestParam Integer noticeNum) {
 		noticeService.viewCount(noticeNum);
-		noticeService.getNoticeOne(noticeNum);
-		return "notice/noticeId";
+		model.addAttribute("noticeInfo",noticeService.getNoticeOne(noticeNum));
+		
 	}
 
 	/*

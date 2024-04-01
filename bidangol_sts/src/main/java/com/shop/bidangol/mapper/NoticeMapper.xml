@@ -20,6 +20,7 @@
 			notice_count,
 			notice_date
 		FROM NOTICE
+		ORDER BY notice_num desc
 	</select>
 
 	<!-- 공지사항 상세 조회 -->
@@ -27,9 +28,12 @@
 		SELECT
 			notice_num,
 			notice_name,
-			notice_option,
-			notice_content,
-			notice_date,
+			CASE
+            	WHEN notice_option = '01' THEN '공지사항'
+            	WHEN notice_option = '02' THEN '배송안내'
+            	WHEN notice_option = '03' THEN '기획전'
+        	END AS notice_option,
+			notice_content
 		FROM NOTICE
 		WHERE
 			notice_num = #{noticeNum}
@@ -71,7 +75,7 @@
 			notice_num = #{noticeNum}
 	</update>
 	
-	<!-- 문의 삭제 -->
+	<!-- 공지사항 삭제 -->
 	<delete id="deleteNotice" >
 		DELETE FROM NOTICE WHERE notice_num = #{noticeNum}
 	</delete>

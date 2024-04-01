@@ -87,8 +87,8 @@
 	                ['para', ['paragraph']],
 	                // 에디터 높이 설정
 	                ['height', ['height']],
-	                // 이미지, 링크, 동영상 삽입
-	                ['insert', ['picture', 'link', 'video']],
+	                // 이미지(picture), 링크, 동영상 삽입(video)
+	                ['insert', ['link']],
 	                // 코드 보기, 전체화면(fullscreen), 도움말
 	                ['view', ['codeview', 'help']],
 	            ],

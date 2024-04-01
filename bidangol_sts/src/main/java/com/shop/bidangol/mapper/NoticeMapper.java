@@ -1,7 +1,6 @@
 package com.shop.bidangol.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,14 +17,14 @@ public interface NoticeMapper {
 	public List<UserVO> getNoticeList();
 
 	// 공지사항 상세 조회
-	Map<String, Object> getNoticeOne(int noticeNum);
+	public NoticeVO getNoticeOne(Integer noticeNum);
 
 	// 공지사항 수정
 	public void modifyNotice(NoticeVO noticeVO);
 
 	// 공지사항 삭제
-	public void deleteNotice(int noticeNum);
+	public void deleteNotice(Integer noticeNum);
 	
 	// 공지사항 조회수
-	public int viewCount(int noticeNum);
+	public int viewCount(Integer noticeNum);
 }

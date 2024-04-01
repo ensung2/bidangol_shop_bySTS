@@ -28,13 +28,12 @@ public class NoticeService implements NoticeServiceImpl {
 	}
 
 	// 공지사항 상세조회
-	public Map<String, Object> getNoticeOne(int noticeNum) {
-		Map<String, Object> notice = mapper.getNoticeOne(noticeNum);
-		return notice;
+	public NoticeVO getNoticeOne(Integer noticeNum) {
+		return mapper.getNoticeOne(noticeNum);
 	}
 	
 	// 공지사항 조회수
-	public void viewCount(int noticeNum) {
+	public void viewCount(Integer noticeNum) {
 		mapper.viewCount(noticeNum);
 	}
 
@@ -44,7 +43,7 @@ public class NoticeService implements NoticeServiceImpl {
 	}
 
 	// 문의 삭제
-	public void deleteNotice(int noticeNum) {
+	public void deleteNotice(Integer noticeNum) {
 		mapper.deleteNotice(noticeNum);
 	}
 

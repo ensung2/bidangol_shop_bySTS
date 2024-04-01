@@ -22,15 +22,15 @@ public interface NoticeServiceImpl {
 	public List<UserVO> getNoticeList();
 
 	// 공지사항 조회수
-	public void viewCount(int noticeNum);
+	public void viewCount(Integer noticeNum);
 
 	// 공지사항 상세 조회
-	Map<String, Object> getNoticeOne(int noticeNum);
+	public NoticeVO getNoticeOne(Integer noticeNum);
 
 	// 공지사항 수정
 	public void modifyNotice(NoticeVO noticeVO);
 
 	// 공지사항 삭제
-	public void deleteNotice(int noticeNum);
+	public void deleteNotice(Integer noticeNum);
 
 }

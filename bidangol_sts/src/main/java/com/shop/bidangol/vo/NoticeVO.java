@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public class NoticeVO {
 	
-	private int noticeNum;
+	private Integer noticeNum;
 	private String noticeName;
 	private String noticeOption;
 	private String noticeContent;
-	private int noticeCount;
+	private Integer noticeCount;
 	private Date noticeDate;
 
 }
