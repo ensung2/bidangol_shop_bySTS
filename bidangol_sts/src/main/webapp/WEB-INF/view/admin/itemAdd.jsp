@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,13 +21,9 @@
 				<h3>[관리자] 상품등록</h3>
 			</section>
 			<section class="addInfo">
-				<form name="itemAdd_form">
+				<form name="itemAdd_form" enctype="multipart/form-data">
 					<table style="border-collapse: collapse">
 						<tbody>
-<%-- 							<tr>
-								<th>상품번호</th>
-								<td><input style="border: none; background-color: white;" type="text" name="itemNum" id="itemNum" value="${itemVO.itemNum}" readonly="readonly" disabled></td>
-							</tr> --%>
 							<tr>
 								<th>카테고리</th>
 								<td><select id="itemCategory" name="itemCategory">
@@ -41,10 +38,25 @@
 								<th>상품명</th>
 								<td><input type="text" name="itemName" id="itemName" maxlength="20"></td>
 							</tr>
-<!-- 							<tr>
+							<tr>
 								<th>상품이미지</th>
-								<td><input type="file" name="itemImg" id="itemImg" style="border:none"></td>
-							</tr> -->
+								<td><input type="file" name="file" id="itemImg" style="border:none">
+								<div class="select_img"><img src="" /></div>
+									<!-- 등록 이미지 미리보기 -->
+									<script>
+									  $("#itemImg").change(function(){
+									   if(this.files && this.files[0]) {
+									    var reader = new FileReader;
+									    reader.onload = function(data) {
+									     $(".select_img img").attr("src", data.target.result).width(500);        
+									    }
+									    reader.readAsDataURL(this.files[0]);
+									   }
+									  });
+									 </script>
+									
+								</td>
+							</tr>
 							<tr>
 								<th>상품정보</th>
 								<td><input type="text" name="itemInfo" id="itemInfo" maxlength="30"></td>

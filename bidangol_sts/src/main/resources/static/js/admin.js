@@ -1,26 +1,25 @@
 $(document).ready(function() {
 	$('#itemUpload').on('click',function() {
-		var formData = $("form").serialize();
-/*		
-		// 옵션값은 텍스트로 보내주기
-		var formData = {
-			
-		}*/
+		/*var formData = $("form").serialize();*/
+		var formData = new FormData($('form')[0]);
+		if (confirm("상품을 등록하시겠습니까?")) {
 		$.ajax({
 			type: "POST",
 			url: "/bidangol/admin/adminItem/new",
 			data: formData,
+			processData: false, // FormData 객체를 처리하지 않도록 설정
+            contentType: false,
 			beforeSend: reg, // 등록 전 유효성 검사
 			success: function() {
-				/*location.href = "./freeBoardDetail.ino?num=" + data;*/
-				if (confirm("상품을 등록하시겠습니까?")) {
 					alert("상품이 등록되었습니다.");
 					location.href = "/bidangol/admin/adminItem";
-				}},
+				},
 				error: function(request, status, error) {
 					alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 				}
-		});
+			});
+		};
+
 	});
 
 	//  유효성검사

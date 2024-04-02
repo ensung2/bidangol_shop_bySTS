@@ -14,7 +14,7 @@ public interface ItemServiceImpl {
 
 	// 상품(아이템) 리스트
 	public List<ItemVO> getItemList();
-	
+
 	// 상품(아이템) 상세정보
 	public ItemVO getItemOne(Integer ItemNum);
 

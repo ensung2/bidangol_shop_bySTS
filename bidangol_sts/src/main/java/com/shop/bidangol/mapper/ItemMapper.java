@@ -11,7 +11,7 @@ public interface ItemMapper {
 
 	// 상품(아이템) 등록
 	public void addItem(ItemVO ItemVO);
-	
+
 	// 상품(아이템) 리스트
 	public List<ItemVO> getItemList();
 
@@ -23,4 +23,5 @@ public interface ItemMapper {
 
 	// 상품(아이템) 삭제
 	public void deleteItem(Integer ItemNum);
+
 }

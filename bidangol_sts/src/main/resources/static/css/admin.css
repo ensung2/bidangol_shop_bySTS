@@ -311,6 +311,14 @@ SELECT, .addInfo input[type=text]{
 	
 }
 
+/*----------- 상품추가(이미지) ----------*/
+.select_img img {
+	margin:10px 0
+	}
+.itemImg {
+	width: 500px; height: auto
+}
+
 /* 관리자페이지 - adminPaging */
 .adminPaging {
 	text-align: center;

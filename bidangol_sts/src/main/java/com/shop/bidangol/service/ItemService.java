@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.shop.bidangol.mapper.ItemMapper;
 import com.shop.bidangol.vo.ItemVO;
 
-
 @Service
 public class ItemService implements ItemServiceImpl {
 
@@ -19,9 +18,9 @@ public class ItemService implements ItemServiceImpl {
 	public void addItem(ItemVO ItemVO) {
 		mapper.addItem(ItemVO);
 	}
-	
+
 	// 상품(아이템) 리스트
-	public List<ItemVO> getItemList(){
+	public List<ItemVO> getItemList() {
 		return mapper.getItemList();
 	}
 

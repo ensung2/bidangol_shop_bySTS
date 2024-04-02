@@ -41,7 +41,7 @@
 							</tr>
 							<tr>
 								<th>상품이미지</th>
-								<td>{userInfo.itemImg}</td>
+								<td><img src="http://localhost:8088/bidangol/resources/${itemInfo.itemImg}" class="itemImg"/></td>
 							</tr>
 							<tr>
 								<th>상품정보</th>
