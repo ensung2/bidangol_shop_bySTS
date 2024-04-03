@@ -16,7 +16,11 @@
 		SELECT 
 			notice_num,
 			notice_name,
-			notice_option,
+			CASE
+            	WHEN notice_option = '01' THEN '공지사항'
+            	WHEN notice_option = '02' THEN '배송안내'
+            	WHEN notice_option = '03' THEN '기획전'
+        	END AS notice_option,
 			notice_count,
 			notice_date
 		FROM NOTICE

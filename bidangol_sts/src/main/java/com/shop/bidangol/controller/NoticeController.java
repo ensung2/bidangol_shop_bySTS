@@ -24,13 +24,13 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
-	// 공지사항 작성
+	// 공지사항 작성(폼)
 	@GetMapping("/notice/write")
 	public String noticeWrite() {
 		return "notice/noticeWrite";
 	}
 
-	// 공지사항 작성(AMDIN만 가능)
+	// 공지사항 작성(등록, admin만 가능)
 	@PostMapping("/notice/write/new")
 	public String noticeWrite(@ModelAttribute NoticeVO noticeVO) {
 		noticeService.addNotice(noticeVO);

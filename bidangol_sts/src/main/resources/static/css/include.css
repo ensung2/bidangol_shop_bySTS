@@ -200,16 +200,16 @@ footer {
 }
 
 .indexNotice td:nth-child(1) {
-	width: 50px;
+	width: 40px;
 }
 .indexNotice td:nth-child(2) {
-	width: 50px;
+	width: 70px;
 }
 .indexNotice td:nth-child(3) {
-	width: 170px;
+	width: 190px;
 }
 .indexNotice td:nth-child(4) {
-	width: 130px;
+	width: 100px;
 }
 
 .indexNotice tr:hover {
