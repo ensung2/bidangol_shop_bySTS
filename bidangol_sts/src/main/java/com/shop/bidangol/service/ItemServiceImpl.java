@@ -1,10 +1,8 @@
 package com.shop.bidangol.service;
 
 import java.util.List;
-import java.util.Map;
 import org.springframework.stereotype.Service;
 import com.shop.bidangol.vo.ItemVO;
-import com.shop.bidangol.vo.NoticeVO;
 
 @Service
 public interface ItemServiceImpl {
@@ -14,6 +12,21 @@ public interface ItemServiceImpl {
 
 	// 상품(아이템) 리스트
 	public List<ItemVO> getItemList();
+
+	// 01 bestItem 리스트
+	public List<ItemVO> getBestItem();
+
+	// 01 bestItem 아이템 갯수
+	public Integer getCountBest(Integer itemNum);
+
+	// 02 찹쌀떡 리스트
+	public List<ItemVO> getTteok01();
+
+	// 03 멥쌀떡 리스트
+	public List<ItemVO> getTteok02();
+
+	// 04 떡케이크 리스트
+	public List<ItemVO> getTteokCake();
 
 	// 상품(아이템) 상세정보
 	public ItemVO getItemOne(Integer ItemNum);

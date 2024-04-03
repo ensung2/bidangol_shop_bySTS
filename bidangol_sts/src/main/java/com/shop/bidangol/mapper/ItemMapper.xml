@@ -13,6 +13,7 @@
 		<result property="itemNo" column="item_no" />
 		<result property="itemImg" column="item_img" />
 		<result property="thumbImg" column="thumb_img" />
+		<result property="totalCount" column="total_count" />
 	</resultMap>
 	
 	<resultMap type="com.shop.bidangol.vo.ItemImgVO" id="itemImg">
@@ -27,7 +28,7 @@
 		resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
 		SELECT
 			item_num,
-			item_no,
+			item_Category || '-' || LPAD(item_Num, 3, '0') as item_no,
 			CASE
 			WHEN item_category = '01' THEN '베스트상품'
 			WHEN item_category = '02' THEN '찹쌀떡'
@@ -45,11 +46,40 @@
 	</select>
 	
 	<!-- 01 베스트아이템 상품리스트 -->
-	<select id="getList01" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+	<select id="getBestItem" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
 		SELECT *
 		FROM ITEMS
 		WHERE item_category = '01'
 	</select>
+	
+	<!-- 01 베스트아이템 상품갯수 -->
+	<select id="getCountBest" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+		SELECT COUNT(*) AS totalCount
+		  FROM ITEMS
+		  WHERE item_category = '01'
+	</select>
+	
+	<!-- 02 찹쌀떡 상품리스트 -->
+	<select id="getTteok01" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+		SELECT *
+		FROM ITEMS
+		WHERE item_category = '02'
+	</select>
+	
+	<!-- 03 멥쌀떡 상품리스트 -->
+	<select id="getTteok02" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+		SELECT *
+		FROM ITEMS
+		WHERE item_category = '03'
+	</select>
+	
+	<!-- 04 떡케이크 상품리스트 -->
+	<select id="getTteokCake" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
+		SELECT *
+		FROM ITEMS
+		WHERE item_category = '04'
+	</select>
+	
 	
 
 	<!-- 상품(아이템) 상세 조회 -->
@@ -57,7 +87,7 @@
 		resultMap="item">
 		SELECT
 			item_num,
-			item_no,
+			item_Category || '-' || LPAD(item_Num, 3, '0') as item_no,
 			CASE
 			WHEN item_category = '01' THEN '베스트상품'
 			WHEN item_category = '02' THEN '찹쌀떡'

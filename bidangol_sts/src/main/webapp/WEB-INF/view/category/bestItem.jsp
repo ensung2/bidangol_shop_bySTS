@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,7 +22,7 @@
 			</section>
 			<section class="cgItem">
 				<div class="itemInfo">
-					<div class="itemCount">총 6개</div>
+					<div class="totalCount">총 ${totalCount}개</div>
 					<div class="itemArray">
 						<ul>
 							<li><a href="#">신상품</a></li>
@@ -33,88 +34,28 @@
 					</div>
 				</div>
 				<div class="itemList">
-					<ul>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="베스트상품"
-									src="/bidangol/img/instagram/123.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>콩고물 인절미</span></a></li>
-									<li class="price"><a href="#"><span>15,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="베스트상품"
-									src="/bidangol/img/instagram/123.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>콩고물 인절미</span></a></li>
-									<li class="price"><a href="#"><span>15,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="베스트상품"
-									src="/bidangol/img/instagram/123.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>콩고물 인절미</span></a></li>
-									<li class="price"><a href="#"><span>15,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="베스트상품"
-									src="/bidangol/img/instagram/123.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>콩고물 인절미</span></a></li>
-									<li class="price"><a href="#"><span>15,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="베스트상품"
-									src="/bidangol/img/instagram/123.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>콩고물 인절미</span></a></li>
-									<li class="price"><a href="#"><span>15,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="베스트상품"
-									src="/bidangol/img/instagram/123.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>콩고물 인절미</span></a></li>
-									<li class="price"><a href="#"><span>15,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-					</ul>
+				<input type="hidden" name="itemNum" id="itenNum" value="<c:out value="${bestItem.itemNum}"/>">
+				<table style="border-collapse: collapse;">
+					<tbody>
+					<c:choose>
+					 <c:when test="${empty list}">
+                		<p class="empty">상품이 없습니다.</p>
+            		</c:when>
+            		<c:otherwise>
+						<c:forEach items="${list}" var="bestItem">
+								<td onclick="location.href='/bidangol/category/01/itemDetail?itemNum=<c:out value="${bestItem.itemNum}"/>'">
+									<img src="http://localhost:8088/bidangol/resources/${bestItem.itemImg}" class="itemImg"/>
+									<div class="itemText">
+										<span class="itemName"><c:out value="${bestItem.itemName}"/></span><br>
+										<span class="itemPrice"><c:out value="${bestItem.itemPrice}"/>원</span>
+									</div>
+								</td>
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
+					</tbody>
+				</table>
 				</div>
-
 			</section>
 		</div>
 	</div>

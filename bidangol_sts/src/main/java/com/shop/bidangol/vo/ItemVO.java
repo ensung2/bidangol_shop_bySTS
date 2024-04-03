@@ -15,5 +15,7 @@ public class ItemVO {
 	
 	private String itemImg;		// 상품 이미지
 	private String thumbImg;
+	
+	private Integer totalCount;
 
 }
