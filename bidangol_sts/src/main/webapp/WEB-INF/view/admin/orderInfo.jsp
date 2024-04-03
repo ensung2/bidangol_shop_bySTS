@@ -16,10 +16,10 @@
 	<div class="adminOrder">
 		<div class="wrap">
 			<section class="auTitle">
-				<h3>주문관리</h3>
+				<h3>주문상세정보</h3>
 			</section>
 			<section class="orderInfo_">
-				<table>
+				<table style="border-collapse: collapse; margin: 0 auto; width: 500px">
 					<tbody>
 						<tr>
 							<th>주문번호</th>

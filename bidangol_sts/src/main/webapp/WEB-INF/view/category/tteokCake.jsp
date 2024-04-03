@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,88 +34,27 @@
 					</div>
 				</div>
 				<div class="itemList">
-					<ul>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="멥쌀떡"
-									src="/bidangol/img/item/cake01.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>무지개떡케이크</span></a></li>
-									<li class="price"><a href="#"><span>35,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="멥쌀떡"
-									src="/bidangol/img/item/cake01.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>무지개떡케이크</span></a></li>
-									<li class="price"><a href="#"><span>35,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="멥쌀떡"
-									src="/bidangol/img/item/cake01.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>무지개떡케이크</span></a></li>
-									<li class="price"><a href="#"><span>35,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="멥쌀떡"
-									src="/bidangol/img/item/cake01.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>무지개떡케이크</span></a></li>
-									<li class="price"><a href="#"><span>35,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="멥쌀떡"
-									src="/bidangol/img/item/cake01.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>무지개떡케이크</span></a></li>
-									<li class="price"><a href="#"><span>35,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<div class="thumb">
-								<a href="#"> <img alt="멥쌀떡"
-									src="/bidangol/img/item/cake01.jpg" width="100%">
-								</a>
-							</div>
-							<div class="description">
-								<ul>
-									<li class="name"><a href="#"><span>무지개떡케이크</span></a></li>
-									<li class="price"><a href="#"><span>35,000원</span></a></li>
-								</ul>
-							</div>
-						</li>
-
-
-					</ul>
+					<input type="hidden" name="itemNum" id="itenNum" value="<c:out value="${tteokCake.itemNum}"/>">
+				<table style="border-collapse: collapse;">
+					<tbody>
+					<c:choose>
+					 <c:when test="${empty list}">
+                		<p class="empty">상품이 없습니다.</p>
+            		</c:when>
+            		<c:otherwise>
+						<c:forEach items="${list}" var="tteokCake">
+								<td onclick="location.href='/bidangol/category/04/itemDetail?itemNum=<c:out value="${tteokCake.itemNum}"/>'">
+									<img src="http://localhost:8088/bidangol/resources/${tteokCake.itemImg}" class="itemImg"/>
+									<div class="itemText">
+										<span class="itemName"><c:out value="${tteokCake.itemName}"/></span><br>
+										<span class="itemPrice"><c:out value="${tteokCake.itemPrice}"/>원</span>
+									</div>
+								</td>
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
+					</tbody>
+				</table>
 				</div>
 
 			</section>

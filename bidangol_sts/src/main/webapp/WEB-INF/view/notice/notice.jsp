@@ -35,7 +35,12 @@
 			<section class="noticeItem">
 				<table style="border-collapse: collapse;">
 					<tbody>
-					<c:forEach items="${list}" var="notice">
+					<c:choose>
+					 <c:when test="${empty list}">
+                		<p class="empty">공지사항이 없습니다.</p>
+            		</c:when>
+            		<c:otherwise>
+						<c:forEach items="${list}" var="notice">
 						<tr onclick="location.href='/bidangol/notice/noticeId?noticeNum=<c:out value="${notice.noticeNum}"/>'">
 							<td class="noticeNum"><c:out value="${notice.noticeNum}"></c:out></td>
 							<td class="noticeOption"><c:out value="${notice.noticeOption}"></c:out></td>
@@ -44,6 +49,8 @@
 							<td class="noticeDate"><fmt:formatDate pattern = "yyyy-MM-dd" value="${notice.noticeDate}"/></td>
 						</tr>
 					</c:forEach>
+					</c:otherwise>
+					</c:choose>
 					</tbody>
 				</table>
 			<div class="notice_btn">

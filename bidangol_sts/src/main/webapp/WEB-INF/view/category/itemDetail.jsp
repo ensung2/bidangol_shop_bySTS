@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,17 +45,17 @@
 		<div class="wrap">
 			<section class="detailImg">
 				<div class="imgWrap">
-					<img alt="상세이미지" src="/bidangol/img/instagram/123.jpg">
+					<img src="http://localhost:8088/bidangol/resources/${itemInfo.itemImg}" class="itemImg"/>
 				</div>
 			</section>
 			<section class="detailInfo">
+			<input type="hidden" name="itemNum" id="itemNum" value="<c:out value="${itemInfo.itemNum}"/>">
 				<div class="detailTitle">
-					<h3>콩고물인절미</h3>
-					<p>고소한 콩고물이 듬뿍 묻어있어 고소하고 한 입에 쏙! 쫄깃쫄깃한 콩고물 인절미</p>
+					<h3><c:out value="${itemInfo.itemName}"/></h3>
+					<p><c:out value="${itemInfo.itemInfo}"/></p>
 					<ul style="margin-left: 15px;">
-						<li>원재료명 및 함량 : 인절미[찹쌀 99%(국산), 천일염], 콩고물[대두 84.7%(중국산), 설탕
-							8%, 천일염]</li>
-						<li>소비기한 : 상온 1일 또는 냉동 보관 시 3개월 이내 섭취</li>
+						<li>원재료명 및 함량 : <c:out value="${itemInfo.itemMeterial}"/></li>
+						<li>소비기한 : <c:out value="${itemInfo.itemUsedate}"/></li>
 					</ul>
 				</div>
 				<div class="detailOrder">
@@ -62,15 +63,15 @@
 						<tbody>
 							<tr>
 								<th class="itemPrice">판매가</th>
-								<td><b>{dto.itemPrice}원</b></td>
+								<td><c:out value="${itemInfo.itemPrice}"/>원</td>
 							</tr>
 							<tr>
 								<th class="itemOption">사이즈</th>
 								<td>
 									<select id="itemSize" name="itemSize" onchange="handleOnChange(this)">
-										<option value="15000원">콩고물 인절미-소 (기본, 1kg)</option>
-										<option value="25000원">콩고물 인절미-중 (+ 10,000원, 2kg)</option>
-										<option value="35000원">콩고물 인절미-대 (+ 20,000원, 3kg)</option>
+										<option value="15000원">소 (기본)</option>
+										<option value="25000원">중 (+ 10,000원)</option>
+										<option value="35000원">대 (+ 20,000원)</option>
 									</select>
 								</td>
 							</tr>

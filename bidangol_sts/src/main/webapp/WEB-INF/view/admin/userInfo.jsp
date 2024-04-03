@@ -18,7 +18,7 @@
 	<div class="adminUser">
 		<div class="wrap">
 			<section class="auTitle">
-				<h3>회원관리</h3>
+				<h3>회원상세정보</h3>
 			</section>
 			<section class="userInfo">
 					<table style="border-collapse: collapse; margin: 0 auto; width: 500px">
