@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shop.bidangol.service.UserService;
 import com.shop.bidangol.vo.UserVO;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
 
@@ -37,10 +40,8 @@ public class LoginController {
 	// 회원가입
 	@PostMapping("/signUp/joinUser")
 	public String joinUser(@ModelAttribute UserVO userVO) {
-		
-		  String inputPass = userVO.getPassword();
-		  String pass = passEncoder.encode(inputPass); userVO.setPassword(pass);
-		 
+	    String inputPass = userVO.getPassword();
+		String pass = passEncoder.encode(inputPass); userVO.setPassword(pass);
 		userService.joinUser(userVO);
 		return "Index";
 	}
@@ -52,16 +53,33 @@ public class LoginController {
 		return "login/signSuccess";
 	}
 
-	// 정보입력 후 로그인 시도
+	// 로그인 시도
 	@PostMapping("/login/action")
-	@ResponseBody
-	public String login(@RequestParam("id") String id, @RequestParam("password") String password) {
-		UserVO userVO = userService.loginCheck(id, password);
-		if (id != null) {
-			return "success";
-		} else {
-			return "failure";
-		}
+	public String signIn(UserVO userVO, HttpServletRequest req) throws Exception {
+		UserVO login = userService.signIn(userVO);
+		HttpSession session = req.getSession();
+		
+		// 1) 사용자 로그인 정보 확인
+		if(login != null) {
+			// 2) 비밀번호 일치 확인
+	        boolean passMatch = passEncoder.matches(userVO.getPassword(), login.getPassword());
+	        // 3) 비밀번호 일치시 세션에 사용자 정보 저장
+	        if(passMatch) {
+	            session.setAttribute("user", login);
+	            return "redirect:/home";
+	        }
+	    }
+	    // 실패시 로그인페이지로 리디렉션
+	    session.setAttribute("user", null);
+		return "/login/loginPage";
 	}
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String signOut(HttpSession session) throws Exception{
+		userService.signOut(session);
+		return "redirect:/";
+	}
+	
 
 }

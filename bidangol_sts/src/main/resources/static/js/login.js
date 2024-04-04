@@ -27,7 +27,7 @@ $(document).ready(function() {
 		var name = $("#name").val();
 		var postCode = $("#postcode").val();
 		var address1 = $("#address1").val();
-		var phone1 = $("#phone1").val();
+		var phone = $("#phone").val();
 		var phone2 = $("#phone2").val();
 		var phone3 = $("#phone3").val();
 
@@ -79,53 +79,36 @@ $(document).ready(function() {
 	};
 
 	// loginBtn click
-	$('#loginBtn').click(function() {
-
-		// id, password 값 저장
-		let id = $('#id').val();
-		let password = $('#password').val();
-
-		// 입력값이 비어있는지 확인
-		if (id.trim() == '') {
-			alert('아이디를 입력해주세요');
-			$('#id').focus();
-			return;
-		} else if (password.trim() == '') {
-			alert('비밀번호를 입력해주세요');
-			$('#password').focus();
-			return;
-		}
-
-		// 아이디, 비밀번호 일치, 휴면계정 확인
+	$("#sign_in_btn").click(function() {
+		var formData = $("form").serialize();
 		$.ajax({
-			url: '<%=request.getContextPath()%>/id_list/checkIdPw.jsp',
-			data: {
-				id: $('#id').val(),
-				password: $('#password').val()
+			type: "POST",
+			url: "/bidangol/login/action",
+			data: formData,
+			beforeSend: reg,
+			success: function() {
+				alert("로그인이 완료되었습니다.");
+				location.href = "/bidangol/home";
 			},
-			dataType: 'json',
-			success: function(result) {
-
-				if (result === null) {
-					alert('아이디, 비밀번호가 일치하지 않습니다');
-					$('#id').val('');
-					$('#password').val('');
-					$('#id').focus();
-				} else {
-					if (result.active === 'N') {
-						alert('휴면계정 입니다');
-					}
-				}
-			},
-			error: function(err) {
-				alert('err');
-				console.log(err);
+			error: function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 			}
 		});
-
-		// 입력값이 있을 경우, loginAction.jsp로 이동
-		let loginActionFormUrl = '<%=request.getContextPath()%>/id_list/loginAction.jsp';
-		$('#loginForm').attr('action', loginActionFormUrl);
-		$('#loginForm').submit();
 	});
+
+	// 유효성검사
+	function reg() {
+		var id = $("#id").val();
+		var password = $("#password").val();
+
+		if (!id) {
+			alert("아이디를 입력해 주세요.");
+			return false;
+		}
+		if (!password) {
+			alert("비밀번호를 입력해 주세요.");
+			return false;
+		}
+		return true;
+	};
 });

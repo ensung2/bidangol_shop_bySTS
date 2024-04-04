@@ -1,14 +1,13 @@
 package com.shop.bidangol.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.shop.bidangol.mapper.UserMapper;
 import com.shop.bidangol.vo.UserVO;
+
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class UserService implements UserServiceImpl {
@@ -33,11 +32,13 @@ public class UserService implements UserServiceImpl {
 	}
 
 	// 로그인
-	public UserVO loginCheck(String id, String password) {
-		Map<String, String> credentials = new HashMap<>();
-		credentials.put("id", id);
-		credentials.put("password", password);
-		return mapper.loginCheck(credentials);
+	public UserVO signIn(UserVO userVO) {
+		return mapper.signIn(userVO);
+	}
+	
+	// 로그아웃
+	public void signOut(HttpSession session) {
+		session.invalidate();
 	}
 
 }

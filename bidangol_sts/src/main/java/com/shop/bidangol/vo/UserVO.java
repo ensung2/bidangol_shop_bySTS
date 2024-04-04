@@ -26,4 +26,6 @@ public class UserVO {
 	private String phone3;					// 전화번호 (마지막)
 	private Date signdate;		// 가입일
 	
+	private String role;			// 관리자 : admin, 회원 : user
+	
 }

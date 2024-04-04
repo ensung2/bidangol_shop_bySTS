@@ -3,9 +3,9 @@ package com.shop.bidangol.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import com.shop.bidangol.vo.NoticeVO;
 import com.shop.bidangol.vo.UserVO;
+
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public interface UserServiceImpl {
@@ -20,6 +20,9 @@ public interface UserServiceImpl {
 	public UserVO getUserOne(String id);
 
 	// 로그인
-	UserVO loginCheck(String id, String password);
+	public UserVO signIn(UserVO userVO);
+	
+	// 로그아웃
+	public void signOut(HttpSession session);
 
 }

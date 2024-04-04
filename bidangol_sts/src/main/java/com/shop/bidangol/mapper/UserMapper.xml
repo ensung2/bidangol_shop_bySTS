@@ -45,7 +45,8 @@
 		signdate,
 		phone,
 		phone2,
-		phone3
+		phone3,
+		role
 		)
 		VALUES (USERBOARDNUM_SEQ.NEXTVAL,
 		#{id},
@@ -58,7 +59,8 @@
 		sysdate,
 		#{phone},
 		#{phone2},
-		#{phone3}
+		#{phone3},
+		'ADMIN'
 		)
 	</insert>
 	
@@ -66,6 +68,13 @@
 	<select id="loginCheck" resultType="com.shop.bidangol.vo.UserVO" parameterType="map">
 			SELECT count(*) FROM USERS
 			WHERE id = #{id} AND password = #{password}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="signIn" resultType="com.shop.bidangol.vo.UserVO" resultMap="userSelectRM">
+	SELECT *
+	FROM USERS
+	WHERE id = #{id}
 	</select>
 
 

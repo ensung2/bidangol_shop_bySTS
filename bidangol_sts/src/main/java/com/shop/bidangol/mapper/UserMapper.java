@@ -1,7 +1,6 @@
 package com.shop.bidangol.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import com.shop.bidangol.vo.UserVO;
@@ -19,5 +18,5 @@ public interface UserMapper {
 	public UserVO getUserOne(String id);
 
 	// 로그인
-	UserVO loginCheck(Map<String, String> credentials);
+	public UserVO signIn(UserVO userVO);
 }
