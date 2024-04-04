@@ -95,6 +95,7 @@
 			WHEN item_category = '04' THEN '떡케이크'
 			END AS item_category,
 			item_img,
+			thumb_img,
 			item_name,
 			item_info,
 			item_meterial,
@@ -104,13 +105,6 @@
 		WHERE
 		item_num = #{itemNum}
 	</select>
-	
-	<!-- item_no 값을 자동으로 설정하는 SQL 쿼리 -->
-	<update id="updateItemNo">
-		UPDATE ITEMS
-		SET item_no = #{itemCategory} || '-' || LPAD(#{itemNum}, 3, '0')
-		WHERE item_num = #{itemNum}
-	</update>
 
 
 	<!-- (관리자페이지) 상품 등록 -->
@@ -145,11 +139,10 @@
 		parameterType="com.shop.bidangol.vo.ItemVO">
 		UPDATE ITEMS
 		SET
-		item_no = #{itemNo},
 		item_name = #{itemName},
 		item_category = #{itemCategory},
-		<!-- item_img = #{itemImg}, -->
-		item_name = #{itemNmae},
+		item_img = #{itemImg},
+		thumb_img = #{thumbImg},
 		item_info = #{itemInfo},
 		item_meterial = #{itemMeterial},
 		item_usedate = #{itemUsedate},
@@ -160,8 +153,7 @@
 
 	<!-- (관리자페이지) 상품 삭제 -->
 	<delete id="deleteItem">
-		DELETE FROM ITEMS WHERE item_num =
-		#{itemNum}
+		DELETE FROM ITEMS WHERE item_num = #{itemNum}
 	</delete>
 
 

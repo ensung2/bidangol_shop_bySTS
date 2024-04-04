@@ -17,7 +17,6 @@ import com.shop.bidangol.service.UserService;
 import com.shop.bidangol.utils.UploadFileUtils;
 import com.shop.bidangol.vo.ItemVO;
 
-import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -82,8 +81,10 @@ public class AdminController {
 
 	// 상품 등록 전송
 	@PostMapping("/admin/adminItem/new")
-	public String adminItemNew(@ModelAttribute ItemVO itemVO, @ModelAttribute("file") MultipartFile file) throws Exception {
+	public String adminItemNew(@ModelAttribute ItemVO itemVO, @ModelAttribute("file") MultipartFile file)
+			throws Exception {
 
+		// 1) 이미지 업로드
 		// 파일이 저장될 기본 폴더
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
@@ -98,8 +99,54 @@ public class AdminController {
 		itemVO.setItemImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 		itemVO.setThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
+		// 2) 상품 등록
 		itemService.addItem(itemVO);
 		return "admin/adminItem";
+	}
+
+	// 상품 수정(페이지 이동)
+	@GetMapping("/admin/itemModify")
+	public void itemModifyPage(Model model, @RequestParam Integer itemNum) {
+		model.addAttribute("itemInfo", itemService.getItemOne(itemNum));
+	}
+
+	// 상품 수정(수정 메소드)
+	@PostMapping("/admin/itemModify")
+	public String itemModify(ItemVO itemVO, MultipartFile file, HttpServletRequest req) throws Exception {
+		 // 새로운 파일이 등록되었는지 확인
+		 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+		  // 기존 파일을 삭제
+		  new File(uploadPath + req.getParameter("itemImg")).delete();
+		  new File(uploadPath + req.getParameter("thumbImg")).delete();
+		  
+		  // 새로 첨부한 파일을 등록
+		  String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		  String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		  String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		
+		  itemVO.setItemImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		  itemVO.setThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		  
+		 } else {  // 새로운 파일이 등록되지 않았다면
+		  // 기존 이미지를 그대로 사용
+		  itemVO.setItemImg(req.getParameter("itemImg"));
+		  itemVO.setThumbImg(req.getParameter("thumbImg"));
+		  
+		 }
+		itemService.modifyItem(itemVO);
+		return "redirect:/admin/adminItem";
+	}
+	
+	// 상품 삭제
+	@PostMapping("/admin/itemDelete")
+	public String itemDelete(@RequestParam Integer itemNum, MultipartFile file, HttpServletRequest req) throws Exception {
+		 if(file != null) {
+			  // 기존 파일을 삭제
+			  new File(uploadPath + req.getParameter("itemImg")).delete();
+			  new File(uploadPath + req.getParameter("thumbImg")).delete();
+			 }
+		itemService.deleteItem(itemNum);
+		return "redirect:/admin/adminItem";
 	}
 
 }

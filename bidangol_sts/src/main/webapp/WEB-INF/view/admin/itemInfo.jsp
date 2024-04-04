@@ -41,7 +41,7 @@
 							</tr>
 							<tr>
 								<th>상품이미지</th>
-								<td><img src="http://localhost:8088/bidangol/resources/${itemInfo.itemImg}" class="itemImg"/></td>
+								<td><img src="/bidangol/resources/${itemInfo.itemImg}" class="itemImg"/></td>
 							</tr>
 							<tr>
 								<th>상품정보</th>
@@ -64,7 +64,8 @@
 					<div class="add_btn">
 						<input type="button" id="itemCancle" name="itemCancle" value="취소"
 						onClick="location.href='/bidangol/admin/adminItem'">
-						<input type="button" id="itemUpdate" name="itemUpdate" value="수정">
+						<input type="button" id="itemUpdate" name="itemUpdate" value="수정"
+						onClick="location.href='/bidangol/admin/itemModify?itemNum=<c:out value="${itemInfo.itemNum}"/>'">
 					</div>
 				</form>
 			</section>

@@ -28,11 +28,11 @@ input[type=button] {
 
 /* 관리자페이지 - adminInfo */
 .adminInfo {
-	width:900px;
+	width: 900px;
 	margin: 0 auto;
 	border-top: 2px solid #FF984F;
 	border-bottom: 1px solid #FF984F;
-	background-color: rgba(255,152,75,0.1);
+	background-color: rgba(255, 152, 75, 0.1);
 	padding: 15px;
 	display: flex;
 	justify-content: space-between;
@@ -53,7 +53,7 @@ input[type=button] {
 }
 
 .adminUser, .adminOrder, .adminItem>.wrap {
-	width:900px;
+	width: 900px;
 	margin: 0 auto;
 }
 
@@ -67,13 +67,14 @@ input[type=button] {
 .auTitle h3 {
 	font-size: 20px;
 }
+
 .aoTitle h3 {
 	font-size: 20px;
 }
+
 .adminItem h3 {
 	font-size: 20px;
 }
-
 
 /* 관리자페이지 - 유저정보(리스트) */
 .auInfo {
@@ -92,12 +93,15 @@ input[type=button] {
 .adminUser td:nth-child(1) {
 	width: 150px;
 }
+
 .adminUser td:nth-child(2) {
 	width: 350px;
 }
+
 .adminUser td:nth-child(3) {
 	width: 200px;
 }
+
 .adminUser td:nth-child(4) {
 	width: 200px;
 }
@@ -106,8 +110,8 @@ input[type=button] {
 	padding-bottom: 30px;
 }
 
-.auList td{
-	text-align:center;
+.auList td {
+	text-align: center;
 	font-size: 15px;
 	padding: 10px 0;
 	border-bottom: 1px solid #CCCCCC;
@@ -131,27 +135,31 @@ input[type=button] {
 	text-align: left;
 }
 
-.userInfo tr, .orderInfo_ tr  {
+.userInfo tr, .orderInfo_ tr {
 	border-bottom: 1px solid #eeeeee;
 }
 
 /*----- 관리자페이지 - 주문관리 -----*/
-
 .adminOrder td:nth-child(1) {
 	width: 150px;
 }
+
 .adminOrder td:nth-child(2) {
 	width: 150px;
 }
+
 .adminOrder td:nth-child(3) {
 	width: 250px;
 }
+
 .adminOrder td:nth-child(4) {
 	width: 150px;
 }
+
 .adminOrder td:nth-child(5) {
 	width: 100px;
 }
+
 .adminOrder td:nth-child(6) {
 	width: 100px;
 }
@@ -178,16 +186,18 @@ input[type=button] {
 }
 
 /*----- 관리자페이지 - 상품관리 -----*/
-
 .adminItem td:nth-child(1) {
 	width: 200px;
 }
+
 .adminItem td:nth-child(2) {
 	width: 200px;
 }
+
 .adminItem td:nth-child(3) {
 	width: 300px;
 }
+
 .adminItem td:nth-child(4) {
 	width: 200px;
 }
@@ -198,10 +208,8 @@ input[type=button] {
 	justify-content: space-between;
 }
 
-.CheckSelect select,
-.searchDate input,
-.searchItem input,
-.orderInfo_ select{
+.CheckSelect select, .searchDate input, .searchItem input, .orderInfo_ select
+	{
 	padding: 8px 10px;
 	border: 1px solid #cccccc;
 	font-size: 14px;
@@ -212,7 +220,6 @@ input[type=button] {
 	padding: 15px 10px;
 	display: flex;
 	justify-content: flex-end;
-	
 }
 
 .itemInfo_btn input {
@@ -250,33 +257,33 @@ input[type=button] {
 }
 
 .addInfo {
-	width:900px;
+	width: 900px;
 	margin: 0 auto;
 	border-top: 2px solid #CCCCCC;
 }
 
-
 .addInfo tr {
-	width:900px;
+	width: 900px;
 	border-bottom: 1px solid #eee
 }
 
 .addInfo th {
 	background-color: #FCFBFB;
 	text-align: left;
-	padding:10px 20px;
-	text-align:center;
-	width: 180px;}
-	
-.addInfo td {
-	padding:15px 20px}
-
-.addInfo table {
-	padding:10px 0;
-	 width:900px;
-	border-bottom: 1px solid #CCCCCC;
+	padding: 10px 20px;
+	text-align: center;
+	width: 180px;
 }
 
+.addInfo td {
+	padding: 15px 20px
+}
+
+.addInfo table {
+	padding: 10px 0;
+	width: 900px;
+	border-bottom: 1px solid #CCCCCC;
+}
 
 .add_btn {
 	padding: 15px 0;
@@ -286,7 +293,7 @@ input[type=button] {
 
 .add_btn input {
 	width: 100px;
-	padding:10px 5px;
+	padding: 10px 5px;
 	border: none;
 	color: #ffffff;
 	margin-right: 10px
@@ -300,7 +307,7 @@ input[type=button] {
 	background-color: #2a2a2a
 }
 
-SELECT, .addInfo input[type=text]{
+SELECT, .addInfo input[type=text] {
 	padding: 5px;
 	border: 1px solid #cccccc;
 	font-size: 15px
@@ -308,20 +315,42 @@ SELECT, .addInfo input[type=text]{
 
 .addInfo input[type=text] {
 	width: 700px;
-	
 }
 
 /*----------- 상품추가(이미지) ----------*/
 .select_img img {
-	margin:10px 0
-	}
+	margin: 10px 0
+}
+
 .itemImg {
-	width: 500px; height: auto
+	width: 500px;
+	height: auto
+}
+
+/*----------- empty -------------  */
+.empty {
+	width: 100%;
+	text-align: center;
+	padding: 30px 0;
+	color: #777777;
+	font-size: 14px;
+	border-bottom: 1px solid #eeeeee
+}
+
+/*------------ 상품 수정 페이지------------ */
+#itemDelete {
+	color: #2a2a2a;
+	background-color: #ffffff;
+	border: 1px solid #2a2a2a
+}
+
+#itemModify {
+	background-color: #2a2a2a;
+
 }
 
 /* 관리자페이지 - adminPaging */
 .adminPaging {
 	text-align: center;
-	padding:10px 0;
+	padding: 10px 0;
 }
-

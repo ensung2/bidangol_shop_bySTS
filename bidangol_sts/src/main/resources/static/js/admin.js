@@ -53,3 +53,20 @@ $(document).ready(function() {
 		return true;
 	};
 })
+
+$(window).on("load", function() {
+        
+        // 공지사항 글 수정 버튼 클릭 시
+        $("#itemModify").click(function() {
+            // 폼을 서버로 제출
+            $("#item_Modiyform").attr("action", "/bidangol/admin/itemModify").submit();
+            alert("수정이 완료되었습니다.");
+        });
+
+        // 공지사항 글 삭제 버튼 클릭 시
+        $("#itemDelete").click(function() {
+            // 폼을 서버로 제출
+            $("#item_Modiyform").attr("action", "/bidangol/admin/itemDelete").submit();
+            alert("삭제가 완료되었습니다.");
+        });
+});

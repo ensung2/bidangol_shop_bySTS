@@ -50,14 +50,21 @@
 			<input type="hidden" name="itemNum" id="itenNum" value="<c:out value="${items.itemNum}"/>">
 				<table style="border-collapse: collapse;">
 					<tbody>
+					<c:choose>
+					 <c:when test="${empty list}">
+                		<p class="empty">현재 상품이 없습니다.</p>
+            		</c:when>
+            		<c:otherwise>
 						<c:forEach items="${list}" var="items">
 							<tr onclick="location.href='/bidangol/admin/itemInfo?itemNum=<c:out value="${items.itemNum}"/>'">
 								<td class="itemNo"><c:out value="${items.itemNo}"></c:out></td>
 								<td class="itemCategory"><c:out value="${items.itemCategory}"></c:out></td>
 								<td class="itemName"><c:out value="${items.itemName}"></c:out></td>
-								<td class="itemPrice"><c:out value="${items.itemPrice}"></c:out></td>
+								<td class="itemPrice"><c:out value="${items.itemPrice}"></c:out>원</td>
 							</tr>
 						</c:forEach>
+						</c:otherwise>
+					</c:choose>
 					</tbody>
 				</table>
 				<div class="itemInfo_btn">
