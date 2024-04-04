@@ -60,7 +60,7 @@
 		#{phone},
 		#{phone2},
 		#{phone3},
-		'ADMIN'
+		'USER'
 		)
 	</insert>
 	

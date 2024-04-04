@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,23 +14,19 @@
 <!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gothic+A1&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gothic+A1&display=swap"
+	rel="stylesheet">
 
 <!-- font awesome -->
-<script src="https://kit.fontawesome.com/bfdc62a914.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/bfdc62a914.js"
+	crossorigin="anonymous"></script>
 
 <!-- jquery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".mainMenu a").on("click", function () {
-		  $(".mainMenu a").css('color', 'inherit');
-		  $(this).css('color', '#ffffff');
-		  
-		});
-})
-</script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </head>
 <body>
 	<div class="mainLogo">
@@ -47,9 +43,24 @@ $(document).ready(function(){
 				<li><a href="/bidangol/category/04">떡케이크</a></li>
 			</ul>
 			<ul class="login">
-				<li><a href="/bidangol/login">로그인</a></li>
-				<li><a href="/bidangol/signUp">회원가입</a></li>
-				<li><a href="/bidangol/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+				<c:if test="${user == null }">
+					<li><a href="/bidangol/login">로그인</a></li>
+					<li><a href="/bidangol/signUp">회원가입</a></li>
+					<li><a href="/bidangol/cart"><i
+							class="fa-solid fa-cart-shopping"></i></a></li>
+				</c:if>
+				<c:if test="${user != null && user.role == 'USER'}">
+					<li><a href="/bidangol/logout">로그아웃</a></li>
+					<li><a href="/bidangol/myPage">마이페이지</a></li>
+					<li><a href="/bidangol/cart"><i
+							class="fa-solid fa-cart-shopping"></i></a></li>
+				</c:if>
+				<c:if test="${user.role == 'ADMIN'}">
+						<li><a href="/bidangol/logout">로그아웃</a></li>
+						<li><a href="/bidangol/admin">관리자페이지</a></li>
+						<li></li>
+				</c:if>
+
 			</ul>
 		</div>
 	</div>
