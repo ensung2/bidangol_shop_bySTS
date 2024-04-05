@@ -52,13 +52,6 @@
 		WHERE item_category = '01'
 	</select>
 	
-	<!-- 01 베스트아이템 상품갯수 -->
-	<select id="getCountBest" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
-		SELECT COUNT(*) AS totalCount
-		  FROM ITEMS
-		  WHERE item_category = '01'
-	</select>
-	
 	<!-- 02 찹쌀떡 상품리스트 -->
 	<select id="getTteok01" resultType="com.shop.bidangol.vo.ItemVO" resultMap="item">
 		SELECT *
@@ -80,7 +73,37 @@
 		WHERE item_category = '04'
 	</select>
 	
+	<!-- ================================================================================ -->
 	
+	<!-- 01 베스트아이템 상품갯수 -->
+	<select id="getCountBest" resultType="Integer" resultMap="item">
+		SELECT COUNT(*) AS totalCount
+		  FROM ITEMS
+		  WHERE item_category = '01'
+	</select>
+	
+	<!-- 02 찹쌀떡 상품갯수 -->
+	<select id="getCounTteok01" resultType="Integer" resultMap="item">
+		SELECT COUNT(*) AS totalCount
+		  FROM ITEMS
+		  WHERE item_category = '02'
+	</select>
+	
+	<!-- 03 멥쌀떡 상품갯수 -->
+	<select id="getCountTteok02" resultType="Integer" resultMap="item">
+		SELECT COUNT(*) AS totalCount
+		  FROM ITEMS
+		  WHERE item_category = '03'
+	</select>
+	
+	<!-- 04 떡케이크 상품갯수 -->
+	<select id="getCountTteokCake" resultType="Integer" resultMap="item">
+		SELECT COUNT(*) AS totalCount
+		  FROM ITEMS
+		  WHERE item_category = '04'
+	</select>
+	
+	<!-- ================================================================================ -->
 
 	<!-- 상품(아이템) 상세 조회 -->
 	<select id="getItemOne" resultType="com.shop.bidangol.vo.ItemVO"
@@ -105,7 +128,8 @@
 		WHERE
 		item_num = #{itemNum}
 	</select>
-
+	
+	<!-- ================================================================================ -->
 
 	<!-- (관리자페이지) 상품 등록 -->
 	<insert id="addItem" parameterType="com.shop.bidangol.vo.ItemVO">

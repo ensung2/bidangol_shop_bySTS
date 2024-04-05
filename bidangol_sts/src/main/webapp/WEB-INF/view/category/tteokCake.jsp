@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -22,7 +23,7 @@
 			</section>
 			<section class="cgItem">
 				<div class="itemInfo">
-					<div class="itemCount">총 6개</div>
+					<div class="itemCount">총 <c:out value="${totalCount}"/>개</div>
 					<div class="itemArray">
 						<ul>
 							<li><a href="#">신상품</a></li>
@@ -42,14 +43,22 @@
                 		<p class="empty">상품이 없습니다.</p>
             		</c:when>
             		<c:otherwise>
-						<c:forEach items="${list}" var="tteokCake">
+						<c:forEach items="${list}" var="tteokCake" varStatus="loop">
+						<c:if test="${loop.index % 4 == 0}">
+                        	<tr>
+                    	</c:if>
 								<td onclick="location.href='/bidangol/category/04/itemDetail?itemNum=<c:out value="${tteokCake.itemNum}"/>'">
-									<img src="http://localhost:8088/bidangol/resources/${tteokCake.itemImg}" class="itemImg"/>
+									<div class="itemImgWrap">
+										<img src="http://localhost:8088/bidangol/resources/${tteokCake.itemImg}" class="itemImg"/>
+									</div>
 									<div class="itemText">
 										<span class="itemName"><c:out value="${tteokCake.itemName}"/></span><br>
-										<span class="itemPrice"><c:out value="${tteokCake.itemPrice}"/>원</span>
+										<span class="itemPrice"><fmt:formatNumber value="${tteokCake.itemPrice}" pattern="###,###" />원</span>
 									</div>
 								</td>
+						<c:if test="${loop.index % 4 == 3 or loop.last}">
+                        	</tr>
+                    	</c:if>
 						</c:forEach>
 					</c:otherwise>
 					</c:choose>

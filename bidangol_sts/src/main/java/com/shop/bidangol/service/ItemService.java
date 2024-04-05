@@ -29,11 +29,6 @@ public class ItemService implements ItemServiceImpl {
 		return mapper.getBestItem();
 	}
 
-	// 01 bestItem 아이템 갯수
-	public Integer getCountBest(Integer itemNum) {
-		return mapper.getCountBest(itemNum);
-	}
-
 	// 02 찹쌀떡 리스트
 	public List<ItemVO> getTteok01() {
 		return mapper.getTteok01();
@@ -48,6 +43,31 @@ public class ItemService implements ItemServiceImpl {
 	public List<ItemVO> getTteokCake() {
 		return mapper.getTteokCake();
 	}
+	
+	/*========================================================*/
+	
+	// 01 bestItem 아이템 갯수
+	public Integer getCountBest() {
+		return mapper.getCountBest();
+	}
+		
+	// 02 찹쌀떡 아이템 갯수
+	public Integer getCountTteok01() {
+		return mapper.getCountTteok01();
+	}
+		
+	// 03 멥쌀떡 아이템 갯수
+	public Integer getCountTteok02() {
+		return mapper.getCountTteok02();
+	}
+		
+	// 04 떡케이크 아이템 갯수
+	public Integer getCountTteokCake() {
+		return mapper.getCountTteokCake();
+	}
+	
+	
+	/*========================================================*/
 
 	// 상품(아이템) 상세조회
 	public ItemVO getItemOne(Integer ItemNum) {
