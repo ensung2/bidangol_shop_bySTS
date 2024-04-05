@@ -3,6 +3,8 @@ package com.shop.bidangol.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.SqlSessionTemplate;
+
 import com.shop.bidangol.vo.UserVO;
 
 @Mapper

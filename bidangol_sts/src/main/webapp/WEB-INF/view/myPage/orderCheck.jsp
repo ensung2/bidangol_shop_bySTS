@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +27,9 @@
 					</select>
 				</div>
 				<div class="searchDate">
-					<input type="date" id="firstDate" name="firstDate">
-					-
-					<input type="date" id="lastDate" name="lastDate">
-					<input type="button" id="dateSearch" name="dateSearch" value="조회">
+					<input type="date" id="firstDate" name="firstDate"> - <input
+						type="date" id="lastDate" name="lastDate"> <input
+						type="button" id="dateSearch" name="dateSearch" value="조회">
 				</div>
 			</section>
 			<section class="CheckInfo">
@@ -46,15 +46,25 @@
 				</table>
 			</section>
 			<section class="CheckList">
+				<input type="hidden" name="orderNum" id="orderNum" value="<c:out value="${order.orderNum}"/>">
 				<table style="border-collapse: collapse;">
 					<tbody>
-						<tr onclick="location.href='/bidangol/myPage/orderId'">
-							<td class="orderNum">20240323-001</td>
-							<td class="orderInfo">콩고물 인절미 외 5건</td>
-							<td class="orderTotal">55,500원</td>
-							<td class="deliveryStatus">결제완료</td>
-							<td class="orderStatus">-</td>
-						</tr>
+						<c:choose>
+							<c:when test="${empty list}">
+								<p class="empty">주문한 상품이 없습니다.</p>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="order">
+									<tr onclick="location.href='/bidangol/admin/itemInfo?itemNum=<c:out value="${order.orderNum}"/>'">
+										<td class="orderNum"><c:out value="${order.orderNum}" /></td>
+										<td class="orderInfo"><c:out value="${order.orderInfo}" /></td>
+										<td class="orderTotal"><c:out value="${order.orderTotal}" />원</td>
+										<td class="deliveryStatus"><c:out value="${order.deliveryStatus}" /></td>
+										<td class="orderStatus"><c:out value="${order.orderStatus}" /></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</section>

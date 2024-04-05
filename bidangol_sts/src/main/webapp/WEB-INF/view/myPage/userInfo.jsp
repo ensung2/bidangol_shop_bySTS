@@ -4,9 +4,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/bidangol/js/myPage.js"></script>
+<script type="text/javascript">
+function checkPost() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            if (data.userSelectedType === 'R') { // 도로명 주소 선택
+                addr = data.roadAddress;
+            } else { // 지번 주소 선택
+                addr = data.jibunAddress;
+            }
+
+            // 도로명 주소일 경우 참고항목 조합
+            if(data.userSelectedType === 'R'){
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+            }
+
+            // 우편번호 필드 ID 수정 (주의: ID 일관성 확인 필요)
+            document.getElementById('postcode').value = data.zonecode;
+
+            // 기본 주소 설정
+            document.getElementById("address1").value = addr;
+            // 참고항목이 있을 경우 나머지 주소에 추가, 없으면 나머지 주소 초기화
+            document.getElementById("address2").value = extraAddr;
+
+            // 상세주소로 포커스 이동
+            document.getElementById("address2").focus();
+        }
+    }).open();
+}
+</script>
+
 </head>
 <body>
 	<!-- header -->
@@ -22,7 +62,7 @@
 				<h3>회원정보</h3>
 			</section>
 			<section class="userInfo_">
-				<form name="user_form" action="#" method="post">
+				<form name="user_form" method="post">
 					<table>
 						<tbody>
 							<tr>
@@ -30,12 +70,12 @@
 								<td><input type="text" name="id" id="userId" min="3"
 									maxlength="15"
 									style="width: 150px; border: none; outline: none"
-									readonly="readonly" value="{userId}"></td>
+									readonly="readonly" value="${userInfo.id}"></td>
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<td><input type="email" name="email" id="userEmail"
-									style="width: 150px" value="{userEmail}"></td>
+								<td><input type="email" name="email" id="email"
+									style="width: 150px" value="${userInfo.email}"></td>
 							</tr>
 							<tr>
 								<th>비밀번호</th>
@@ -50,21 +90,16 @@
 							</tr>
 							<tr>
 								<th>이름</th>
-								<td><input type="text" name="userName" id="userName"
-									style="width: 100px" value="{userName}"></td>
+								<td><input type="text" name="name" id="name"
+									style="width: 100px" value="${userInfo.name}"></td>
 							</tr>
 							<tr class="address">
 								<th>주소</th>
 								<td style="padding: 5px 0">
-								<input type="text"
-									name="postCode" id="postCode" style="width: 60px" value="{postCode}"> <input
-									type="button" value="우편번호검색" onclick="checkPost()"
-									style="font-size: 13px" ><br>
-									
-									<input type="text"
-									name="address1" id="address1" style="width: 300px" value="{address1}"><span>기본주소</span><br>
-									<input type="text" name="address2" id="address2"
-									style="width: 300px" value="{address2}"><span>나머지주소(선택)</span><br></td>
+								<input type="text" name="postcode" id="postcode" style="width: 60px" value="${userInfo.postcode}">
+								<input type="button" value="우편번호검색" onclick="checkPost()" style="font-size: 13px" ><br>
+								<input type="text" name="address1" id="address1" style="width: 300px" value="${userInfo.address1}"><span>기본주소</span><br>
+								<input type="text" name="address2" id="address2" style="width: 300px" value="${userInfo.address2}"><span>나머지주소(선택)</span><br></td>
 							</tr>
 							<tr class="phone">
 								<th>휴대전화</th>
@@ -77,10 +112,10 @@
 										<option value="018">018</option>
 										<option value="019">019</option>
 								</select> - <input type="text" name="phone2" id="phone2" maxlength="4"
-									style="width: 50px" value="{phone2}"
+									style="width: 50px" value="${userInfo.phone2}"
 									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 									- <input type="text" name="phone3" id="phone3" maxlength="4"
-									style="width: 50px" value="{phone2}"
+									style="width: 50px" value="${userInfo.phone2}"
 									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></td>
 							</tr>
 						</tbody>
