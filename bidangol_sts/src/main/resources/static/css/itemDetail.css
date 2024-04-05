@@ -21,23 +21,22 @@
 
 /* 상세페이지 - 이미지 */
 
-.detailImg{
+
+.imgWrap {
 	width: 400px;
 	height: 400px;
+	margin: 0px auto;
+	overflow: hidden;
 	border: 2px solid #eeeeee;
 }
 
-.imgWrap {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.itemImg {
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
 }
 
-.imgWrap>img {
-	max-width: 100%;
-	object-fit: cover;
 
-}
 
 /* 상세페이지 - 상세정보 */
 .detailInfo {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,15 +64,16 @@
 						<tbody>
 							<tr>
 								<th class="itemPrice">판매가</th>
-								<td><c:out value="${itemInfo.itemPrice}"/>원</td>
+								<td><fmt:formatNumber value="${itemInfo.itemPrice}" pattern="###,###" />원</td>
+								
 							</tr>
 							<tr>
 								<th class="itemOption">사이즈</th>
 								<td>
 									<select id="itemSize" name="itemSize" onchange="handleOnChange(this)">
-										<option value="15000원">소 (기본)</option>
-										<option value="25000원">중 (+ 10,000원)</option>
-										<option value="35000원">대 (+ 20,000원)</option>
+										<option value="15000">소 (기본)</option>
+										<option value="25000">중 (+ 10,000원)</option>
+										<option value="35000">대 (+ 20,000원)</option>
 									</select>
 								</td>
 							</tr>
@@ -88,7 +90,7 @@
 					
 				</div>
 				<div class="detailTotal">
-						<div>총 결제금액 : <span>{item.total}</span>원</div>
+						<div>총 결제금액 : <%-- <fmt:formatNumber value="{itemInfo.total}" pattern="###,###" /> --%>원</div>
 					</div>
 				<div class="detail_btn">
 					<input type="button" id="inCart" name="inCart" value="장바구니에 담기" onClick="location.href='/bidangol/cart'">
