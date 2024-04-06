@@ -2,7 +2,6 @@ package com.shop.bidangol.service;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shop.bidangol.mapper.UserMapper;
@@ -36,10 +35,20 @@ public class UserService implements UserServiceImpl {
 	public UserVO signIn(UserVO userVO) {
 		return mapper.signIn(userVO);
 	}
-	
+
 	// 로그아웃
 	public void signOut(HttpSession session) {
 		session.invalidate();
 	}
+
+	// 회원정보 수정
+	public void modifyUser(UserVO userVO) {
+		mapper.modifyUser(userVO);
+	};
+
+	// 회원정보 삭제(탈퇴)
+	public void deleteUser(String id) {
+		mapper.deleteUser(id);
+	};
 
 }

@@ -76,6 +76,27 @@
 	FROM USERS
 	WHERE id = #{id}
 	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="modifyUser" parameterType="com.shop.bidangol.vo.UserVO">
+		UPDATE USERS 
+		SET 
+			email = #{email},
+			name = #{name},
+			postcode = #{postcode},
+			address1 = #{address1},
+			address2 = #{address2},
+			phone = #{phone},
+			phone2 = #{phone2},
+			phone3 = #{phone3} 
+		WHERE 
+			id = #{id}
+	</update>
+	
+	<!-- 회원 탈퇴(삭제) -->
+	<delete id="deleteUser" >
+		DELETE FROM USERS WHERE id = #{id}
+	</delete>
 
 
 </mapper>

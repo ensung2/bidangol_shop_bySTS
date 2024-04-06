@@ -3,8 +3,6 @@ package com.shop.bidangol.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.SqlSessionTemplate;
-
 import com.shop.bidangol.vo.UserVO;
 
 @Mapper
@@ -21,4 +19,10 @@ public interface UserMapper {
 
 	// 로그인
 	public UserVO signIn(UserVO userVO);
+
+	// 회원정보 수정
+	public void modifyUser(UserVO userVO);
+
+	// 회원정보 삭제(탈퇴)
+	public void deleteUser(String id);
 }

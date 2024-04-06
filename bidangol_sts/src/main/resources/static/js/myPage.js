@@ -1,71 +1,130 @@
-/* 우편주소 검색 */
 function checkPost() {
-	console.log("우편번호")
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	new daum.Postcode({
+		oncomplete: function(data) {
+			var addr = ''; // 주소 변수
+			var extraAddr = ''; // 참고항목 변수
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
+			if (data.userSelectedType === 'R') { // 도로명 주소 선택
+				addr = data.roadAddress;
+			} else { // 지번 주소 선택
+				addr = data.jibunAddress;
+			}
 
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
+			// 도로명 주소일 경우 참고항목 조합
+			if (data.userSelectedType === 'R') {
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraAddr += data.bname;
+				}
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+				}
+				if (extraAddr !== '') {
+					extraAddr = ' (' + extraAddr + ')';
+				}
+			}
 
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("address1").value = extraAddr;
-                
-                } else {
-                    document.getElementById("address2").value = '';
-                }
+			// 우편번호 필드 ID 수정 (주의: ID 일관성 확인 필요)
+			document.getElementById('postcode').value = data.zonecode;
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postCode').value = data.zonecode;
-                document.getElementById("address1").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("address2").focus();
-            }
-        }).open();
-    }
-    
-/* 휴대전화번호 연결*/
-var phone1 = document.frm.phone1.value;
-var phone2 = document.frm.phone2.value;
-var phone3 = document.frm.phone3.value;
-var phone = phone1 +"-" + phone2 +"-" + phone3;
-document.getElementById("phone").value = phone;
+			// 기본 주소 설정
+			document.getElementById("address1").value = addr;
+			// 참고항목이 있을 경우 나머지 주소에 추가, 없으면 나머지 주소 초기화
+			document.getElementById("address2").value = extraAddr;
+
+			// 상세주소로 포커스 이동
+			document.getElementById("address2").focus();
+		}
+	}).open();
+}
 
 /* 회원탈퇴 팝업창 open, close*/
 function openPopup() {
 	var popup = document.getElementById("userDelete");
-    if (popup) {
-        popup.style.display = "block";
-    }
+	if (popup) {
+		popup.style.display = "block";
+	}
 };
 
 function closePopup() {
 	var popup = document.getElementById("userDelete");
-    if (popup) {
-        popup.style.display = "none";
-    }
+	if (popup) {
+		popup.style.display = "none";
+	}
 };
+
+
+$(document).ready(function() {
+	
+	// 회원정보 수정
+	$("#updateUser").click(function(event) {
+		event.preventDefault(); // 기본 제출 동작을 막음
+
+		// 비밀번호 입력란 값 확인
+		var currentPassword = $("#password").val();
+
+		$.ajax({
+			type: "POST",
+			url: "/bidangol/myPage/checkPassword",
+			data: { password: currentPassword },
+			success: function(response) {
+				// 비밀번호가 일치하는 경우
+				if (response.success) {
+					// 비밀번호 일치 시 서버로 폼 제출
+					$("#user_form").attr("action", "/bidangol/myPage/modifyUser");
+					$("#user_form").submit();
+					alert("회원 정보 수정이 완료되었습니다.");
+				} else {
+					alert("비밀번호가 일치하지 않습니다.");
+				}
+			}
+		});
+	});
+	
+	// 회원 탈퇴(삭제)
+	$("#deleteEnd").click(function() {
+		var deletePassword = $("#deletePw").val(); // 입력된 비밀번호 가져오기
+
+		// AJAX를 이용하여 비밀번호 일치 여부 확인
+		$.ajax({
+			type: "POST",
+			url: "/bidangol/myPage/checkPassword",
+			data: { password: deletePassword },
+			success: function(response) {
+				if (response.success) {
+					// 비밀번호가 일치하면 회원 탈퇴 진행
+					deleteUser();
+				} else {
+					alert("비밀번호가 일치하지 않습니다.");
+				}
+			}
+		});
+	});
+
+	// 회원 탈퇴 함수
+	function deleteUser() {
+		$.ajax({
+			type: "POST",
+			url: "/bidangol/myPage/deleteUser",
+			success: function(response) {
+				alert("회원 탈퇴가 완료되었습니다.");
+				window.location.href = "/bidangol/login";
+			}
+		});
+	}
+
+
+});
+
+
+/*// 비밀번호 확인 입력란 값 변경 시 호출되는 함수
+   $("#password2").on("input", function() {
+	   var password = $(this).val(); // 비밀번호 확인 입력란 값 가져오기
+	   var errorMessageElement = $("#passwordErrorMessage"); // 오류 메시지를 표시할 span 요소
+
+	   // 비밀번호와 비밀번호 확인이 일치하지 않을 경우 오류 메시지 표시
+	   if (password1 !== password2) {
+		   errorMessageElement.text("비밀번호가 일치하지 않습니다.");
+	   } else {
+		   errorMessageElement.text(""); // 일치할 경우 오류 메시지 지우기
+	   }
+   });*/

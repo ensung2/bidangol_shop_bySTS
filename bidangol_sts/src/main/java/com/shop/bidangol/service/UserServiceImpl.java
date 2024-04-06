@@ -21,8 +21,13 @@ public interface UserServiceImpl {
 
 	// 로그인
 	public UserVO signIn(UserVO userVO);
-	
+
 	// 로그아웃
 	public void signOut(HttpSession session);
 
+	// 회원정보 수정
+	public void modifyUser(UserVO userVO);
+
+	// 회원정보 삭제(탈퇴)
+	public void deleteUser(String id);
 }

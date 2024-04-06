@@ -1,52 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/bidangol/js/myPage.js"></script>
-<script type="text/javascript">
-function checkPost() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
-
-            if (data.userSelectedType === 'R') { // 도로명 주소 선택
-                addr = data.roadAddress;
-            } else { // 지번 주소 선택
-                addr = data.jibunAddress;
-            }
-
-            // 도로명 주소일 경우 참고항목 조합
-            if(data.userSelectedType === 'R'){
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraAddr += data.bname;
-                }
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                if(extraAddr !== ''){
-                    extraAddr = ' (' + extraAddr + ')';
-                }
-            }
-
-            // 우편번호 필드 ID 수정 (주의: ID 일관성 확인 필요)
-            document.getElementById('postcode').value = data.zonecode;
-
-            // 기본 주소 설정
-            document.getElementById("address1").value = addr;
-            // 참고항목이 있을 경우 나머지 주소에 추가, 없으면 나머지 주소 초기화
-            document.getElementById("address2").value = extraAddr;
-
-            // 상세주소로 포커스 이동
-            document.getElementById("address2").focus();
-        }
-    }).open();
-}
-</script>
-
 </head>
 <body>
 	<!-- header -->
@@ -62,7 +23,7 @@ function checkPost() {
 				<h3>회원정보</h3>
 			</section>
 			<section class="userInfo_">
-				<form name="user_form" method="post">
+				<form name="user_form" id="user_form" method="post">
 					<table>
 						<tbody>
 							<tr>
@@ -80,12 +41,6 @@ function checkPost() {
 							<tr>
 								<th>비밀번호</th>
 								<td><input type="password" name="password" id="password"
-									style="width: 150px"><span>(영문 대소문자/숫자/특수문자 중
-										2가지 이상 조합, 8자~15자)</span></td>
-							</tr>
-							<tr>
-								<th>비밀번호 확인</th>
-								<td><input type="password" name="password2" id="password2"
 									style="width: 150px"></td>
 							</tr>
 							<tr>
@@ -123,8 +78,8 @@ function checkPost() {
 
 					<div class="user_btn">
 						<div>
-							<input type="button" class="updateUser" value="회원정보 수정">
-							<input type="button" class="cancleUser" value="취소"
+							<input type="button" class="updateUser" id="updateUser" value="회원정보 수정">
+							<input type="button" class="cancelUser" id="" value="취소"
 								onClick="location.href='/bidangol/myPage/order'">
 						</div>
 						<div>
