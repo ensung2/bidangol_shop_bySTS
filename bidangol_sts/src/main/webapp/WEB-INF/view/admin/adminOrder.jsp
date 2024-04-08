@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,39 +52,44 @@
 				</table>
 			</section>
 			<section class="auList">
+				<input type="hidden" name="orderNum" id="orderNum" value="<c:out value="${order.orderNum}"/>">
 				<table style="border-collapse: collapse;">
 					<tbody>
-						<tr onclick="location.href='/bidangol/admin/orderInfo'">
-							<td class="orderNum">20240323-001</td>
-							<td class="userId">ensung</td>
-							<td class="orderInfo">콩고물 인절미 외 5건</td>
-							<td class="priceTotal">55,500원</td>
-							<td class="deliveryStatus">결제완료</td>
-							<td class="orderStatus">-</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/orderInfo'">
-							<td class="orderNum">20240323-002</td>
-							<td class="userId">ensung</td>
-							<td class="orderInfo">콩고물 인절미 외 5건</td>
-							<td class="priceTotal">55,500원</td>
-							<td class="deliveryStatus">결제완료</td>
-							<td class="orderStatus">-</td>
-						</tr>
-						<tr onclick="location.href='/bidangol/admin/orderInfo'">
-							<td class="orderNum">20240323-003</td>
-							<td class="userId">ensung</td>
-							<td class="orderInfo">콩고물 인절미 외 5건</td>
-							<td class="priceTotal">55,500원</td>
-							<td class="deliveryStatus">결제완료</td>
-							<td class="orderStatus">-</td>
-						</tr>
-
+					<c:choose>
+					 <c:when test="${empty list}">
+                		<p class="empty">현재 주문이 없습니다.</p>
+            		</c:when>
+            		<c:otherwise>
+						<c:forEach items="${list}" var="order">
+							<tr onclick="location.href='/bidangol/admin/orderInfo?itemNum=<c:out value="${order.orderNum}"/>'">
+								<td class="orderNum"><c:out value="${order.orderNum}">orderNum</c:out></td>
+								<td class="userId"><c:out value="${order.userId}"></c:out></td>
+								<td class="orderInfo"><c:out value="${order.orderInfo}"></c:out></td>
+								<td class="priceTotal"><c:out value="${order.priceTotal}"></c:out></td>
+								<td class="deliveryStatus"><c:out value="${order.deliveryStatus}"></c:out></td>
+								<td class="orderStatus"><c:out value="${order.orderStatus}"></c:out></td>
+							</tr>
+						</c:forEach>
+						</c:otherwise>
+					</c:choose>
 					</tbody>
 				</table>
 			</section>
 			<section class="adminPaging">
-					<div>-- 1 2 3 4 5 6 --</div>
-				</section>
+					<ul>
+					  <c:if test="${pageMaker.prev}">
+					   <li><a href="/bidangol/admin/adminOrder${pageMaker.makeQuery(pageMaker.startPage - 1)}" class="page_prev">이전</a></li>
+					  </c:if> 
+					  
+					  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					   <li><a href="/bidangol/admin/adminOrder${pageMaker.makeQuery(idx)}" class="page_idx">${idx}</a></li>
+					  </c:forEach>
+					    
+					  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					   <li><a href="/bidangol/admin/adminOrder${pageMaker.makeQuery(pageMaker.endPage + 1)}" class="page_next">다음</a></li>
+					  </c:if> 
+				</ul>
+			</section>
 		</div>
 	</div>
 

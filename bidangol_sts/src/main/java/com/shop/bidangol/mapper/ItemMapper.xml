@@ -83,7 +83,7 @@
 	</select>
 	
 	<!-- 02 찹쌀떡 상품갯수 -->
-	<select id="getCounTteok01" resultType="Integer" resultMap="item">
+	<select id="getCountTteok01" resultType="Integer" resultMap="item">
 		SELECT COUNT(*) AS totalCount
 		  FROM ITEMS
 		  WHERE item_category = '02'
@@ -130,7 +130,46 @@
 	</select>
 	
 	<!-- ================================================================================ -->
-
+	
+	<!-- (관리자페이지) 상품 총 갯수 -->
+	<select id="itemCount" resultType="Integer">
+	<![CDATA[
+		SELECT COUNT(item_num)
+		FROM NOTICE
+		WHERE item_num > 0
+	]]>
+	</select>
+	
+	<!-- (관리자페이지) 상품리스트 페이징 -->
+	<select id="itemPage" resultType="com.shop.bidangol.vo.ItemVO"
+	parameterType="com.shop.bidangol.utils.Paging" resultMap="item">
+			SELECT  *
+			FROM (
+				SELECT
+					item_num,
+					item_Category || '-' || LPAD(item_Num, 3, '0') as item_no,
+					CASE
+					WHEN item_category = '01' THEN '베스트상품'
+					WHEN item_category = '02' THEN '찹쌀떡'
+					WHEN item_category = '03' THEN '멥쌀떡'
+					WHEN item_category = '04' THEN '떡케이크'
+					END AS item_category,
+					item_img,
+					thumb_img,
+					item_name,
+					item_info,
+					item_meterial,
+					item_usedate,
+					item_price,
+					ROW_NUMBER() OVER(ORDER BY item_num desc) as rNum
+				FROM ITEMS
+			) paging
+			WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
+			ORDER BY item_num desc
+	</select>
+	
+	
+	
 	<!-- (관리자페이지) 상품 등록 -->
 	<insert id="addItem" parameterType="com.shop.bidangol.vo.ItemVO">
 		INSERT INTO ITEMS (

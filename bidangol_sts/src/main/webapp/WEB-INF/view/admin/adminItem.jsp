@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,7 @@
 								<td class="itemNo"><c:out value="${items.itemNo}"></c:out></td>
 								<td class="itemCategory"><c:out value="${items.itemCategory}"></c:out></td>
 								<td class="itemName"><c:out value="${items.itemName}"></c:out></td>
-								<td class="itemPrice"><c:out value="${items.itemPrice}"></c:out>원</td>
+								<td class="itemPrice"><fmt:formatNumber value="${items.itemPrice}" pattern="###,###" />원</td>
 							</tr>
 						</c:forEach>
 						</c:otherwise>
@@ -74,7 +75,19 @@
 				</div>
 			</section>
 			<section class="adminPaging">
-				<div>-- 1 2 3 4 5 6 --</div>
+				<ul>
+					  <c:if test="${pageMaker.prev}">
+					   <li><a href="/bidangol/admin/adminItem${pageMaker.makeQuery(pageMaker.startPage - 1)}" class="page_prev">이전</a></li>
+					  </c:if> 
+					  
+					  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					   <li><a href="/bidangol/admin/adminItem${pageMaker.makeQuery(idx)}" class="page_idx">${idx}</a></li>
+					  </c:forEach>
+					    
+					  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					   <li><a href="/bidangol/admin/adminItem${pageMaker.makeQuery(pageMaker.endPage + 1)}" class="page_next">다음</a></li>
+					  </c:if> 
+				</ul>
 			</section>
 		</div>
 	</div>

@@ -30,6 +30,37 @@
 		WHERE
 			id = #{id}
 	</select>
+	
+	<!-- 회원 총 명수 -->
+	<select id="userCount" resultType="Integer">
+		SELECT COUNT(num)
+		FROM USERS
+	</select>
+	
+	<!-- 회원리스트 페이징 -->
+	<select id="userPage" resultType="com.shop.bidangol.vo.UserVO"
+	parameterType="com.shop.bidangol.utils.Paging" resultMap="userSelectRM">
+			SELECT  *
+			FROM (
+				SELECT  num,
+						id,
+						email,
+						password,
+						name,
+						postcode,
+						address1,
+						address2,
+						signdate,
+						phone,
+						phone2,
+						phone3,
+						role,
+						ROW_NUMBER() OVER(ORDER BY num desc) as rNum
+				FROM USERS
+			) paging
+			WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
+			ORDER BY num desc
+	</select>
 
 	<!-- 회원가입 -->
 	<insert id="joinUser" parameterType="com.shop.bidangol.vo.UserVO">

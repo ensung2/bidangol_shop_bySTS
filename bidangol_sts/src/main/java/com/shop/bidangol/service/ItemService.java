@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.bidangol.mapper.ItemMapper;
+import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.vo.ItemVO;
 
 @Service
@@ -68,7 +69,18 @@ public class ItemService implements ItemServiceImpl {
 	
 	
 	/*========================================================*/
-
+	
+	
+	// 상품(아이템) 리스트 + 페이징
+	public List<ItemVO> itemPage(Paging page) {
+		return mapper.itemPage(page);
+	}
+	
+	// 상품(아이템) 총 갯수
+	public Integer itemCount() {
+		return mapper.itemCount();
+	}
+	
 	// 상품(아이템) 상세조회
 	public ItemVO getItemOne(Integer ItemNum) {
 		return mapper.getItemOne(ItemNum);

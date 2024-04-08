@@ -2,6 +2,8 @@ package com.shop.bidangol.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.vo.ItemVO;
 
 @Service
@@ -39,7 +41,12 @@ public interface ItemServiceImpl {
 	public Integer getCountTteokCake();
 		
 		
-		
+	
+	// 상품(아이템) 리스트 + 페이징
+	public List<ItemVO> itemPage(Paging page);
+	
+	// 상품(아이템) 총 갯수
+	public Integer itemCount();
 
 	// 상품(아이템) 상세정보
 	public ItemVO getItemOne(Integer ItemNum);

@@ -3,6 +3,8 @@ package com.shop.bidangol.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.vo.UserVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -18,6 +20,12 @@ public interface UserServiceImpl {
 
 	// 회원정보 상세 조회
 	public UserVO getUserOne(String id);
+
+	// 회원정보 리스트(페이징)
+	public List<UserVO> userPage(Paging page);
+
+	// 회원 총 명수
+	public Integer userCount();
 
 	// 로그인
 	public UserVO signIn(UserVO userVO);

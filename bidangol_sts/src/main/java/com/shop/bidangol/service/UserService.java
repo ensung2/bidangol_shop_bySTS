@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shop.bidangol.mapper.UserMapper;
+import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.vo.UserVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +24,16 @@ public class UserService implements UserServiceImpl {
 	// (관리자페이지) 회원 리스트
 	public List<UserVO> getUserList() {
 		return mapper.getUserList();
+	}
+	
+	// 회원정보 리스트(페이징)
+	public List<UserVO> userPage(Paging page) {
+		return mapper.userPage(page);
+	}
+	
+	// 회원 총 명수
+	public  Integer userCount() {
+		return mapper.userCount();
 	}
 
 	// 회원정보 상세조회

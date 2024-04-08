@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.vo.ItemVO;
 
 @Mapper
@@ -42,7 +43,12 @@ public interface ItemMapper {
 	public Integer getCountTteokCake();
 		
 		
-		
+	
+	// 상품(아이템) 리스트 + 페이징
+	public List<ItemVO> itemPage(Paging page);
+	
+	// 상품(아이템) 총 갯수
+	public Integer itemCount();
 
 	// 상품(아이템) 상세 조회
 	public ItemVO getItemOne(Integer ItemNum);
