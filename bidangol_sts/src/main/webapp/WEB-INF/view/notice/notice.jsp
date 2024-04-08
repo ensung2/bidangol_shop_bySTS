@@ -59,7 +59,19 @@
 			</div>
 			</section>
 			<section class="noticePaging">
-				<div>-- 1 2 3 4 5 6 --</div>
+					<ul>
+					  <c:if test="${pageMaker.prev}">
+					   <li><a href="/bidangol/notice${pageMaker.makeQuery(pageMaker.startPage - 1)}" class="page_prev">이전</a></li>
+					  </c:if> 
+					  
+					  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					   <li><a href="/bidangol/notice${pageMaker.makeQuery(idx)}" class="page_idx">${idx}</a></li>
+					  </c:forEach>
+					    
+					  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					   <li><a href="/bidangol/notice${pageMaker.makeQuery(pageMaker.endPage + 1)}" class="page_next">다음</a></li>
+					  </c:if> 
+					 </ul>
 			</section>
 		</div>
 	</div>

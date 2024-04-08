@@ -1,5 +1,7 @@
 package com.shop.bidangol.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.bidangol.service.NoticeService;
+import com.shop.bidangol.utils.PageMaker;
+import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.vo.NoticeVO;
 
 @Controller
@@ -17,10 +21,24 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	// 공지사항 리스트
+	/*
+	 * // 공지사항 리스트
+	 * 
+	 * @GetMapping("/notice") public String noticePage(Model model) {
+	 * model.addAttribute("list", noticeService.getNoticeList()); return
+	 * "notice/notice"; }
+	 */
+	
+	// 공지사항 리스트+페이징
 	@GetMapping("/notice")
-	public String noticePage(Model model) {
-		model.addAttribute("list", noticeService.getNoticeList());
+	public String noticePaging(@ModelAttribute("page") Paging page, Model model) throws Exception {
+		List<NoticeVO> list = noticeService.noticePage(page);
+		model.addAttribute("list",list);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setPage(page);
+	    pageMaker.setTotalCount(noticeService.noticeCount());
+		model.addAttribute("pageMaker", pageMaker);
 		return "notice/notice";
 	}
 
@@ -43,6 +61,17 @@ public class NoticeController {
 		noticeService.viewCount(noticeNum);
 		model.addAttribute("noticeInfo", noticeService.getNoticeOne(noticeNum));
 	}
+
+	/*
+	 * // 공지사항 리스트(페이징)
+	 * 
+	 * @GetMapping("/notice") public String noticePaging(Model
+	 * model, @RequestParam("num") int num) throws Exception { Paging page = new
+	 * Paging();
+	 * 
+	 * page.setNum(num); page.setCount(num) model.addAttribute("list",
+	 * noticeService.getNoticeList()); return "notice/notice"; }
+	 */
 
 	// 공지사항 - 글 수정(페이지 이동)
 	@GetMapping("/notice/noticeUpdate")

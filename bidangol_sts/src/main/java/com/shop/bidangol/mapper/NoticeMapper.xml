@@ -68,6 +68,41 @@
 		)
 	</insert>
 	
+	<!-- 공지사항 총 갯수 -->
+	<select id="noticeCount" resultType="Integer">
+	<![CDATA[
+		SELECT COUNT(notice_num)
+		FROM NOTICE
+		WHERE notice_num > 0
+	]]>
+	</select>
+	
+	<!-- 공지사항 페이징 -->
+	<select id="noticePage" resultType="com.shop.bidangol.vo.NoticeVO"
+	parameterType="com.shop.bidangol.utils.Paging" resultMap="notice">
+			SELECT  notice_num,
+					notice_name,
+					CASE
+		            	WHEN notice_option = '01' THEN '공지사항'
+		            	WHEN notice_option = '02' THEN '배송안내'
+		            	WHEN notice_option = '03' THEN '기획전'
+		        	END AS notice_option,
+					notice_count,
+					notice_date
+			FROM (
+				SELECT  notice_num,
+						notice_name,
+						notice_option,
+						notice_count,
+						notice_date,
+						ROW_NUMBER() OVER(ORDER BY notice_num desc) as rNum
+				FROM NOTICE
+			) paging
+			WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
+			ORDER BY notice_num desc
+	</select>
+	
+	
 	<!-- 공지사항 수정 -->
 	<update id="modifyNotice" parameterType="com.shop.bidangol.vo.NoticeVO">
 		UPDATE NOTICE 
