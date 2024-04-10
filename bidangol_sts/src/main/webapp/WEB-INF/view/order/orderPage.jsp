@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/bidangol/css/order.css">
 <script src="/bidangol/js/daum_postcode.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/bidangol/js/order.js"></script>
 <script>
 $(document).ready(function(){
 	$('#passbook').click(function() {
@@ -45,28 +47,31 @@ $(document).ready(function(){
 			<section class="order_Item">
 				<table style="border-collapse: collapse">
 					<tbody>
+						<c:forEach items="${cartList}" var="cartList">
 						<tr>
-							<td><b class="itemName">콩고물인절미({item.name})</b><br> <span
-								class="itemCount">수량:({item.count})개</span> <span
-								class="itemPrice">판매가:({item.price})원</span><br> <span
-								class="itemOption">옵션:({item.option) }</span></td>
-							<td><b>총 상품금액 : ({item.priceAll })원</b></td>
+							<td class="imgWrap">
+								<img src="http://localhost:8088/bidangol/resources/${cartList.itemImg}" class="itemImg"/>
+							</td>
+							<td>
+								<b class="itemName"><c:out value="${cartList.itemName}"/></b><br>
+								<span class="cartCount">수량: <c:out value="${cartList.cartCount}"/>개</span><br>
+								<span class="itemPrice">판매가: <fmt:formatNumber value="${cartList.itemPrice}" pattern="###,###" />원</span>
+							</td>
+							<td><b>총 상품금액 : <fmt:formatNumber value="${cartList.itemPrice * cartList.cartCount}" pattern="###,###" />원</b></td>
 						</tr>
-						<tr>
-							<td><b class="itemName">콩고물인절미({item.name})</b><br> <span
-								class="itemCount">수량:({item.count})개</span> <span
-								class="itemPrice">판매가:({item.price})원</span><br> <span
-								class="itemOption">옵션:({item.option) }</span></td>
-							<td><b class="priceTotal">총 상품금액 : ({item.priceAll })원</b></td>
-						</tr>
+						<c:set var="sum" value="${sum + (cartList.itemPrice * cartList.cartCount)}" />
+						</c:forEach>
 					</tbody>
 				</table>
+				
 				<div class="order_Total">
 					<p>
-						<b>총 주문금액 : ({item.price(total)})원</b>
+						<b>총 주문금액 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원</b>
 					</p>
 				</div>
 			</section>
+			<form method="post" autocomplete="off">
+			<input type="hidden" name="orderTotal" value="${sum}">
 			<section class="deliveryPage">
 				<div class="delivery_Title">
 					<h3>* 배송정보</h3>
@@ -76,17 +81,17 @@ $(document).ready(function(){
 						<tbody>
 							<tr>
 								<th>주문자</th>
-								<td><input type="text" name="userName" id="userName"
-									style="width: 150px" value="{userName}"></td>
+								<td><input type="text" name="name" id="name"
+									style="width: 150px" value="${userInfo.name}"></td>
 							</tr>
 							<tr>
 								<th>이메일</th>
 								<td><input type="email" name="email" id="userEmail"
-									style="width: 300px" value="{userEmail}"></td>
+									style="width: 300px" value="${userInfo.email}"></td>
 							</tr>
 							<tr>
 								<th>휴대전화</th>
-								<td><select id="phone1" name="phone[]" style="padding: 5px">
+								<td><select id="phone" name="phone" style="padding: 5px">
 										<option value="010">010</option>
 										<option value="011">011</option>
 										<option value="016">016</option>
@@ -94,19 +99,19 @@ $(document).ready(function(){
 										<option value="018">018</option>
 										<option value="019">019</option>
 								</select> - <input type="text" name="phone2" id="phone2" maxlength="4"
-									style="width: 50px" value="{phone2}"> - <input
+									style="width: 50px" value="${userInfo.phone2}"> - <input
 									type="text" name="phone3" id="phone3" maxlength="4"
-									style="width: 50px" value="{phone3}"></td>
+									style="width: 50px" value="${userInfo.phone3}"></td>
 							</tr>
 							<tr id="address">
 								<th>주소</th>
-								<td><input type="text" name="postCode" id="postCode"
-									style="width: 60px" value="{postCode}"> <input
+								<td><input type="text" name="postcode" id="postcode"
+									style="width: 60px" value="${userInfo.postcode}"> <input
 									type="button" value="우편번호검색" onclick="checkPost()"><br>
 									<input type="text" name="address1" id="address1"
-									style="width: 300px" value="{address1}"><span>기본주소</span><br>
+									style="width: 300px" value="${userInfo.address1}"><span>기본주소</span><br>
 									<input type="text" name="address2" id="address2"
-									style="width: 300px" value="{address2}"><span>나머지주소(선택)</span><br>
+									style="width: 300px" value="${userInfo.address2}"><span>나머지주소(선택)</span><br>
 								</td>
 							</tr>
 							<tr>
@@ -127,17 +132,17 @@ $(document).ready(function(){
 						<div class="payBy01">
 							<input type="radio" name="payBy" id="passbook" checked><label>무통장입금</label>
 						</div>
-						<div class="payBy02">
+						<!-- <div class="payBy02">
 							<input type="radio" name="payBy" id="kakaoPay"><label>카카오페이</label>
-						</div>
+						</div> -->
 					</div>
 					<div class="passbookInfo">
 						<table style="border-collapse: collapse">
 							<tbody>
 								<tr>
 									<th>입금자명</th>
-									<td><input type="text" name="userName" id="userName"
-										style="width: 150px" value="{userName}"></td>
+									<td><input type="text" name="username" id="username"
+										style="width: 150px" value="${userInfo.name}"></td>
 								</tr>
 								<tr>
 									<th>입금은행</th>
@@ -147,22 +152,16 @@ $(document).ready(function(){
 											<option value="03">국민은행 123-45678-9101112 비단골떡방앗간</option>
 									</select></td>
 								</tr>
-								<tr>
-									<th>현금영수증</th>
-									<td><input type="radio" id="cashReceipts_Y"
-										name="cashReceipts" checked><label style="padding-right:50px;">신청</label> <input
-										type="radio" id="cashReceipts_N" name="cashReceipts"><label>신청안함</label>
-									</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</section>
-			<section class="order_Btn">
-				<input type="button" id="orderBuy" name="orderBuy"
-					onClick="location.href='/bidangol/order/orderResult'" value="결제하기">
-			</section>
+				<section class="order_Btn">
+					<button type="submit" id="orderBuy" name="orderBuy">주문하기</button>
+				</section>
+			</form>
+			
 		</div>
 	</div>
 

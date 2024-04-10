@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.bidangol.mapper.OrderMapper">
+
+	<!-- 주문 정보 -->
+	<insert id="orderPage">
+		INSERT INTO orders(
+		orderId,
+		id,
+		name,
+		email,
+		postcode,
+		address1, address2,
+		phone, phone2, phone3,
+		orderTotal,
+		bank,
+		memo)
+		VALUES (
+		#{orderId},
+		#{id},
+		#{name},
+		#{email},
+		#{postcode}, #{address1},
+		#{address2},
+		#{phone}, #{phone2}, #{phone3},
+		#{orderTotal},
+		#{bank},
+		#{memo})
+	</insert>
+
+	<!-- 주문 상세 정보 -->
+	<insert id="orderPage_details">
+		INSERT INTO order_details(orderDetailsNum, orderId, item_num, cart_count)
+		SELECT order_details_seq.nextval, #{orderId}, item_num, cart_count
+		FROM CART
+	</insert>
+
+
+
+
+</mapper>
+

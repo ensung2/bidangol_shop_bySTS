@@ -51,33 +51,49 @@ input[type=button] {
 }
 
 /*--------------- 주문페이지 - 주문내용(order_Item) ---------------*/
+
 .order_Item tr {
 	width: 100%;
 	border-bottom: 1px solid #dddddd;
 }
 
 .order_Item td {
-	padding: 20px;
+	padding: 20px 0;
 }
 
+
 .order_Item td:nth-child(1) {
-	width: 600px;
+	width: 100px;
 }
 
 .order_Item td:nth-child(2) {
-	width: 300px;
-	text-align: right;
-	font-size: 14px;
+	width: 600px;
+	padding-left: 20px
 }
 
-.itemCount, .itemOption {
+
+.order_Item td:nth-child(2) .cartCount, .itemPrice {
 	font-size: 13px;
 	padding: 5px 10px 5px 0;
 }
 
-.itemPrice {
-	font-size: 13px;
-	padding: 5px 10px;
+.order_Item td:nth-child(3) {
+	width: 200px;
+	text-align: right;
+	padding-right: 20px;
+}
+
+.imgWrap {
+	width: 100px;
+	height: 100px;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+.itemImg {
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
 }
 
 
@@ -90,6 +106,7 @@ input[type=button] {
 	display: flex;
 	justify-content:flex-end;
 	margin-top: 30px;
+	font-size: 20px;
 	
 }
 
