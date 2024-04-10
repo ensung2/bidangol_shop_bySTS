@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.bidangol.mapper.CartMapper">
+
+	<resultMap type="com.shop.bidangol.vo.CartVO" id="cart">
+		<result property="cartNum" column="cart_num" />
+		<result property="id" column="id" />
+		<result property="itemNum" column="item_num" />
+		<result property="cartCount" column="cart_count" />
+		<result property="addDate" column="add_date" />
+	</resultMap>
+
+	<!-- 장바구니 추가 -->
+	<insert id="addCart" parameterType="com.shop.bidangol.vo.CartVO">
+		INSERT INTO CART (
+		cart_num,
+		id,
+		item_num,
+		cart_count
+		)
+		VALUES (
+		cart_seq.nextval,
+		#{id},
+		#{itemNum},
+		#{cartCount}
+		)
+	</insert>
+
+	<!-- 장바구니 리스트 -->
+	<select id="cartList"
+		resultType="com.shop.bidangol.vo.CartListVO">
+		SELECT ROWNUM as rNum,
+			C.cart_num as cartNum, C.id, C.item_num as itemNum, C.add_date as addDate, C.cart_count as cartCount,
+			I.item_name as itemName, I.item_price as itemPrice, I.item_img as itemImg
+		FROM CART C
+			INNER JOIN ITEMS I
+			ON C.item_num = I.item_num
+		WHERE C.id = #{id}
+	</select>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteCart" parameterType="java.util.List">
+		DELETE CART
+		WHERE cart_num = #{cartNum}
+			and id = #{id} 
+	</delete>
+
+
+
+
+</mapper>
+

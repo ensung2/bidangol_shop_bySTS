@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,31 +33,35 @@
 			<section class="cartItem">
 				<table style="border-collapse: collapse">
 					<tbody>
+					<c:choose>
+					 <c:when test="${empty cartList}">
+                		<p class="empty">현재 상품이 없습니다.</p>
+            		</c:when>
+            		<c:otherwise>
+						<c:forEach items="${cartList}" var="cartList">
 						<tr>
-							<td><input type="checkbox" id="selectCheck" name="selectCheck"></td>
-							<td><b class="itemName">콩고물인절미({item.name})</b><br>
-								<span class="itemCount">수량:({item.count})개</span> <span class="itemPrice">판매가:({item.price})원</span><br>
-								<span class="itemOption">옵션:({item.option) }</span>
-								<input type="button" id="optionChange" name="optionChange" value="옵션변경">
+							<td><input type="checkbox" id="selectCheck" name="selectCheck" data-cartNum="${cartList.cartNum}"></td>
+							<td class="imgWrap">
+								<img src="http://localhost:8088/bidangol/resources/${cartList.itemImg}" class="itemImg"/>
 							</td>
-							<td><b>총 상품금액 : ({item.priceAll })원</b></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" id="selectCheck" name="selectCheck"></td>
-							<td><b class="itemName">콩고물인절미({item.name})</b><br>
-								<span class="itemCount">수량:({item.count})개</span> <span class="itemPrice">판매가:({item.price})원</span><br>
-								<span class="itemOption">옵션:({item.option) }</span>
-								<input type="button" id="optionChange" name="optionChange" value="옵션변경">
+							<td>
+								<b class="itemName"><c:out value="${cartList.itemName}"/></b><br>
+								<span class="cartCount">수량: <c:out value="${cartList.cartCount}"/>개</span><br>
+								<span class="itemPrice">판매가: <fmt:formatNumber value="${cartList.itemPrice}" pattern="###,###" />원</span>
 							</td>
-							<td><b class="priceTotal">총 상품금액 : ({item.priceAll })원</b></td>
+							<td><b>총 상품금액 : <fmt:formatNumber value="${cartList.itemPrice * cartList.cartCount}" pattern="###,###" />원</b></td>
 						</tr>
+						<c:set var="sum" value="${sum + (cartList.itemPrice * cartList.cartCount)}" />
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
 					</tbody>
 				</table>
 				<div class="delete_btn">
 					<input type="button" id="selectDelete" name="selectDelete" value="선택삭제하기">
 				</div>
 				<div class="cartTotal">
-					<p><b>총 주문금액 : ({item.price(total)})원</b></p>
+					<p><b>총 주문금액 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원</b></p>
 				</div>
 			</section>
 			<section class="orderBtn">
