@@ -19,4 +19,7 @@ public interface CartServiceImpl {
 	// 장바구니 (체크박스)삭제
 	public void deleteCart(CartVO cartVO);
 
+	// (주문 후) 장바구니 비우기
+	public void cartAllDelete(String id);
+
 }

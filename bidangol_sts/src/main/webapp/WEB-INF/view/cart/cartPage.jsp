@@ -67,10 +67,8 @@
 			<section class="orderBtn">
 				<input type="button" id="goMain" name="goMain" onClick="location.href='/bidangol/home'" value="쇼핑계속하기">
 				<div>
-					<input type="button" id="selectOrder" name="selectOrder" value="선택상품주문"
-					onclick="location.href='/bidangol/order/orderNum'">
 					<input type="button" id="allOrder" name="allOrder" value="전체상품주문"
-					onclick="location.href='/bidangol/order/orderNum'">
+					onclick="location.href='/bidangol/order/orderPage'">
 				</div>
 				
 			</section>

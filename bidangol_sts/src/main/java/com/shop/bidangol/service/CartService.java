@@ -30,4 +30,9 @@ public class CartService implements CartServiceImpl {
 		mapper.deleteCart(cartVO);
 	};
 
+	// (주문 후) 장바구니 비우기
+	public void cartAllDelete(String id) {
+		mapper.cartAllDelete(id);
+	};
+
 }

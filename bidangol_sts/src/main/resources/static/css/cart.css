@@ -18,6 +18,15 @@
 	cursor: pointer
 }
 
+.empty {
+	width: 100%;
+	text-align: center;
+	padding: 30px 0;
+	color: #777777;
+	font-size: 14px;
+	border-bottom: 1px solid #eeeeee
+}
+
 /* 장바구니 - 타이틀 */
 
 .cartTitle {

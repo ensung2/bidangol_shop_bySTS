@@ -44,6 +44,12 @@
 		WHERE cart_num = #{cartNum}
 			and id = #{id} 
 	</delete>
+	
+	<!-- (주문 후) 장바구니 비우기 -->
+	<delete id="cartAllDelete">
+		DELETE CART
+		WHERE id = #{id}
+	</delete>
 
 
 
