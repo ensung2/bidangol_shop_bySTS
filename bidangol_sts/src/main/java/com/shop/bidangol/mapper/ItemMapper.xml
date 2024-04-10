@@ -10,6 +10,7 @@
 		<result property="itemMeterial" column="item_meterial" />
 		<result property="itemUsedate" column="item_usedate" />
 		<result property="itemPrice" column="item_price" />
+		<result property="itemSize" column="item_size" />
 		<result property="itemNo" column="item_no" />
 		<result property="itemImg" column="item_img" />
 		<result property="thumbImg" column="thumb_img" />

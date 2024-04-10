@@ -12,6 +12,7 @@ public class ItemVO {
 	private String itemMeterial;
 	private String itemUsedate;
 	private Integer itemPrice;
+	private Integer itemSize;
 	
 	private String itemImg;		// 상품 이미지
 	private String thumbImg;

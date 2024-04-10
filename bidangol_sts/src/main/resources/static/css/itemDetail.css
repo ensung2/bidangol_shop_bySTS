@@ -87,6 +87,15 @@
 	padding: 5px
 }
 
+/* 상세페이지 - 구매수량(+,-) */
+
+.minus, .plus {
+	padding: 5px 10px;
+}
+#itemSize {
+	width: 50px;
+}
+
 /* 상세페이지 - 상세정보(선택금액) */
 .detailList {
 	border-top: 1px solid #dddddd;
