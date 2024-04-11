@@ -76,15 +76,18 @@
 
 .cartItem td:nth-child(1) {
 	width: 50px;
+	text-align: center
 }
 
 .cartItem td:nth-child(2) {
-	width: 100px;
+	width: 120px;
+	height:120px;
+	padding-left:20px
 }
 
 .cartItem td:nth-child(3) {
 	width: 600px;
-	padding-left: 20px
+	padding-left:20px
 }
 
 
@@ -100,8 +103,8 @@
 }
 
 .imgWrap {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height:120px;
 	margin: 0px auto;
 	overflow: hidden;
 }

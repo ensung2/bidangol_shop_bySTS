@@ -75,7 +75,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(result) {
 				if (result == 1) {
-					alert("카트 담기 성공");
+					alert("상품이 장바구니에 성공적으로 담겼습니다.");
 					$(".itemNum").val("1");
 					location.href = "/bidangol/cart/cartPage";
 				} else {
@@ -86,7 +86,7 @@ $(document).ready(function() {
 
 			},
 			error: function(request, status, error) {
-				alert("카트 담기 실패" + "\n" + request + "\n" + status + "\n" + error);
+				alert("장바구니 담기 실패하였습니다." + "\n" + request + "\n" + status + "\n" + error);
 			}
 		});
 	})
