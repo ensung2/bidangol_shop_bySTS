@@ -34,7 +34,96 @@
 		SELECT order_details_seq.nextval, #{orderId}, item_num, cart_count
 		FROM CART
 	</insert>
-
+	
+	<!-- 주문 리스트 -->
+	<select id="orderList" resultType="com.shop.bidangol.vo.OrderVO">
+		SELECT
+		orderId,
+		id,
+		name,
+		email,
+		postcode,
+		address1, address2,
+		phone, phone2, phone3,
+		orderTotal,
+		bank,
+		memo
+		FROM ORDERS
+		WHERE id = #{id}
+		ORDER BY orderId DESC
+	</select>
+	
+	<!-- 주문 총 갯수 -->
+	<select id="orderCount" resultType="Integer">
+		SELECT COUNT(orderId)
+		FROM ORDERS
+	</select>
+	
+	<!-- 주문리스트 페이징 -->
+	<select id="orderPaging" resultType="com.shop.bidangol.vo.OrderVO"
+	parameterType="com.shop.bidangol.utils.Paging">
+			SELECT  orderId,
+					id,
+					name,
+					email,
+					postcode,
+					address1, address2,
+					phone, phone2, phone3,
+					orderTotal,
+					bank,
+					memo
+			FROM (
+				SELECT  orderId,
+						id,
+						name,
+						email,
+						postcode,
+						address1, address2,
+						phone, phone2, phone3,
+						orderTotal,
+						bank,
+						memo,
+						ROW_NUMBER() OVER(ORDER BY orderId desc) as rNum
+				FROM ORDERS
+			) paging
+			WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
+			ORDER BY orderId desc
+	</select>
+	
+	<!-- 주문 번호로 조회 -->
+	<select id="orderView" resultType="com.shop.bidangol.vo.OrderListVO">
+		SELECT
+			O.orderId, O.id, O.name, O.email, O.postcode, O.address1, O.address2,
+			O.phone, O.phone2, O.phone3, O.orderTotal, O.bank, O.memo, O.orderDate, O.orderStatus,
+			D.orderDetailsNum, D.item_num as itemNum, D.cart_count as cartCount,
+			I.item_name as itemName, I.item_img as itemImg, I.item_price as itemPrice
+		FROM ORDERS O
+			INNER JOIN order_details D
+				ON O.orderId = D.orderId
+			INNER JOIN ITEMS I
+				ON D.item_num = I.item_num
+		WHERE O.id = #{id}
+			AND O.orderId = #{orderId}
+	</select>
+	
+	<!--=========================================================================  -->
+	
+	<!-- (관리자페이지) 전체 주문 리스트  -->
+	<select id="adminOrderList" resultType="com.shop.bidangol.vo.OrderVO">
+		SELECT orderId,
+					id,
+					name,
+					email,
+					postcode,
+					address1, address2,
+					phone, phone2, phone3,
+					orderTotal,
+					bank,
+					memo,
+					orderStatus
+		FROM ORDERS
+		ORDER BY orderId DESC
+	</select>
 
 
 

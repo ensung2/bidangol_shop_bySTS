@@ -1,6 +1,7 @@
 package com.shop.bidangol.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.bidangol.service.OrderService;
 import com.shop.bidangol.service.UserService;
+import com.shop.bidangol.utils.PageMaker;
+import com.shop.bidangol.utils.Paging;
+import com.shop.bidangol.vo.OrderListVO;
+import com.shop.bidangol.vo.OrderVO;
 import com.shop.bidangol.vo.UserVO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,32 +32,52 @@ public class MyPageController {
 	private UserService userService;
 	
 	@Autowired
+	private OrderService orderService;
+	
+	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 
-	// 마이페이지 기본화면 (주문/조회)
+	// 마이페이지 기본화면 (주문/조회) + 페이징
 	@GetMapping({ "/myPage/order", "/myPage" })
-	public String myPageOrder(Model model, HttpServletRequest req) throws Exception {
-		HttpSession session = req.getSession();
+	public String myPageOrder(@ModelAttribute("page") Paging page, HttpSession session, Model model, OrderVO orderVO) throws Exception {
 		UserVO user = (UserVO) session.getAttribute("user");
-		if (user != null) {
-			model.addAttribute("userInfo", user);
-			return "myPage/orderCheck";
-		} else {
-			return "redirect:/login"; // 로그인하지 않은 사용자를 로그인 페이지로 리디렉션
-		}
+		model.addAttribute("userInfo", user);
+	    if (user == null) {
+	        return "redirect:/login"; // 로그인하지 않은 사용자를 로그인 페이지로 리디렉션
+	    }
 
+	    String id = user.getId();
+	    orderVO.setId(id);
+	    List<OrderVO> orderList = orderService.orderPaging(page);
+	    model.addAttribute("orderList", orderList);
+	    
+	    PageMaker pageMaker = new PageMaker();
+		pageMaker.setPage(page);
+	    pageMaker.setTotalCount(orderService.orderCount());
+		model.addAttribute("pageMaker", pageMaker);
+
+	    return "myPage/orderCheck";
 	}
 
 	// 마이페이지 - 주문번호(noticeNum) 불러오기 (/bidangol/admin/orderCheck?id=orderNum)
 	@GetMapping("/myPage/orderId")
-	public String noticeUpdatePage() {
+	public String noticeUpdatePage(HttpSession session, @RequestParam("id") String orderId,
+			OrderVO orderVO, Model model) throws Exception {
+		
+		UserVO user = (UserVO)session.getAttribute("user");
+		String id = user.getId();
+		
+		orderVO.setId(id);
+		orderVO.setOrderId(orderId);
+		
+		List<OrderListVO> orderView = orderService.orderView(orderVO);
+		model.addAttribute("orderView",orderView);
+		model.addAttribute("userInfo", user);
 		return "myPage/orderId";
 	}
+	
 
-	/*
-	 * =============================================================================
-	 * ==
-	 */
+	/* =============================================================================== */
 
 	// 마이페이지 - 회원정보
 	@GetMapping("/myPage/userInfo")

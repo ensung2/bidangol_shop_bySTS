@@ -63,7 +63,9 @@ input[type=button] {
 
 
 .order_Item td:nth-child(1) {
-	width: 100px;
+	width: 120px;
+	height: 120px;
+	padding-left: 30px;
 }
 
 .order_Item td:nth-child(2) {

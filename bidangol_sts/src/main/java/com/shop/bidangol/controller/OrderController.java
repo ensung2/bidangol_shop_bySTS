@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shop.bidangol.service.CartService;
 import com.shop.bidangol.service.OrderService;
@@ -59,23 +57,29 @@ public class OrderController {
 		for (int i = 1; i <= 6; i++) {
 			subNum += (int) (Math.random() * 10);
 		}
-
-		String orderId = ymd + "-" + subNum;
 		
+		
+		String orderId = ymd + "-" + subNum;
+
 		orderVO.setOrderId(orderId);
 		orderVO.setId(id);
 
 		orderService.orderPage(orderVO);
-		
+
 		orderDetailVO.setOrderId(orderId);
 		orderService.orderPage_details(orderDetailVO);
-		
+
 		cartService.cartAllDelete(id);
-		
+
 		return "redirect:/order/orderResult";
 	}
-	/*
-	 * @GetMapping("/order/orderResult") public String orderResult() { return
-	 * "/order/orderResult"; }
-	 */
+	
+	// 주문 결과 확인
+	@GetMapping("/order/orderResult")
+	public String orderResult() {
+		return "/order/orderResult";
+	}
+	
+	
+
 }

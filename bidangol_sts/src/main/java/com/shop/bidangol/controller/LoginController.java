@@ -41,7 +41,8 @@ public class LoginController {
 	@PostMapping("/signUp/joinUser")
 	public String joinUser(@ModelAttribute UserVO userVO) {
 	    String inputPass = userVO.getPassword();
-		String pass = passEncoder.encode(inputPass); userVO.setPassword(pass);
+		String pass = passEncoder.encode(inputPass);
+		userVO.setPassword(pass);
 		userService.joinUser(userVO);
 		return "Index";
 	}

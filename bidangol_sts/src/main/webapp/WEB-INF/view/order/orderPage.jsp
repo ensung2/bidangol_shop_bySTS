@@ -11,17 +11,6 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/bidangol/js/order.js"></script>
-<script>
-$(document).ready(function(){
-	$('#passbook').click(function() {
-        $('.passbookInfo').css('display', 'block');
-    });
-    
-    $('#kakaoPay').click(function() {
-        $('.passbookInfo').css('display', 'none');
-    });
-})
-</script>
 </head>
 <body>
 	<!-- header -->
