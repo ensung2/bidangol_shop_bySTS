@@ -22,4 +22,6 @@ public class OrderVO {
 	private String bank;		// 무통장입금-은행정보
 	private Date orderDate;		// 주문날짜
 	
+	private String orderStatus;	// 주문상태 (관리자페이지에서 수정)
+	
 }
