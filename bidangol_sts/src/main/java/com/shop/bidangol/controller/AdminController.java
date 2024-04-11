@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.bidangol.service.ItemService;
+import com.shop.bidangol.service.OrderService;
 import com.shop.bidangol.service.UserService;
 import com.shop.bidangol.utils.PageMaker;
 import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.utils.UploadFileUtils;
 import com.shop.bidangol.vo.ItemVO;
+import com.shop.bidangol.vo.OrderVO;
 import com.shop.bidangol.vo.UserVO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +33,9 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@Value("${uploadPath}")
 	private String uploadPath;
@@ -65,15 +70,14 @@ public class AdminController {
 
 	// 관리자 페이지 - 주문관리 (리스트+페이징)
 	@GetMapping("/admin/adminOrder")
-	public String adminOrder(@ModelAttribute("page") Paging page, Model model) {
-		/*
-		 * List<ItemVO> list = itemService.itemPage(page); model.addAttribute("list",
-		 * list);
-		 */
+	public String adminOrder(@ModelAttribute("page") Paging page, Model model) throws Exception {
+		
+		List<OrderVO> orderList = orderService.adminOrderList();
+		model.addAttribute("list",orderList);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setPage(page);
-		pageMaker.setTotalCount(userService.userCount());
+		pageMaker.setTotalCount(orderService.orderCount());
 		model.addAttribute("pageMaker", pageMaker);
 		return "admin/adminOrder";
 	}

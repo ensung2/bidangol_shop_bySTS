@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,9 +44,9 @@
 						<tr>
 							<td>주문정보</td>
 							<td>아이디</td>
-							<td>상품정보</td>
-							<td>상품구매금액</td>
-							<td>배송상태</td>
+							<td>배송지</td>
+							<td>결제금액</td>
+							<td>결제방식</td>
 							<td>주문상태</td>
 						</tr>
 					</thead>
@@ -61,12 +62,12 @@
             		</c:when>
             		<c:otherwise>
 						<c:forEach items="${list}" var="order">
-							<tr onclick="location.href='/bidangol/admin/orderInfo?itemNum=<c:out value="${order.orderNum}"/>'">
-								<td class="orderNum"><c:out value="${order.orderNum}">orderNum</c:out></td>
-								<td class="userId"><c:out value="${order.userId}"></c:out></td>
-								<td class="orderInfo"><c:out value="${order.orderInfo}"></c:out></td>
-								<td class="priceTotal"><c:out value="${order.priceTotal}"></c:out></td>
-								<td class="deliveryStatus"><c:out value="${order.deliveryStatus}"></c:out></td>
+							<tr onclick="location.href='/bidangol/admin/orderInfo?orderId=<c:out value="${order.orderId}"/>'">
+								<td class="orderId"><c:out value="${order.orderId}"></c:out></td>
+								<td class="id"><c:out value="${order.id}"></c:out></td>
+								<td class="address1"><c:out value="${order.address1}"></c:out></td>
+								<td class="orderTotal"><fmt:formatNumber pattern="###,###,###" value="${order.orderTotal}" />원</td>
+								<td class="deliveryStatus">무통장입금</td>
 								<td class="orderStatus"><c:out value="${order.orderStatus}"></c:out></td>
 							</tr>
 						</c:forEach>
