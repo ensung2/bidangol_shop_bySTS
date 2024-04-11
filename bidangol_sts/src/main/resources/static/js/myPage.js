@@ -111,20 +111,4 @@ $(document).ready(function() {
 			}
 		});
 	}
-
-
 });
-
-
-/*// 비밀번호 확인 입력란 값 변경 시 호출되는 함수
-   $("#password2").on("input", function() {
-	   var password = $(this).val(); // 비밀번호 확인 입력란 값 가져오기
-	   var errorMessageElement = $("#passwordErrorMessage"); // 오류 메시지를 표시할 span 요소
-
-	   // 비밀번호와 비밀번호 확인이 일치하지 않을 경우 오류 메시지 표시
-	   if (password1 !== password2) {
-		   errorMessageElement.text("비밀번호가 일치하지 않습니다.");
-	   } else {
-		   errorMessageElement.text(""); // 일치할 경우 오류 메시지 지우기
-	   }
-   });*/
