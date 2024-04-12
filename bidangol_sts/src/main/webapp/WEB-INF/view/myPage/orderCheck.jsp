@@ -60,7 +60,28 @@
 										<td class="orderAddress"><c:out value="${order.address1}" /></td>
 										<td class="orderTotal"><fmt:formatNumber pattern="###,###,###" value="${order.orderTotal}" />원</td>
 										<td class="deliveryStatus">무통장입금</td>
-										<td class="orderStatus"><c:out value="${order.orderStatus}" /></td>
+										<td class="orderStatus">
+											<c:choose>
+												<c:when test="${order.orderStatus == '01'}">
+									                결제완료
+									            </c:when>
+												<c:when test="${order.orderStatus == '02'}">
+									                상품준비중
+									            </c:when>
+												<c:when test="${order.orderStatus == '03'}">
+									                배송준비중
+									            </c:when>
+									            <c:when test="${order.orderStatus == '03'}">
+									                배송중
+									            </c:when>
+									            <c:when test="${order.orderStatus == '03'}">
+									                배송완료
+									            </c:when>
+									            <c:otherwise>
+											        결제확인중
+											    </c:otherwise>
+											</c:choose>
+										</td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

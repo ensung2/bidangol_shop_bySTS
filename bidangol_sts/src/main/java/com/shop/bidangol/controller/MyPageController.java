@@ -59,9 +59,9 @@ public class MyPageController {
 	    return "myPage/orderCheck";
 	}
 
-	// 마이페이지 - 주문번호(noticeNum) 불러오기 (/bidangol/admin/orderCheck?id=orderNum)
+	// 마이페이지 - 주문번호(orderId) 불러오기 (/bidangol/myPage/orderId?id=orderNum)
 	@GetMapping("/myPage/orderId")
-	public String noticeUpdatePage(HttpSession session, @RequestParam("id") String orderId,
+	public String myPageOrderId(HttpSession session, @RequestParam("id") String orderId,
 			OrderVO orderVO, Model model) throws Exception {
 		
 		UserVO user = (UserVO)session.getAttribute("user");

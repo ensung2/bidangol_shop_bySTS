@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +32,9 @@
 					</select>
 				</div>
 				<div class="searchDate">
-					<input type="date" id="firstDate" name="firstDate">
-					-
-					<input type="date" id="lastDate" name="lastDate">
-					<input type="button" id="dateSearch" name="dateSearch" value="조회">
+					<input type="date" id="firstDate" name="firstDate"> - <input
+						type="date" id="lastDate" name="lastDate"> <input
+						type="button" id="dateSearch" name="dateSearch" value="조회">
 				</div>
 			</section>
 			<section class="auInfo">
@@ -53,42 +52,72 @@
 				</table>
 			</section>
 			<section class="auList">
-				<input type="hidden" name="orderNum" id="orderNum" value="<c:out value="${order.orderNum}"/>">
+				<input type="hidden" name="orderNum" id="orderNum"
+					value="<c:out value="${order.orderNum}"/>">
 				<table style="border-collapse: collapse;">
 					<tbody>
-					<c:choose>
-					 <c:when test="${empty list}">
-                		<p class="empty">현재 주문이 없습니다.</p>
-            		</c:when>
-            		<c:otherwise>
-						<c:forEach items="${list}" var="order">
-							<tr onclick="location.href='/bidangol/admin/orderInfo?id=<c:out value="${order.orderId}"/>'">
-								<td class="orderId"><c:out value="${order.orderId}"></c:out></td>
-								<td class="id"><c:out value="${order.id}"></c:out></td>
-								<td class="address1"><c:out value="${order.address1}"></c:out></td>
-								<td class="orderTotal"><fmt:formatNumber pattern="###,###,###" value="${order.orderTotal}" />원</td>
-								<td class="deliveryStatus">무통장입금</td>
-								<td class="orderStatus"><c:out value="${order.orderStatus}"></c:out></td>
-							</tr>
-						</c:forEach>
-						</c:otherwise>
-					</c:choose>
+						<c:choose>
+							<c:when test="${empty list}">
+								<p class="empty">현재 주문이 없습니다.</p>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="order">
+									<tr
+										onclick="location.href='/bidangol/admin/orderInfo?id=<c:out value="${order.orderId}"/>'">
+										<td class="orderId"><c:out value="${order.orderId}"></c:out></td>
+										<td class="id"><c:out value="${order.id}"></c:out></td>
+										<td class="address1"><c:out value="${order.address1}"></c:out></td>
+										<td class="orderTotal"><fmt:formatNumber pattern="###,###,###" value="${order.orderTotal}" />원</td>
+										<td class="deliveryStatus">무통장입금</td>
+										<td class="orderStatus">
+											<c:choose>
+												<c:when test="${order.orderStatus == '01'}">
+									                결제완료
+									            </c:when>
+												<c:when test="${order.orderStatus == '02'}">
+									                상품준비중
+									            </c:when>
+												<c:when test="${order.orderStatus == '03'}">
+									                배송준비중
+									            </c:when>
+									            <c:when test="${order.orderStatus == '03'}">
+									                배송중
+									            </c:when>
+									            <c:when test="${order.orderStatus == '03'}">
+									                배송완료
+									            </c:when>
+									            <c:otherwise>
+											        결제확인중
+											    </c:otherwise>
+											</c:choose>
+											</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</section>
 			<section class="adminPaging">
-					<ul>
-					  <c:if test="${pageMaker.prev}">
-					   <li><a href="/bidangol/admin/adminOrder${pageMaker.makeQuery(pageMaker.startPage - 1)}" class="page_prev">이전</a></li>
-					  </c:if> 
-					  
-					  <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					   <li><a href="/bidangol/admin/adminOrder${pageMaker.makeQuery(idx)}" class="page_idx">${idx}</a></li>
-					  </c:forEach>
-					    
-					  <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					   <li><a href="/bidangol/admin/adminOrder${pageMaker.makeQuery(pageMaker.endPage + 1)}" class="page_next">다음</a></li>
-					  </c:if> 
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a
+							href="/bidangol/admin/adminOrder${pageMaker.makeQuery(pageMaker.startPage - 1)}"
+							class="page_prev">이전</a></li>
+					</c:if>
+
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li><a
+							href="/bidangol/admin/adminOrder${pageMaker.makeQuery(idx)}"
+							class="page_idx">${idx}</a></li>
+					</c:forEach>
+
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="/bidangol/admin/adminOrder${pageMaker.makeQuery(pageMaker.endPage + 1)}"
+							class="page_next">다음</a></li>
+					</c:if>
 				</ul>
 			</section>
 		</div>

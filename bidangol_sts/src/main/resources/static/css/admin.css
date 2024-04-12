@@ -64,17 +64,10 @@ input[type=button] {
 	padding: 25px;
 }
 
-.auTitle h3 {
+h3 {
 	font-size: 20px;
 }
 
-.aoTitle h3 {
-	font-size: 20px;
-}
-
-.adminItem h3 {
-	font-size: 20px;
-}
 
 /* 관리자페이지 - 유저정보(리스트) */
 .auInfo {
@@ -112,7 +105,7 @@ input[type=button] {
 
 .auList td {
 	text-align: center;
-	font-size: 15px;
+	font-size: 14px;
 	padding: 10px 0;
 	border-bottom: 1px solid #CCCCCC;
 }
@@ -180,7 +173,12 @@ input[type=button] {
 }
 
 #orderUpdate {
-	background-color: #2a2a2a;
+	padding: 5px 10px;
+	font-size: 13px;
+	color: #ffffff;
+	border: none;
+	background-color: red;
+	margin-left: 5px;
 }
 
 #cancel {

@@ -52,20 +52,25 @@ $(document).ready(function() {
 		}
 		return true;
 	};
+	
+	// 관리자페이지 주문상태 수정
+        $("#orderUpdate").click(function() {
+            $("#order_statusUpdate").attr("action", "/bidangol/admin/orderStatusUpdate").submit();
+            alert("주문상태가 수정되었습니다.");
+        });
 })
 
 $(window).on("load", function() {
-        
-        // 공지사항 글 수정 버튼 클릭 시
+		
+		// 관리자페이지 상품수정
         $("#itemModify").click(function() {
             // 폼을 서버로 제출
             $("#item_Modiyform").attr("action", "/bidangol/admin/itemModify").submit();
             alert("수정이 완료되었습니다.");
         });
-
-        // 공지사항 글 삭제 버튼 클릭 시
+		
+		// 관리자페이지 상품삭제
         $("#itemDelete").click(function() {
-            // 폼을 서버로 제출
             $("#item_Modiyform").attr("action", "/bidangol/admin/itemDelete").submit();
             alert("삭제가 완료되었습니다.");
         });
