@@ -134,11 +134,9 @@
 	
 	<!-- (관리자페이지) 상품 총 갯수 -->
 	<select id="itemCount" resultType="Integer">
-	<![CDATA[
 		SELECT COUNT(item_num)
-		FROM NOTICE
+		FROM ITEMS
 		WHERE item_num > 0
-	]]>
 	</select>
 	
 	<!-- (관리자페이지) 상품리스트 페이징 -->
