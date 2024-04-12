@@ -25,7 +25,6 @@ import com.shop.bidangol.vo.OrderVO;
 import com.shop.bidangol.vo.UserVO;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
@@ -121,6 +120,13 @@ public class AdminController {
 		List<OrderListVO> orderView = orderService.adminOrderView(orderVO);
 		
 		model.addAttribute("orderView", orderView);
+	}
+	
+	// 관리자페이지 - 주문상태(orderStatus) 수정
+	@PostMapping("/admin/orderStatusUpdate")
+	public String orderStatus(OrderVO orderVO) throws Exception {
+		orderService.orderStatusUpdate(orderVO);
+		return "redirect:/admin/orderInfo?id="+orderVO.getOrderId();
 	}
 
 	// 관리자페이지 - 상품(itemNum)확인 (/bidangol/admin/itemInfo?itemNum=itemNum)

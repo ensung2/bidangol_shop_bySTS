@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/bidangol/js/admin.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -52,14 +54,18 @@
 										${order.itemName} ${order.cartCount}개, </c:forEach></li>
 								<c:forEach items="${orderView}" var="order" varStatus="status">
 								<c:if test="${status.first}">
+									<form name="order_statusUpdate" id="order_statusUpdate" method="post">
 									<li><b>주문번호 : ${order.orderId}</b></li>
+									<input type="hidden" name="orderId" id="orderId" value="${order.orderId}">
 									<li><b style="color:red">주문상태 : </b><select name="orderStatus" class="orderStatus">
 											<option value="01">결제완료</option>
 											<option value="02">상품준비중</option>
 											<option value="03">배송준비중</option>
 											<option value="04">배송중</option>
 											<option value="05">배송완료</option>
-									</select></li>
+									</select>
+									<input type="button" id="orderUpdate" name="orderUpdate" value="배송상태 수정"></li>
+									</form>
 								</c:if>
 								</c:forEach>
 								</ul>
@@ -76,7 +82,7 @@
 									<th style="width:200px; font-size: 18px">결제정보</th>
 									<td>
 										<ul>
-											<li>입금자명 : ${order.id}</li>
+											<li>입금자명 : ${order.name}</li>
 											<li>결제수단 : <span>무통장입금</span> │ 
 											계좌번호 : 
 											<c:choose>
@@ -100,12 +106,11 @@
 				</table>
 
 				<div class="ao_btn">
-					<input type="button" id="orderUpdate" name="orderUpdate"
-						value="배송상태 수정"> <input type="button" id="cancel"
-						name="cancel" value="취소"
+					<input type="button" id="cancel" name="cancel" value="취소"
 						onclick="location.href='/bidangol/admin/adminOrder'">
 				</div>
 			</section>
+			
 		</div>
 	</div>
 
