@@ -14,7 +14,8 @@
 		phone, phone2, phone3,
 		orderTotal,
 		bank,
-		memo)
+		memo,
+		orderStatus)
 		VALUES (
 		#{orderId},
 		#{id},
@@ -25,7 +26,8 @@
 		#{phone}, #{phone2}, #{phone3},
 		#{orderTotal},
 		#{bank},
-		#{memo})
+		#{memo},
+		#{orderStatus})
 	</insert>
 
 	<!-- 주문 상세 정보 -->
@@ -47,7 +49,8 @@
 		phone, phone2, phone3,
 		orderTotal,
 		bank,
-		memo
+		memo,
+		orderStatus
 		FROM ORDERS
 		WHERE id = #{id}
 		ORDER BY orderId DESC
@@ -71,7 +74,8 @@
 					phone, phone2, phone3,
 					orderTotal,
 					bank,
-					memo
+					memo,
+					orderStatus
 			FROM (
 				SELECT  orderId,
 						id,
@@ -83,6 +87,7 @@
 						orderTotal,
 						bank,
 						memo,
+						orderStatus,
 						ROW_NUMBER() OVER(ORDER BY orderId desc) as rNum
 				FROM ORDERS
 			) paging
@@ -124,6 +129,24 @@
 		FROM ORDERS
 		ORDER BY orderId DESC
 	</select>
+	
+	<!-- (관리자페이지) 주문 번호로 조회 -->
+	<select id="adminOrderView" resultType="com.shop.bidangol.vo.OrderListVO">
+		SELECT
+			O.orderId, O.id, O.name, O.email, O.postcode, O.address1, O.address2,
+			O.phone, O.phone2, O.phone3, O.orderTotal, O.bank, O.memo, O.orderDate, O.orderStatus,
+			D.orderDetailsNum, D.item_num as itemNum, D.cart_count as cartCount,
+			I.item_name as itemName, I.item_img as itemImg, I.item_price as itemPrice
+		FROM ORDERS O
+			INNER JOIN order_details D
+				ON O.orderId = D.orderId
+			INNER JOIN ITEMS I
+				ON D.item_num = I.item_num
+		WHERE O.orderId = #{orderId}
+	</select>
+	
+	<!-- (관리자페이지) 주문 상태 수정 -->
+	<update id="orderStatusUpdate"></update>
 
 
 

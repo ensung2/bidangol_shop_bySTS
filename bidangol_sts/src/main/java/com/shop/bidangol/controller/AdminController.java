@@ -20,10 +20,12 @@ import com.shop.bidangol.utils.PageMaker;
 import com.shop.bidangol.utils.Paging;
 import com.shop.bidangol.utils.UploadFileUtils;
 import com.shop.bidangol.vo.ItemVO;
+import com.shop.bidangol.vo.OrderListVO;
 import com.shop.bidangol.vo.OrderVO;
 import com.shop.bidangol.vo.UserVO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
@@ -33,7 +35,7 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private OrderService orderService;
 
@@ -71,9 +73,9 @@ public class AdminController {
 	// 관리자 페이지 - 주문관리 (리스트+페이징)
 	@GetMapping("/admin/adminOrder")
 	public String adminOrder(@ModelAttribute("page") Paging page, Model model) throws Exception {
-		
-		List<OrderVO> orderList = orderService.adminOrderList();
-		model.addAttribute("list",orderList);
+
+		List<OrderVO> orderList = orderService.orderPaging(page);
+		model.addAttribute("list", orderList);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setPage(page);
@@ -97,7 +99,7 @@ public class AdminController {
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setPage(page);
-		pageMaker.setTotalCount(userService.userCount());
+		pageMaker.setTotalCount(itemService.itemCount());
 		model.addAttribute("pageMaker", pageMaker);
 		return "admin/adminItem";
 	}
@@ -110,10 +112,15 @@ public class AdminController {
 		model.addAttribute("userInfo", userService.getUserOne(id));
 	}
 
-	// 관리자페이지 - 주문(orderNum)확인 (/bidangol/admin/adminOrder?id=orderNum)
+	// 관리자페이지 - 주문(orderId)확인 (/bidangol/admin/orderId?id=orderId)
 	@GetMapping("/admin/orderInfo")
-	public String adminOrderNum() {
-		return "admin/orderInfo";
+	public void adminOrderInfo(@RequestParam("id") String orderId, OrderVO orderVO,
+			Model model) throws Exception {
+
+		orderVO.setOrderId(orderId);
+		List<OrderListVO> orderView = orderService.adminOrderView(orderVO);
+		
+		model.addAttribute("orderView", orderView);
 	}
 
 	// 관리자페이지 - 상품(itemNum)확인 (/bidangol/admin/itemInfo?itemNum=itemNum)

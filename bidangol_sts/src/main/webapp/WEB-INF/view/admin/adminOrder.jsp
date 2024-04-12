@@ -15,7 +15,7 @@
 	<jsp:include page="/WEB-INF/view/include/admin.jsp" />
 
 	<!-- contents -->
-	<div class="adminOrder">
+	<div class="adminOrder aoMain">
 		<div class="wrap">
 			<section class="auTitle">
 				<h3>주문관리</h3>
@@ -62,7 +62,7 @@
             		</c:when>
             		<c:otherwise>
 						<c:forEach items="${list}" var="order">
-							<tr onclick="location.href='/bidangol/admin/orderInfo?orderId=<c:out value="${order.orderId}"/>'">
+							<tr onclick="location.href='/bidangol/admin/orderInfo?id=<c:out value="${order.orderId}"/>'">
 								<td class="orderId"><c:out value="${order.orderId}"></c:out></td>
 								<td class="id"><c:out value="${order.id}"></c:out></td>
 								<td class="address1"><c:out value="${order.address1}"></c:out></td>

@@ -48,7 +48,12 @@ public class OrderService implements OrderServiceImpl {
 	};
 
 	// (관리자페이지) 전체 주문 리스트
-	public List<OrderVO> adminOrderList(){
+	public List<OrderVO> adminOrderList() {
 		return mapper.adminOrderList();
+	};
+
+	// (관리자페이지) 주문 상세 조회
+	public List<OrderListVO> adminOrderView(OrderVO orderVO) {
+		return mapper.adminOrderView(orderVO);
 	};
 }
