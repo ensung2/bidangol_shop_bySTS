@@ -23,7 +23,6 @@
 			<section class="CheckSearch">
 				<div class="CheckSelect">
 					<select>
-						<option value="none" hidden>카테고리</option>
 						<option value="01">베스트상품</option>
 						<option value="02">찹쌀떡</option>
 						<option value="03">멥쌀떡</option>
