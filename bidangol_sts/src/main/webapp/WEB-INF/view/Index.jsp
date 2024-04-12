@@ -9,7 +9,19 @@
 <title>비단골떡방앗간 온라인몰</title>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ka6wkg5omj"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.slide_img li').last().prependTo('.slide_img');
+    $('.slide_img').css('top',-400);
+    setInterval(function(){
+       $('.slide_img').animate({top:'-='+400},'slow',function(){
+           $('.slide_img li') .first().appendTo('.slide_img');
+           $('.slide_img').css('top',-400);
+       });
+    },4000);
+});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -18,7 +30,21 @@
 	<!-- contents -->
 	<div class="indexContent">
 		<div class="wrap">
-			<section class="index01"></section>
+			<section class="index01">
+				<div class="slide_wrap">
+					<ul class="slide_img">
+						<li><a href="/bidangol/notice/noticeId?noticeNum=6">
+							<img alt="온라인몰 개편이벤트" src="/bidangol/img/slide/slide01.png">
+						</a></li>
+						<li><a href="/bidangol/category/01">
+							<img alt="베스트상품" src="/bidangol/img/slide/slide02.png">
+						</a></li>
+						<li><a href="/bidangol/notice/noticeId?noticeNum=7">
+							<img alt="떡케이크 주문이벤트" src="/bidangol/img/slide/slide03.png">
+						</a></li>
+					</ul>
+				</div>
+			</section>
 			<section class="index02">
 				<div class="indexNotice">
 					<div class="indexTitle">
