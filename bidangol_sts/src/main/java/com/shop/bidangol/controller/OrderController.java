@@ -41,7 +41,6 @@ public class OrderController {
 	}
 
 	// 주문 메서드
-
 	/* @RequestMapping(value="/order/orderResult", method = RequestMethod.POST) */
 	@PostMapping("/order/orderPage")
 	public String orderPage(HttpSession session, OrderVO orderVO, OrderDetailVO orderDetailVO) throws Exception {
@@ -57,8 +56,7 @@ public class OrderController {
 		for (int i = 1; i <= 6; i++) {
 			subNum += (int) (Math.random() * 10);
 		}
-		
-		
+
 		String orderId = ymd + "-" + subNum;
 
 		orderVO.setOrderId(orderId);
@@ -73,13 +71,12 @@ public class OrderController {
 
 		return "redirect:/order/orderResult";
 	}
-	
+
 	// 주문 결과 확인
 	@GetMapping("/order/orderResult")
 	public String orderResult() {
 		return "/order/orderResult";
 	}
-	
-	
+
 
 }

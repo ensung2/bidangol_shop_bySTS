@@ -30,6 +30,12 @@ public interface OrderServiceImpl {
 	// 주문 상세 조회
 	public List<OrderListVO> orderView(OrderVO orderVO);
 
+	// (회원) 주문 취소(삭제)
+	public void deleteOrder(OrderVO orderVO);
+	public void deleteOrderDetails(OrderDetailVO orderDetailVO);
+	
+	/* ========================== 관리자 페이지 ============================ */
+
 	// (관리자페이지) 전체 주문 리스트
 	public List<OrderVO> adminOrderList();
 

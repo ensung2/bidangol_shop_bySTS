@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/bidangol/css/order.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/bidangol/js/myPage.js"></script>
 </head>
 <body>
 	<!-- header -->
@@ -137,12 +139,17 @@
 						</table>
 					</div>
 				</section>
-
-				<div class="checkOrder_btn">
-					<input type="button" id="goMain" name="goMain" value="쇼핑계속하기">
-					<input type="button" id="orderDelete" name="selectDelete"
-						value="주문 취소하기">
-				</div>
+				<form name="orderDelete_form" id="orderDelete_form" method="post">
+				<c:forEach items="${orderView}" var="order">
+					<input type="hidden" name="orderId" value="${order.orderId}">
+					<input type="hidden" name="id" value="${order.id}">
+					<div class="checkOrder_btn">
+						<input type="button" id="goMain" name="goMain" value="쇼핑계속하기">
+						<input type="button" id="orderDelete" name="orderDelete"
+							value="주문 취소하기">
+					</div>
+					</c:forEach>
+				</form>
 			<section class="deliveryProcess">
 				<h4>배송상태 유의사항</h4>
 				<div class="process">

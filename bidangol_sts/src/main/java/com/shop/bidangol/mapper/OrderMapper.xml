@@ -5,29 +5,29 @@
 	<!-- 주문 정보 -->
 	<insert id="orderPage">
 		INSERT INTO orders(
-		orderId,
-		id,
-		name,
-		email,
-		postcode,
-		address1, address2,
-		phone, phone2, phone3,
-		orderTotal,
-		bank,
-		memo,
-		orderStatus)
+			orderId,
+			id,
+			name,
+			email,
+			postcode,
+			address1, address2,
+			phone, phone2, phone3,
+			orderTotal,
+			bank,
+			memo,
+			orderStatus)
 		VALUES (
 		#{orderId},
-		#{id},
-		#{name},
-		#{email},
-		#{postcode}, #{address1},
-		#{address2},
-		#{phone}, #{phone2}, #{phone3},
-		#{orderTotal},
-		#{bank},
-		#{memo},
-		#{orderStatus})
+			#{id},
+			#{name},
+			#{email},
+			#{postcode}, #{address1},
+			#{address2},
+			#{phone}, #{phone2}, #{phone3},
+			#{orderTotal},
+			#{bank},
+			#{memo},
+			#{orderStatus})
 	</insert>
 
 	<!-- 주문 상세 정보 -->
@@ -40,17 +40,17 @@
 	<!-- 주문 리스트 -->
 	<select id="orderList" resultType="com.shop.bidangol.vo.OrderVO">
 		SELECT
-		orderId,
-		id,
-		name,
-		email,
-		postcode,
-		address1, address2,
-		phone, phone2, phone3,
-		orderTotal,
-		bank,
-		memo,
-		orderStatus
+			orderId,
+			id,
+			name,
+			email,
+			postcode,
+			address1, address2,
+			phone, phone2, phone3,
+			orderTotal,
+			bank,
+			memo,
+			orderStatus
 		FROM ORDERS
 		WHERE id = #{id}
 		ORDER BY orderId DESC
@@ -111,6 +111,17 @@
 			AND O.orderId = #{orderId}
 	</select>
 	
+	<!-- (회원) 주문 취소(삭제) -->
+	<delete id="deleteOrder">
+		DELETE FROM ORDERS
+	    WHERE orderId = #{orderId} AND id = #{id}
+	</delete>
+	
+	<delete id="deleteOrderDetails">
+	    DELETE FROM order_details
+	    WHERE orderId = #{orderId}
+	</delete>
+	
 	<!--=========================================================================  -->
 	
 	<!-- (관리자페이지) 전체 주문 리스트  -->
@@ -151,9 +162,5 @@
 		SET orderStatus = #{orderStatus}
 		WHERE orderId = #{orderId}
 	</update>
-
-
-
-
 </mapper>
 

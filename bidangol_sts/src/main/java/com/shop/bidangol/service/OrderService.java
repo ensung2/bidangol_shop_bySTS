@@ -47,6 +47,16 @@ public class OrderService implements OrderServiceImpl {
 		return mapper.orderView(orderVO);
 	};
 
+	// (회원) 주문 취소(삭제)
+	public void deleteOrder(OrderVO orderVO) {
+		mapper.deleteOrder(orderVO);
+	};
+	public void deleteOrderDetails(OrderDetailVO orderDetailVO) {
+		mapper.deleteOrderDetails(orderDetailVO);
+	};
+
+	/* ========================== 관리자 페이지 ============================ */
+
 	// (관리자페이지) 전체 주문 리스트
 	public List<OrderVO> adminOrderList() {
 		return mapper.adminOrderList();
