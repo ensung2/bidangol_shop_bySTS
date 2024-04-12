@@ -56,4 +56,9 @@ public class OrderService implements OrderServiceImpl {
 	public List<OrderListVO> adminOrderView(OrderVO orderVO) {
 		return mapper.adminOrderView(orderVO);
 	};
+
+	// (관리자페이지) 주문 상태 수정
+	public void orderStatusUpdate(OrderVO orderVO) {
+		mapper.orderStatusUpdate(orderVO);
+	};
 }

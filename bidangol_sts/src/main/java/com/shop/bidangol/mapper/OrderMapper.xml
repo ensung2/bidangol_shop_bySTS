@@ -146,7 +146,12 @@
 	</select>
 	
 	<!-- (관리자페이지) 주문 상태 수정 -->
-	<update id="orderStatusUpdate"></update>
+	<update id="orderStatusUpdate">
+		UPDATE ORDERS
+		SET orderStatus = #{orderStatus}
+		WHERE orderId = #{orderId}
+	</update>
+
 
 
 

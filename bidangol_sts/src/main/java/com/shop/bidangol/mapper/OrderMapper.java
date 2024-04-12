@@ -36,4 +36,7 @@ public interface OrderMapper {
 	
 	// (관리자페이지) 주문 상세 조회
 	public List<OrderListVO> adminOrderView(OrderVO orderVO);
+	
+	// (관리자페이지) 주문 상태 수정
+	public void orderStatusUpdate(OrderVO orderVO);
 }
