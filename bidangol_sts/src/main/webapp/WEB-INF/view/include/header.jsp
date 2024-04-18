@@ -27,6 +27,19 @@
 
 <!-- jquery -->
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+    var cartIcon = document.querySelector(".cartIcon");
+
+    if (cartIcon) {
+        cartIcon.addEventListener("click", function() {
+            alert("장바구니를 이용하려면 로그인이 필요합니다.");
+            window.location.href = "/bidangol/login";
+        });
+    }
+});
+
+</script>
 </head>
 <body>
 	<div class="mainLogo">
@@ -43,19 +56,19 @@
 				<li><a href="/bidangol/category/04">떡케이크</a></li>
 			</ul>
 			<ul class="login">
-				<c:if test="${user == null }">
+				<c:if test="${user == null}">
 					<li><a href="/bidangol/login">로그인</a></li>
 					<li><a href="/bidangol/signUp">회원가입</a></li>
-					<li><a href="/bidangol/cart"><i
+					<li class="cartIcon"><a href="/bidangol/login"><i
 							class="fa-solid fa-cart-shopping"></i></a></li>
 				</c:if>
 				<c:if test="${user != null && user.role == 'USER'}">
 					<li><a href="/bidangol/logout">로그아웃</a></li>
 					<li><a href="/bidangol/myPage">마이페이지</a></li>
-					<li><a href="/bidangol/cart"><i
+					<li><a href="/bidangol/cart/cartPage"><i
 							class="fa-solid fa-cart-shopping"></i></a></li>
 				</c:if>
-				<c:if test="${user.role == 'ADMIN'}">
+				<c:if test="${user != null && user.role == 'ADMIN'}">
 						<li><a href="/bidangol/logout">로그아웃</a></li>
 						<li><a href="/bidangol/admin">관리자페이지</a></li>
 						<li></li>
