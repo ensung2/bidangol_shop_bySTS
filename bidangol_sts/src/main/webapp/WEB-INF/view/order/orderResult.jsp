@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,25 +29,39 @@
 				</div>
 				<div class="result_Info">
 					<table style="border-collapse: collapse">
-						<tbody>
-							<tr>
-								<th>주문번호</th>
-								<td>{orderNum}</td>
-							</tr>
-							<tr>
-								<th>최종결제금액</th>
-								<td>{orderTotal}<b>원</b></td>
-							</tr>
-							<tr>
-								<th>결제수단</th>
-								<td><b>{radio.payBy}</b><br> 입금자 : {userName} │ 계좌번호 :
-									{select.bank}<br> 현금영수증 발행 : {radio.cashReceipts}</td>
-							</tr>
-							<tr>
-								<th>배송메시지</th>
-								<td>{order.meno}</td>
-							</tr>
-						</tbody>
+						<c:forEach items="${orderView}" var="orderView" varStatus="status">
+						<c:if test="${status.first}">
+							<tbody>
+								<tr>
+									<th>주문번호</th>
+									<td style="width:770px">${orderView.orderId}</td>
+								</tr>
+								<tr>
+									<th>최종결제금액</th>
+									<td><b><fmt:formatNumber pattern="###,###,###" value="${orderView.orderTotal}" />원</b></td>
+								</tr>
+								<tr>
+									<th>결제수단</th>
+									<td><b>무통장입금</b><br> <b>입금자명 :</b> ${orderView.name} │ <b>계좌번호
+										:</b> <c:choose>
+								            <c:when test="${orderView.bank == '01'}">
+								                농협 123-45678-9101112 비단골떡방앗간
+								            </c:when>
+								            <c:when test="${orderView.bank == '02'}">
+								                신협 123-45678-9101112 비단골떡방앗간
+								            </c:when>
+								            <c:when test="${orderView.bank == '03'}">
+								                국민은행 123-45678-9101112 비단골떡방앗간
+								            </c:when>
+								        </c:choose></td>
+								</tr>
+								<tr>
+									<th>배송메시지</th>
+									<td>${orderView.memo}</td>
+								</tr>
+							</tbody>
+							</c:if>
+							</c:forEach>
 					</table>
 				</div>
 			</section>
@@ -60,26 +76,24 @@
 			</section>
 			<section class="order_Item">
 				<table style="border-collapse: collapse">
-					<tbody>
+					<c:forEach items="${orderView}" var="orderView">
 						<tr>
-							<td><b class="itemName">콩고물인절미({item.name})</b><br> <span
-								class="itemCount">수량:({item.count})개</span> <span
-								class="itemPrice">판매가:({item.price})원</span><br> <span
-								class="itemOption">옵션:({item.option) }</span></td>
-							<td><b>총 상품금액 : ({item.priceAll })원</b></td>
+							<td class="imgWrap">
+								<img src="http://localhost:8088/bidangol/resources/${orderView.itemImg}" class="itemImg"/>
+							</td>
+							<td>
+								<b class="itemName"><c:out value="${orderView.itemName}"/></b><br>
+								<span class="cartCount">수량: <c:out value="${orderView.cartCount}"/>개</span><br>
+								<span class="itemPrice">판매가: <fmt:formatNumber value="${orderView.itemPrice}" pattern="###,###" />원</span>
+							</td>
+							<td><b>총 상품금액 : <fmt:formatNumber value="${orderView.itemPrice * orderView.cartCount}" pattern="###,###" />원</b></td>
 						</tr>
-						<tr>
-							<td><b class="itemName">콩고물인절미({item.name})</b><br> <span
-								class="itemCount">수량:({item.count})개</span> <span
-								class="itemPrice">판매가:({item.price})원</span><br> <span
-								class="itemOption">옵션:({item.option) }</span></td>
-							<td><b class="priceTotal">총 상품금액 : ({item.priceAll })원</b></td>
-						</tr>
-					</tbody>
+						<c:set var="sum" value="${sum + (orderView.itemPrice * orderView.cartCount)}" />
+					</c:forEach>
 				</table>
 				<div class="order_Total">
 					<p>
-						<b>총 주문금액 : ({item.price(total)})원</b>
+						<b>총 주문금액 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원</b>
 					</p>
 				</div>
 				<div class="result_btn">

@@ -221,12 +221,14 @@ input[type=button] {
 	text-align: right
 }
 
-.order_Btn input{
+.order_Btn button{
+	display:inline-block;
 	width: 150px;
 	text-align: center;
 	padding: 10px;
 	font-size: 15px;
 	border: none;
+	cursor: pointer
 }
 
 .order_Btn>#orderBuy {
